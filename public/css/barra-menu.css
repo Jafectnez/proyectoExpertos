@@ -1,15 +1,35 @@
-#menu * { list-style:none;}
-#menu li{ line-height:180%;}
-#menu li a{color:#222; text-decoration:none;}
-#menu li a:before{ content:"\025b8"; color:#ddd; margin-right:4px;}
+#menu * { 
+  list-style:none;
+}
+#menu li{ 
+  line-height:180%;
+}
+#menu li a{
+  color:#222; 
+  text-decoration:none;
+}
+#menu li a:before{ 
+  content:"\025b8"; 
+  color:#ddd; 
+  margin-right:4px;
+}
 #menu input[name="list"] {
 	position: absolute;
 	left: -1000em;
 	}
-#menu label:before{ content:"\025b8"; margin-right:4px;}
-#menu input:checked ~ label:before{ content:"\025be";}
-#menu .interior{display: none;}
-#menu input:checked ~ ul{display:block;}
+#menu label:before{ 
+  content:"\025b8"; 
+  margin-right:4px;
+}
+#menu input:checked ~ label:before{ 
+  content:"\025be";
+}
+#menu .interior{
+  display: none;
+}
+#menu input:checked ~ ul{
+  display:block;
+}
 
 select{
 	border-radius: 3px;
@@ -33,7 +53,7 @@ ul.menu li a {
   padding: 10px;
   display: block;
   text-decoration: none;
-  color: #333;
+  color: rgb(255, 255, 255);
   
 }
 
