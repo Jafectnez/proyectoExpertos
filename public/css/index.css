@@ -1,0 +1,12 @@
+body{
+    background-color: black;
+}
+
+#main-cont *{
+    color: white;
+    text-align: center;
+}
+
+#footer-cont *{
+    color: white;
+}
