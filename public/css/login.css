@@ -1,0 +1,82 @@
+body{
+    background-color: black;
+}
+
+#login-div{
+    margin-top: 150px;
+    margin-left: 600px;
+    margin-bottom: 150px;
+    padding: 20px;
+    background: rgb(56, 55, 55);
+    align-content: center;
+    width: 321px;
+    border-radius: 5px;
+}
+
+#login-div span{
+    color: white;
+    font-size: 20px;
+    margin-left: 70px;
+}
+
+#login-div input[type="text"], input[type="password"]{
+    color: white;
+    background:  rgb(90, 84, 84);
+    padding:15px;
+    border: 0;
+    border-radius: 4px;
+    margin: 20px;
+    width: 87%;
+    box-sizing: border-box;
+}
+
+#login-div input[type="text"]:hover, input[type="password"]:hover{
+    border-bottom: 3px solid;
+    border-bottom-color: blue;
+}
+
+#login-div input[type="button"]{
+    border:0;
+    border-radius: 4px;
+    background: blueviolet;
+    padding: 15px;
+    width: 87%;
+    margin: 20px;
+    color:white;
+}
+
+#login-div input[type="button"]:hover{
+    background: rgb(78, 24, 128);
+}
+
+#login-div a{
+    color: white;
+    margin-left: 90px;
+    font-size: 12px;
+}
+
+#login-div a:hover{
+    text-decoration: underline;
+    
+}
+
+
+
+#footer-cont{
+    color: white;
+}
+
+#footer-menu {
+    list-style:none;
+    padding-bottom: 50px;
+}
+#footer-menu li{ 
+    line-height:180%;
+}
+#footer-menu li a{
+    text-decoration:none;
+}
+
+ul.footer-menu{
+    background-color: rgba(49, 56, 56, 0.5)
+}

@@ -40,11 +40,10 @@ ul.menu {
   clear: both;
   float: left;
   width: 100%;
-  height: 32%;
   list-style: none;
   margin: 0;
   padding: 0;
-  background-color: rgba(174, 75, 204, 0.5);
+  background-color: blueviolet;
 }
 
 ul.menu li {
@@ -61,7 +60,7 @@ ul.menu li a {
 }
 
 ul.menu li a:hover{
-  border-bottom: 1px solid;
+  border-bottom: 3px solid;
   border-bottom-color: white;
 }
 
@@ -100,7 +99,8 @@ body{
 	font-size: 15px;
 }
 
-#footer-menu * { 
+#footer-menu {
+  padding-bottom: 50px;
   list-style:none;
 }
 #footer-menu li{ 
