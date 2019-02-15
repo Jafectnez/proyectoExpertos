@@ -66,6 +66,7 @@ header{
 }
 
 #login-div input[type="button"]:hover{
+    text-decoration: none;
     background: rgb(78, 24, 128);
 }
 
@@ -80,6 +81,7 @@ header{
 
 #login-div a{
     color: white;
+    margin-top: 15px;
     margin-left: 90px;
     font-size: 12px;
 }

@@ -1,0 +1,47 @@
+    <script src="js/menuFun.js"></script>
+
+
+<div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <img src="img/usuario.jpg" class="img-responsive" alt="">
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        Nombre usuario
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <!-- Este par de botones no los elimino del todo porque pueden ser utiles en otro momento, quedan pendientes.
+                <div class="profile-userbuttons">
+                    <button type="button" class="btn btn-success btn-sm">Follow</button>
+                    <button type="button" class="btn btn-danger btn-sm">Message</button>
+                </div>
+                -->
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li>
+                            <a href="#">
+                                <h4>Gestionar Proyectos</h4> 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h4>Perfil</h4> 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <h4>Cerrar Sesion</h4> 
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+
