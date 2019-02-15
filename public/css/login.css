@@ -2,8 +2,11 @@ body{
     background-color: black;
 }
 
+header{
+    padding-bottom: 200px;
+}
+
 #login-div{
-    margin-top: 150px;
     margin-left: 600px;
     margin-bottom: 150px;
     padding: 20px;
@@ -30,6 +33,14 @@ body{
     box-sizing: border-box;
 }
 
+#login-div input[type="text"]{
+    margin-bottom: 0px;
+}
+
+#login-div input[type="password"]{
+    margin-bottom: 0px;
+}
+
 #login-div input[type="text"]:hover, input[type="password"]:hover{
     border-bottom: 3px solid;
     border-bottom-color: blue;
@@ -42,6 +53,7 @@ body{
     padding: 15px;
     width: 87%;
     margin: 20px;
+    margin-bottom: 5px;
     color:white;
 }
 

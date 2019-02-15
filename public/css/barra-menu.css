@@ -64,6 +64,10 @@ ul.menu li a:hover{
   border-bottom-color: white;
 }
 
+.menu2{
+  margin-left: 800px;
+}
+
 .lista{
 	padding-top: 10px;
 	border: black 1px solid;
