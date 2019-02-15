@@ -1,0 +1,24 @@
+.menu-lateral{
+    line-height:180%;
+	padding-top: 10px;
+	border: black 1px solid;
+	padding-bottom: 700px;
+}
+
+.menu-lateral ul{
+    list-style: none;
+}
+
+.menu-lateral ul li a{
+    text-decoration: none;
+}
+
+.menu-lateral ul li{
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+}
+
+.contenido{
+    
+}
