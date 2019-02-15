@@ -36,6 +36,13 @@ select{
 	width: 140px;
 }
 
+header{
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+}
+
 ul.menu {
   clear: both;
   float: left;
@@ -44,6 +51,7 @@ ul.menu {
   margin: 0;
   padding: 0;
   background-color: blueviolet;
+  display: block;
 }
 
 ul.menu li {
@@ -56,10 +64,14 @@ ul.menu li a {
   display: block;
   text-decoration: none;
   font-size:25px;
-  color:white
+  color:white;
 }
 
-ul.menu li a:hover{
+ul.menu li .selected{
+  color: #561a8f;
+}
+
+.item-menu:hover{
   border-bottom: 3px solid;
   border-bottom-color: white;
 }
@@ -98,8 +110,15 @@ input{
   background: rgba(0,0,0,0.4);
   display: inline-block;
 }
+.menu span{
+  display: block;
+  text-decoration: none;
+  font-size:25px;
+  color:white;
+}
 
 body{
+  zoom: 1;
 	font-size: 15px;
 }
 
@@ -115,5 +134,5 @@ body{
 }
 
 ul.footer-menu{
-  background-color: rgba(49, 56, 56, 0.5)
+  background-color: #00000080;
 }

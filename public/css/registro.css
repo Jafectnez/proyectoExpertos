@@ -1,6 +1,6 @@
 body{
     background: #1a293e;
-    background: url(../img/background-login.jpg);
+    background: url(../img/background-registro.jpg);
     background-repeat: no-repeat;
     background-position:center top;
     background-size: cover;
@@ -14,58 +14,76 @@ header{
     padding-top: 200px;
 }
 
-#login-div{
-    margin-left: 600px;
+#registro-div{
+    margin-left: 500px;
     margin-bottom: 15px;
     padding: 20px;
     background: rgb(56, 55, 55);
     align-content: center;
-    width: 321px;
+    width: 550px;
     border-radius: 5px;
 }
 
-#login-div span{
+#registro-div span.titulo{
     color: white;
     font-size: 20px;
-    margin-left: 60px;
+    margin-left: 170px;
 }
 
-#login-div input[type="text"], input[type="password"]{
+#registro-div span{
+    color: white;
+    font-size: 20px;
+}
+
+#registro-div table{
+    margin: 20px;
+}
+
+#registro-div
+    select
+    ,input[type="text"]
+    ,input[type="email"]
+    ,input[type="password"]{
     color: white;
     background:  rgb(90, 84, 84);
     padding:15px;
     border: 0;
     border-radius: 4px;
     margin: 20px;
-    width: 87%;
+    width: 110%;
     box-sizing: border-box;
 }
 
-#login-div input[type="text"]{
+#registro-div input[type="text"]{
     margin-bottom: 0px;
 }
 
-#login-div input[type="password"]{
+#registro-div input[type="email"]{
     margin-bottom: 0px;
 }
 
-#login-div input[type="text"]:hover, input[type="password"]:hover{
+#registro-div input[type="password"]{
+    margin-bottom: 0px;
+}
+
+#registro-div input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover{
     border-bottom: 3px solid;
     border-bottom-color: #ff9900;
 }
 
-#login-div input[type="button"]{
+#registro-div input[type="button"]{
     border:0;
     border-radius: 4px;
     background: blueviolet;
     padding: 15px;
     width: 87%;
     margin: 20px;
+    margin-left: 35px;
     margin-bottom: 5px;
     color:white;
 }
 
-#login-div input[type="button"]:hover{
+#registro-div input[type="button"]:hover{
     background: rgb(78, 24, 128);
 }
 
@@ -78,13 +96,13 @@ header{
     border-radius: 5px;
 }
 
-#login-div a{
+#registro-div a{
     color: white;
     margin-left: 90px;
     font-size: 12px;
 }
 
-#login-div a:hover{
+#registro-div a:hover{
     text-decoration: underline;
 }
 

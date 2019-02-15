@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <title>GEPO - Registro</title>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="img/Logo-GEPO.svg">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/barra-menu.css">
+		<link rel="stylesheet" type="text/css" href="css/registro.css">
+    </head>
+    <body>
+        <header id="header-cont">
+            <ul class="menu">
+                <li><a href="index.html"><img src="img/Logo-GEPO-page.svg" style="width:40px;height:40px;" class="d-inline-block align-top" alt="">GEPO</a></li>
+                <li><a class="item" href="index.html">Página Principal</a></li>
+                <li class="menu2"><a class="item" href="login.html">Iniciar Sesión</a></li>
+                <li><a class="item selected" href="#">Registro</a></li>
+            </ul>
+        </header>
+        <!---->
+        <main id="main-cont" >
+            <div id="registro-div">
+                <span class="titulo">Ingrese sus datos:</span>
+                <form>
+                    <table>
+                        <tr>
+                            <td>
+                                <span>Nombre:</span> 
+                            </td>
+                            <td>
+                                <input type="text" placeholder="Nombre" autofocus>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Apellido:</span> 
+                            </td>
+                            <td>
+                                <input type="text" placeholder="Apellido" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Correo:</span> 
+                            </td>
+                            <td>
+                                <input type="email" placeholder="Correo">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Usuario:</span> 
+                            </td>
+                            <td>
+                                <input type="text" placeholder="Usuario">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Contraseña:</span> 
+                            </td>
+                            <td>
+                                <input type="password" placeholder="Contraseña">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Pais de Residencia:</span> 
+                            </td>
+                            <td>
+                                <select>
+                                    <option value="0">-- Seleccione su pais --</option>
+                                    <option value="1">Honduras</option>
+                                    <option value="2">Costa Rica</option>
+                                    <option value="3">Nicaragua</option>
+                                    <option value="4">Panama</option>
+                                    <option value="5">El Salvador</option>
+                                    <option value="1">Guatemala</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="button" value="Registrarme!">
+                </form>
+            </div>
+            <div class="alert alert-danger fade" role="alert">
+               Error! Por favor revise los datos e intente de nuevo.
+            </div>
+        </main>
+        <!---->
+        <footer id="footer-cont">
+            <ul class="footer-menu" id="footer-menu">
+                <li><span>@ Copyright GEPO 2019</span>
+                    <span style="margin-left: 300px">Contáctanos</span></li>
+            </ul>   
+        </footer>
+    </body>
+</html>

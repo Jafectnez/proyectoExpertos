@@ -1,18 +1,59 @@
-body{
-    background-color: black;
+#main-cont{
+    text-align: center;
+    padding-top: 60px;
 }
 
-#main-cont{
-    color: white;
+table td, th{
+    padding: 20px;
     text-align: center;
 }
 
-#footer-cont{
+.variacion-carousel{
+    background: blueviolet;
     color: white;
+    padding: 20px;
+}
+
+.variacion-1{
+    background: #eee;
+    padding-left:250px;
+}
+
+.jumbotron{
+    margin-bottom: 0;
+}
+
+.card{
+    width: 200px;
+    height: 350px;
+    margin-top:20px;
+    margin-left:90px;
+    border: 1px solid #d4d3d3;
+    border-top: 3px solid blueviolet;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+#card-gratuito:hover{
+    border: blue;
+    border-top: 3px solid blueviolet;
+    box-shadow: 0 0 40px blue;
+}
+
+#card-tier1:hover{
+    border: magenta;
+    border-top: 3px solid blueviolet;
+    box-shadow: 0 0 40px magenta;
+}
+
+#card-tier2:hover{
+    border: red;
+    border-top: 3px solid blueviolet;
+    box-shadow: 0 0 40px red;
 }
 
 .circle{
-    margin-bottom: 30px;
     width: 300px;
     height: 300px;
     border-radius: 100%;
@@ -22,4 +63,8 @@ body{
 
 .circle-text{
     padding-top: 130px;
+}
+
+#footer-cont{
+    color: white;
 }
