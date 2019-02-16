@@ -1,0 +1,27 @@
+#barraNav{
+    padding-left: 0;
+    padding-right: 0;
+    width: 150px;
+}
+
+.seccion-proyectos{
+    height: 800px;
+    background: #28284e;
+}
+
+.tarjeta-proyecto{
+    width: 350px;
+    background: white;
+    border: 5px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.tarjeta-proyecto:hover{
+    border-left: 5px solid #ff0000;
+}
+
+table td{
+    padding: 10px;
+    padding-left: 25px;
+}

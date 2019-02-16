@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GEPO - Revision Proyecto</title>
+    <meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/barra-menu.css">
+		<link rel="stylesheet" type="text/css" href="css/seccion-archivos.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+	<!--Contenedor-->
+	<div class="container-fluid">
+		<div class="row">
+            <header id="header-cont">
+                <!--Menu -->
+                <ul class="menu">
+                    <li>
+                        <div class="profile-userpic">
+                            <img id="foto-perfil" src="img/usuario.jpg">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="profile-usertitle-name">
+                            <h3 style="color:white">Zaden Ower - Gratuito</h3>
+                        </div>
+                    </li>
+                    <li class="menu2">
+                        <a class="item-menu" href="seccion-proyectos.html">
+                            <h4>Gestionar Proyectos</h4> 
+                        </a>
+                    </li>
+                    <li>
+                        <a class="item-menu" href="perfil.html">
+                            <h4>Perfil</h4> 
+                        </a>
+                    </li>
+                    <li>
+                        <a class="item-menu" href="index.html">
+                            <h4>Cerrar Sesión</h4> 
+                        </a>
+                    </li>
+                </ul>
+                <!--Fin Menu-->	
+            </header>
+			
+			<!--Contenido-->
+			<div class="col-lg-9 well">
+				<div class="portada">
+					<div class="text">
+                        <h1>Mi Carpeta</h1>
+                        <a id="agregar-archivo" class="btn btn-primary" href="#">Agregar archivo</a>
+                    </div>		
+                </div>
+            </div>
+            <div class="seccion-archivos">
+                <table>
+                    <tr>
+                        <td>
+                            <h4 style="color:white">HTML</h4>
+                        </td>
+                        <td>
+                            <h4 style="color:white">CSS</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="textarea" id="code-frame">
+                        </td>
+                        <td>
+                            <input type="textarea" id="code-frame">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="textarea" id="code-frame">
+                        </td>
+                        <td>
+                            <input type="textarea" id="code-frame">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4 style="color:white">Javascript</h4>
+                        </td>
+                        <td>
+                            <h4 style="color:white">PHP</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <iframe class="results-iframe" width="1517px" height="500px;" scrolling="si"></iframe>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4 style="color:white">Resultado</h4>
+                        </td>
+                    </tr>
+                </table>
+            </div>	
+            <!--Fin Contenido-->
+		</div>
+	</div>
+    <!--Fin Del Contenedor-->
+    
+    <footer id="footer-cont">
+        <ul class="footer-menu" id="footer-menu">
+            <li><span>@ Copyright GEPO 2019</span>
+                <span style="margin-left: 300px">Contáctanos</span></li>
+        </ul>   
+    </footer>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GEPO - Menu Principal</title>
+    <meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/styleBarra.css">
+		<link rel="stylesheet" type="text/css" href="css/seccion-proyectos.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+	<!--Contenedor-->
+	<div class="container-fluid">
+		<div class="row">
+			<!--Aqui Esta Contenida La Barra De Menu-->
+			<div id="barraNav" class="col-lg-3 lista">
+                <div class="profile-sidebar">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="img/usuario.jpg" class="img-responsive" alt="">
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            Zaden Ower - Gratuito
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <!-- Este par de botones no los elimino del todo porque pueden ser utiles en otro momento, quedan pendientes.
+                    <div class="profile-userbuttons">
+                        <button type="button" class="btn btn-success btn-sm">Follow</button>
+                        <button type="button" class="btn btn-danger btn-sm">Message</button>
+                    </div>
+                    -->
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li>
+                                <a href="#">
+                                    <h4>Gestionar Proyectos</h4> 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="perfil.html">
+                                    <h4>Perfil</h4> 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html">
+                                    <h4>Cerrar Sesión</h4> 
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END MENU -->
+                </div>
+            </div>
+            <!--Aqui Esta Finaliza La La Barra De Menu-->
+            
+			<!--Contenido-->
+			<div class="col-lg-9 well">
+				<div class="portada">
+					<div class="text">
+						<h1>Mis Proyectos</h1>
+                    </div>		
+                </div>
+            </div>
+            <div class="seccion-proyectos">
+                <table>
+                    <tr>
+                        <td>
+                            <div id="mi-proyecto-1" class="card mb-3 tarjeta-proyecto" style="max-width: 540px;">
+                                <div class="row no-gutters">
+                                    <a href="seccion-carpetas.html">
+                                        <img src="img/Logo-GEPO-page.svg" class="card-img" style="width:100px;height:100px">
+                                    </a>
+                                    <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Mi Proyecto 1</h4>
+                                        <p class="card-text">Descripcion de mi proyecto.</p>
+                                        <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>3 min</b></small></p>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            
+                            <div id="mi-proyecto-2" class="card mb-3 tarjeta-proyecto" style="max-width: 540px;">
+                                <div class="row no-gutters">
+                                    <a href="seccion-carpetas.html">
+                                        <img src="img/Logo-GEPO-page.svg" class="card-img" style="width:100px;height:100px">
+                                    </a>
+                                    <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Mi Proyecto 2</h4>
+                                        <p class="card-text">Descripcion de mi proyecto.</p>
+                                        <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>1 hora</b></small></p>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>	
+            <!--Fin Contenido-->
+		</div>
+	</div>
+    <!--Fin Del Contenedor-->
+    
+    <footer id="footer-cont">
+        <ul class="footer-menu" id="footer-menu">
+            <li><span>@ Copyright GEPO 2019</span>
+                <span style="margin-left: 300px">Contáctanos</span></li>
+        </ul>   
+    </footer>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+</body>
+</html>

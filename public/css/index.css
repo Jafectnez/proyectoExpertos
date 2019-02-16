@@ -29,7 +29,7 @@ table td, th{
     margin-top:20px;
     margin-left:90px;
     border: 1px solid #d4d3d3;
-    border-top: 3px solid blueviolet;
+    border-top: 5px solid blueviolet;
     border-radius: 5px;
     margin-bottom: 20px;
     padding: 20px;
@@ -67,4 +67,9 @@ table td, th{
 
 #footer-cont{
     color: white;
+    margin-bottom: 0;
+}
+
+body{
+    padding-bottom: 0;
 }

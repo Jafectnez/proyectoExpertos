@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>GEPO - Menu Principal</title>
+	<title>GEPO - Revision Proyecto</title>
     <meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/styleBarra.css">
-		<link rel="stylesheet" type="text/css" href="css/seccion-creacion.css">
+		<link rel="stylesheet" type="text/css" href="css/seccion-carpetas.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -23,7 +24,7 @@
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            Zaden Ower
+                            Zaden Ower - Gratuito
                         </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
@@ -39,7 +40,7 @@
                     <div class="profile-usermenu">
                         <ul class="nav">
                             <li>
-                                <a href="#">
+                                <a href="seccion-proyectos.html">
                                     <h4>Gestionar Proyectos</h4> 
                                 </a>
                             </li>
@@ -60,18 +61,51 @@
             </div>
             <!--Aqui Esta Finaliza La La Barra De Menu-->
             
-			<!--Contenido Del Inventario-->
-
+			<!--Contenido-->
 			<div class="col-lg-9 well">
-
 				<div class="portada">
 					<div class="text">
-						<h1>Mis Proyectos</h1>
-						
-
-					</div>				
+						<h1>Mi Proyecto</h1>
+                    </div>		
                 </div>
-			</div>
+            </div>
+            <div class="seccion-carpetas">
+                <table>
+                    <tr>
+                        <td>
+                            <div id="mi-carpeta-1" class="card mb-3 tarjeta-carpeta" style="max-width: 540px;">
+                                <div class="row no-gutters">
+                                    <a href="seccion-archivos.html">
+                                        <img src="img/carpetas.png" class="card-img">
+                                    </a>
+                                    <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Mi Carpeta 1</h4>
+                                        <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>3 min</b></small></p>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="mi-carpeta-2" class="card mb-3 tarjeta-carpeta" style="max-width: 540px;">
+                                <div class="row no-gutters">
+                                    <a href="seccion-archivos.html">
+                                        <img src="img/carpetas.png" class="card-img">
+                                    </a>
+                                    <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Mi Carpeta 2</h4>
+                                        <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>2 min</b></small></p>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>	
+            <!--Fin Contenido-->
 		</div>
 	</div>
     <!--Fin Del Contenedor-->
@@ -84,6 +118,5 @@
     </footer>
 
 	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/menu.js"></script>
 </body>
 </html>

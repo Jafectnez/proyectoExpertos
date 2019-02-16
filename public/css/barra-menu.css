@@ -119,12 +119,13 @@ input{
 
 body{
   zoom: 1;
-	font-size: 15px;
+  font-size: 15px;
 }
 
 #footer-menu {
   padding-bottom: 50px;
   list-style:none;
+  margin-bottom: 0;
 }
 #footer-menu li{ 
   line-height:180%;
@@ -135,4 +136,5 @@ body{
 
 ul.footer-menu{
   background-color: #00000080;
+  margin-bottom: 0;
 }
