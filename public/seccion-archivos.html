@@ -1,117 +1,156 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>GEPO - Revision Proyecto</title>
+  <head>
+    <title>GEPO - Menu Principal</title>
     <meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/barra-menu.css">
-		<link rel="stylesheet" type="text/css" href="css/seccion-archivos.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styleBarra.css">
+    <link rel="stylesheet" type="text/css" href="css/seccion-archivos.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
 
-	<!--Contenedor-->
-	<div class="container-fluid">
-		<div class="row">
-            <header id="header-cont">
-                <!--Menu -->
-                <ul class="menu">
-                    <li>
-                        <div class="profile-userpic">
-                            <img id="foto-perfil" src="img/usuario.jpg">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="profile-usertitle-name">
-                            <h3 style="color:white">Zaden Ower - Gratuito</h3>
-                        </div>
-                    </li>
-                    <li class="menu2">
-                        <a class="item-menu" href="seccion-proyectos.html">
-                            <h4>Gestionar Proyectos</h4> 
-                        </a>
-                    </li>
-                    <li>
-                        <a class="item-menu" href="perfil.html">
-                            <h4>Perfil</h4> 
-                        </a>
-                    </li>
-                    <li>
-                        <a class="item-menu" href="index.html">
-                            <h4>Cerrar Sesión</h4> 
-                        </a>
-                    </li>
-                </ul>
-                <!--Fin Menu-->	
-            </header>
-			
-			<!--Contenido-->
-			<div class="col-lg-9 well">
-				<div class="portada">
-					<div class="text">
-                        <h1>Mi Carpeta</h1>
-                        <a id="agregar-archivo" class="btn btn-primary" href="#">Agregar archivo</a>
-                    </div>		
+    <!--Contenedor Body-->
+    <div class="container-fluid">
+      <div class="row">
+        <div id="barraNav" class="col-lg-12 col-md-12 col-sm-12 col-xl-12 lista"> 
+          <div class="row justify-content-center interior-barraNav">
+            <!--Aqui Esta Contenida La Barra De Menu-->
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 barra-menu">
+              <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="row justify-content-center foto-perfil">
+                  <div class="profile-userpic">
+                    <img src="img/usuario.jpg" class="img-responsive" alt="">
+                  </div>
                 </div>
-            </div>
-            <div class="seccion-archivos">
-                <table>
-                    <tr>
-                        <td>
-                            <h4 style="color:white">HTML</h4>
-                        </td>
-                        <td>
-                            <h4 style="color:white">CSS</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="textarea" id="code-frame">
-                        </td>
-                        <td>
-                            <input type="textarea" id="code-frame">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="textarea" id="code-frame">
-                        </td>
-                        <td>
-                            <input type="textarea" id="code-frame">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4 style="color:white">Javascript</h4>
-                        </td>
-                        <td>
-                            <h4 style="color:white">PHP</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <iframe class="results-iframe" width="1517px" height="500px;" scrolling="si"></iframe>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4 style="color:white">Resultado</h4>
-                        </td>
-                    </tr>
-                </table>
-            </div>	
-            <!--Fin Contenido-->
-		</div>
-	</div>
-    <!--Fin Del Contenedor-->
-    
-    <footer id="footer-cont">
-        <ul class="footer-menu" id="footer-menu">
-            <li><span>@ Copyright GEPO 2019</span>
-                <span style="margin-left: 300px">Contáctanos</span></li>
-        </ul>   
-    </footer>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="row justify-content-center nombre-perfil">
+                  <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                      Zaden Ower - Gratuito
+                    </div>
+                  </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
 
-	<script src="js/jquery-3.2.1.min.js"></script>
-</body>
+                <!-- SIDEBAR MENU -->
+                <div class="row justify-content-center secciones-menu">
+                  <div class="col-lg-12">
+                    <div class="profile-usermenu">
+                      <ul class="nav">
+                        <li>
+                          <a href="seccion-proyectos.html">
+                            <h4>Gestionar Proyectos</h4> 
+                          </a>
+                        </li>
+                        <li>
+                          <a href="perfil.html">
+                            <h4>Perfil</h4> 
+                          </a>
+                        </li>
+                        <li>
+                          <a href="index.html">
+                            <h4>Cerrar Sesión</h4> 
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- END MENU -->
+              </div>
+            </div> 
+            <!--Aqui Finaliza La La Barra De Menu-->
+
+            <!--Contenido-->
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 sector-contenido">
+              <div class="row justify-content-center row-portada well">
+                <div class="portada col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                  <div class="text">
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                        <h1>Mi Carpeta</h1>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                        <a href="editor.html" class="btn btn-primary btn-editor">Abrir Editor</a>
+                      </div>
+                    </div>
+                  </div>		
+                </div>
+              </div>
+
+              <div class="row row-seccion">
+                <div class="seccion-archivos col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                  
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 contenedor-tarjeta">
+                    <div id="mi-archivo-1" class="card mb-3 tarjeta-archivo" style="max-width: 540px;">
+                      <div class="row no-gutters">
+                        <img src="img/Logo-GEPO-page.svg" class="card-img" style="width:100px;height:100px">
+                        <div class="col-md-8">
+                        <div class="card-body">
+                          <h4 class="card-title">Mi Archivo.html</h4>
+                          <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>3 min</b></small></p>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 contenedor-tarjeta">
+                    <div id="mi-archivo-2" class="card mb-3 tarjeta-archivo" style="max-width: 540px;">
+                      <div class="row no-gutters">
+                        <img src="img/Logo-GEPO-page.svg" class="card-img" style="width:100px;height:100px">
+                        <div class="col-md-8">
+                        <div class="card-body">
+                          <h4 class="card-title">Mi Archivo.css</h4>
+                          <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>2 min</b></small></p>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 contenedor-tarjeta">
+                    <div id="mi-archivo-3" class="card mb-3 tarjeta-archivo" style="max-width: 540px;">
+                      <div class="row no-gutters">
+                        <img src="img/Logo-GEPO-page.svg" class="card-img" style="width:100px;height:100px">
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h4 class="card-title">Mi Archivo.js</h4>
+                            <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>2 min</b></small></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                        
+                </div>
+              </div>
+              <!--Fin Contenido-->
+            </div>
+            <!--Fin Contenido-->
+
+          </div>
+
+          <div class="row row-footer">
+            <footer id="footer-cont">
+              <ul class="footer-menu" id="footer-menu">
+                <li>
+                  <span>@ Copyright GEPO 2019</span>
+                  <span style="margin-left: 300px">Contáctanos</span>
+                </li>
+              </ul>   
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Fin Del Contenedor Body-->
+    
+    
+  </body>
+  <!--Scripts-->    
+  <script src="js/jquery-3.2.1.min.js"></script>
 </html>

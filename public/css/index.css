@@ -14,17 +14,36 @@ table td, th{
     padding: 20px;
 }
 
+.variacion-texto{
+    background: #28284e;
+    color: white;
+}
+
+.variacion-texto h2, h5{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 20px;
+}
+
 .variacion-1{
-    background: #eee;
+    background: #28284e;
     padding-left:250px;
+}
+
+.variacion-2{
+    background: white;
+    padding: 20px;
+    color: black;
 }
 
 .jumbotron{
     margin-bottom: 0;
+    background: #28284e;
+    color: white;
 }
 
 .card{
-    width: 200px;
+    width: 180px;
     height: 350px;
     margin-top:20px;
     margin-left:90px;
@@ -33,6 +52,13 @@ table td, th{
     border-radius: 5px;
     margin-bottom: 20px;
     padding: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: white;
+}
+
+#card-gratuito button{
+    margin-top: 38px;
 }
 
 #card-gratuito:hover{
@@ -41,10 +67,18 @@ table td, th{
     box-shadow: 0 0 40px blue;
 }
 
+#card-tier1 button{
+    margin-top: 1px;
+}
+
 #card-tier1:hover{
     border: magenta;
     border-top: 3px solid blueviolet;
     box-shadow: 0 0 40px magenta;
+}
+
+#card-tier2 button{
+    margin-top: 19px;
 }
 
 #card-tier2:hover{
@@ -72,6 +106,7 @@ table td, th{
 
 body{
     padding-bottom: 0;
+    background: #28284e;
 }
 
 .red-social{

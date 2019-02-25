@@ -5,6 +5,7 @@
 }
 
 .seccion-proyectos{
+    width: 100% - 150px;
     height: 800px;
     background: #28284e;
 }
@@ -24,4 +25,12 @@
 table td{
     padding: 10px;
     padding-left: 25px;
+}
+
+.a-tarjeta{
+    color:black;
+}
+
+.a-tarjeta:hover{
+    color:blueviolet;
 }
