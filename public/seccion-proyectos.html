@@ -1,124 +1,109 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>GEPO - Menu Principal</title>
+  <head>
+    <title>GEPO - Menu Principal</title>
     <meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/styleBarra.css">
-		<link rel="stylesheet" type="text/css" href="css/seccion-proyectos.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styleBarra.css">
+    <link rel="stylesheet" type="text/css" href="css/seccion-proyectos.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
 
-	<!--Contenedor-->
-	<div class="container-fluid">
-		<div class="row">
-			<!--Aqui Esta Contenida La Barra De Menu-->
-			<div id="barraNav" class="col-lg-3 lista">
-                <div class="profile-sidebar">
-                    <!-- SIDEBAR USERPIC -->
-                    <div class="profile-userpic">
-                        <img src="img/usuario.jpg" class="img-responsive" alt="">
-                    </div>
-                    <!-- END SIDEBAR USERPIC -->
-                    <!-- SIDEBAR USER TITLE -->
-                    <div class="profile-usertitle">
-                        <div class="profile-usertitle-name">
-                            Zaden Ower - Gratuito
-                        </div>
-                    </div>
-                    <!-- END SIDEBAR USER TITLE -->
-                    <!-- SIDEBAR BUTTONS -->
-                    <!-- Este par de botones no los elimino del todo porque pueden ser utiles en otro momento, quedan pendientes.
-                    <div class="profile-userbuttons">
-                        <button type="button" class="btn btn-success btn-sm">Follow</button>
-                        <button type="button" class="btn btn-danger btn-sm">Message</button>
-                    </div>
-                    -->
-                    <!-- END SIDEBAR BUTTONS -->
-                    <!-- SIDEBAR MENU -->
-                    <div class="profile-usermenu">
-                        <ul class="nav">
-                            <li>
-                                <a href="#">
-                                    <h4>Gestionar Proyectos</h4> 
-                                </a>
-                            </li>
-                            <li>
-                                <a href="perfil.html">
-                                    <h4>Perfil</h4> 
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html">
-                                    <h4>Cerrar Sesión</h4> 
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- END MENU -->
-                </div>
-            </div>
-            <!--Aqui Esta Finaliza La La Barra De Menu-->
+    <!--Contenedor Body-->
+    <div class="container-fluid">
+      <div class="row">
+        <div id="barraNav" class="col-lg-12 col-md-12 col-sm-12 col-xl-12 lista"> 
+          <div class="row justify-content-center interior-barraNav">
             
-			<!--Contenido-->
-			<div class="col-lg-9 well">
-				<div class="portada">
-					<div class="text">
-						<h1>Mis Proyectos</h1>
-                    </div>		
+            <!--Aqui Esta Contenida La Barra De Menu-->
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 barra-menu">
+              <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="row justify-content-center foto-perfil">
+                  <div class="profile-userpic">
+                    <img id="foto-usuario" src="img/usuario.jpg" class="img-responsive" alt="">
+                  </div>
                 </div>
-            </div>
-            <div class="seccion-proyectos">
-                <table>
-                    <tr>
-                        <td>
-                            <a class="a-tarjeta" href="seccion-carpetas.html">
-                                <div id="mi-proyecto-1" class="card mb-3 tarjeta-proyecto" style="max-width: 540px;">
-                                    <div class="row no-gutters">
-                                        <img src="img/Logo-GEPO-page.svg" class="card-img" style="width:100px;height:100px">
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Mi Proyecto 1</h4>
-                                                <p class="card-text">Descripcion de mi proyecto.</p>
-                                                <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>3 min</b></small></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </td>
-                        <td>
-                            <a class="a-tarjeta" href="seccion-carpetas.html">
-                                <div id="mi-proyecto-2" class="card mb-3 tarjeta-proyecto" style="max-width: 540px;">
-                                    <div class="row no-gutters">
-                                        <img src="img/Logo-GEPO-page.svg" class="card-img" style="width:100px;height:100px">
-                                        <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Mi Proyecto 2</h4>
-                                            <p class="card-text">Descripcion de mi proyecto.</p>
-                                            <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>1 hora</b></small></p>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </td>
-                    </tr>
-                </table>
-            </div>	
-            <!--Fin Contenido-->
-		</div>
-	</div>
-    <!--Fin Del Contenedor-->
-    
-    <footer id="footer-cont">
-        <ul class="footer-menu" id="footer-menu">
-            <li><span>@ Copyright GEPO 2019</span>
-                <span style="margin-left: 300px">Contáctanos</span></li>
-        </ul>   
-    </footer>
+                <!-- END SIDEBAR USERPIC -->
 
-	<script src="js/jquery-3.2.1.min.js"></script>
-</body>
+                <!-- SIDEBAR USER TITLE -->
+                <div class="row justify-content-center nombre-perfil">
+                  <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                      <span id="usuario">Zaden Ower</span> - <span id="tipo-usuario">Tier 2</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+
+                <!-- SIDEBAR MENU -->
+                <div class="row justify-content-center secciones-menu">
+                  <div class="col-lg-12">
+                    <div class="profile-usermenu">
+                      <ul class="nav">
+                        <li>
+                          <a href="seccion-principal.html">
+                            <h4>Menu Principal</h4> 
+                          </a>
+                        </li>
+                        <li>
+                          <a href="perfil.html">
+                            <h4>Perfil</h4> 
+                          </a>
+                        </li>
+                        <li>
+                          <a href="index.html">
+                            <h4>Cerrar Sesión</h4> 
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- END MENU -->
+              </div>
+            </div> 
+            <!--Aqui Finaliza La La Barra De Menu-->
+
+            <!--Contenido-->
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 sector-contenido">
+              <!--Sector Superior-->
+              <div class="row justify-content-center row-portada well">
+                <div class="portada col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                  <div class="text">
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                        <h1 id="nombre-portada">Mi Carpeta</h1>
+                      </div>
+                    </div>
+                  </div>		
+                </div>
+              </div>
+              <!--Fin Sector Superior-->
+
+              <!--Sector Inferior-->
+              <div class="row row-seccion">
+                <div id="sector-inferior" class="seccion-inferior col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                        
+                </div>
+              </div>
+              <!--Fin Sector Inferior-->
+            </div>
+            <!--Fin Contenido-->
+          </div>
+
+          <!--Seccion Footer-->
+          <div id="footer-cont" class="row row-footer">
+          </div>
+          <!--Fin Seccion Footer-->
+
+        </div>
+      </div>
+    </div>
+    <!--Fin Del Contenedor Body-->  
+  </body>
+  <!--Scripts-->    
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/seccion-proyectos.js"></script>
 </html>

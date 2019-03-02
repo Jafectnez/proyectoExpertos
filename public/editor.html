@@ -1,117 +1,197 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>GEPO - Revision Proyecto</title>
-    <meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/barra-menu.css">
-		<link rel="stylesheet" type="text/css" href="css/editor.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+  <head>
+    <title>GEPO - Editor</title>
+      <meta charset="utf-8" />
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="css/barra-menu.css">
+      <link rel="stylesheet" type="text/css" href="css/editor.css">
+      <link rel="stylesheet" type="text/css" href="js/codemirror/lib/codemirror.css">
+      <link rel="stylesheet" type="text/css" href="js/codemirror/theme/icecoder.css">
+      <link rel="stylesheet" type="text/css" href="js/codemirror/addon/hint/show-hint.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
 
-	<!--Contenedor-->
-	<div class="container-fluid">
-		<div class="row">
-            <header id="header-cont">
-                <!--Menu -->
-                <ul class="menu">
-                    <li>
-                        <div class="profile-userpic">
-                            <img id="foto-perfil" src="img/usuario.jpg">
+    <!--Contenedor Body-->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 contenedor-body"> 
+          <!--Aqui Esta Contenida La Barra De Menu-->
+          <div class="row barraNav">
+              <ul class="menu">
+                <div id="menu-grande">
+                  <!-- SIDEBAR USERPIC/USER/USERTYPE -->
+                  <div class="col-lg-8 col-md-6 col-sm-10 col-xl-8">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xl-1 perfil-pict">
+                          <li>
+                            <div class="profile-userpic">
+                              <img id="foto-usuario" src="img/usuario.jpg" class="img-responsive">
+                            </div>
+                          </li>
                         </div>
-                    </li>
-                    <li>
-                        <div class="profile-usertitle-name">
-                            <h3 style="color:white">Zaden Ower - Gratuito</h3>
+                        <div class="col-lg-10 col-md-8 col-sm-10 col-xl-10 perfil-usr">
+                          <li>
+                            <div class="profile-usertitle">
+                              <div class="profile-usertitle-name">
+                                <span id="usuario">Zaden Ower - Tier 2</span>
+                              </div>
+                            </div>
+                          </li>
                         </div>
-                    </li>
-                    <li class="menu2">
-                        <a class="item-menu" href="seccion-proyectos.html">
-                            <h4>Gestionar Proyectos</h4> 
-                        </a>
-                    </li>
-                    <li>
-                        <a class="item-menu" href="perfil.html">
-                            <h4>Perfil</h4> 
-                        </a>
-                    </li>
-                    <li>
-                        <a class="item-menu" href="index.html">
-                            <h4>Cerrar Sesión</h4> 
-                        </a>
-                    </li>
-                </ul>
-                <!--Fin Menu-->	
-            </header>
-			
-			<!--Contenido-->
-			<div class="col-lg-9 well">
-				<div class="portada">
-					<div class="text">
-                        <h1>Mi Carpeta</h1>
-                        <a id="agregar-archivo" class="btn btn-primary" href="#">Agregar archivo</a>
-                    </div>		
+                    </div>
+                  </div>
+                  <!-- END SIDEBAR USERPIC/USER/USERTYPE -->
+                  <div class="col-lg-4 col-md-2 col-xl-4">
+                    <div class="row justify-content-center">
+                      <li>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 secciones-menu">
+                          <div class="profile-usermenu">
+                            <a class="item-menu" href="seccion-principal.html">
+                              <h4>Menu Principal</h4> 
+                            </a>
+                          </div>
+                        </div> 
+                      </li>
+                      <li>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 secciones-menu">
+                          <div class="profile-usermenu">
+                            <a class="item-menu" href="perfil.html">
+                              <h4>Perfil</h4> 
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 secciones-menu">
+                          <div class="profile-usermenu">
+                            <a class="item-menu" href="index.html">
+                              <h4>Cerrar Sesión</h4> 
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                    </div>
+                  </div>
                 </div>
-            </div>
-            <div class="seccion-archivos">
-                <table>
-                    <tr>
-                        <td>
-                            <h4 style="color:white">HTML</h4>
-                        </td>
-                        <td>
-                            <h4 style="color:white">CSS</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="textarea" id="code-frame">
-                        </td>
-                        <td>
-                            <input type="textarea" id="code-frame">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="textarea" id="code-frame">
-                        </td>
-                        <td>
-                            <input type="textarea" id="code-frame">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4 style="color:white">Javascript</h4>
-                        </td>
-                        <td>
-                            <h4 style="color:white">PHP</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <iframe class="results-iframe" width="1517px" height="500px;" scrolling="si"></iframe>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4 style="color:white">Resultado</h4>
-                        </td>
-                    </tr>
-                </table>
-            </div>	
-            <!--Fin Contenido-->
-		</div>
-	</div>
-    <!--Fin Del Contenedor-->
-    
-    <footer id="footer-cont">
-        <ul class="footer-menu" id="footer-menu">
-            <li><span>@ Copyright GEPO 2019</span>
-                <span style="margin-left: 300px">Contáctanos</span></li>
-        </ul>   
-    </footer>
 
-	<script src="js/jquery-3.2.1.min.js"></script>
-</body>
+                <div id="menu-pequeño">
+                  <!-- SIDEBAR USERPIC/USER/USERTYPE -->
+                  <div class="col-sm-9">
+                    <div class="row justify-content-center">
+                      <div class="col-sm-8 perfil-usr">
+                        <li>
+                          <div class="profile-usertitle">
+                            <div class="profile-usertitle-name">
+                              <span id="usuario">Zaden Ower - Tier 2</span>
+                            </div>
+                          </div>
+                        </li>
+                      </div>
+                      <div class="col-sm-2 items">
+                        <nav id="navigation">
+                          <div class="control-menu">
+                            <a href="#navigation" class="open"><img src="img/icono-menu-pequeño.svg"></a>
+                            <a href="#" class="close"><img src="img/icono-menu-pequeño-2.svg"></a>
+                          </div>
+    
+                          <ul class="nav-items">
+                            <li><a class="nav-item" href="seccion-principal.html"><h4>Menu Principal</h4></a></li>
+                            <li><a class="nav-item" href="perfil.html"><h4>Perfil</h4></a></li>
+                            <li><a class="nav-item" href="index.html"><h4>Cerrar Sesión</h4></a></li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END SIDEBAR USERPIC/USER/USERTYPE -->
+                </div>
+              </ul>
+          </div>
+          <!--Aqui Finaliza La La Barra De Menu-->
+
+          <!--Contenido-->
+          <div class="row row-contenido">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 sector-contenido">
+              <!--Sector Superior-->
+              <div class="row justify-content-center row-portada well">
+                <div class="portada col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                  <div class="text">
+                    <h1 id="nombre-portada">Mi Proyecto</h1>
+                  </div>
+                </div>
+              </div>
+              <!--Fin Sector Superior-->
+
+              <!--Sector Inferior-->
+              <div class="row row-seccion">
+                <div id="sector-inferior" class="seccion-inferior col-lg-12 col-md-12 col-sm-12 col-xl-12">
+
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-code">
+                    <div class="row">
+                      <span id="spn-html" class="spn-ext">HTML</span>
+                    </div>
+                    <div class="row">
+                        <textarea id="txtA-html"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
+                    <div class="row">
+                      <textarea id="txtA-js"></textarea>
+                    </div>
+                    <div class="row">
+                      <span class="spn-ext">JS</span>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
+                    <div class="row">
+                        <textarea id="txtA-css"></textarea>
+                    </div>
+                    <div class="row">
+                      <span class="spn-ext">CSS</span>
+                    </div>
+                  </div>
+                
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-resultado">
+                      <div class="row">
+                        <span class="spn-ext">Resultado</span>
+                      </div>
+                      <div class="row">
+                        <iframe id="resultado" class="resultado"></iframe>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <!--Fin Sector Inferior-->
+            </div>
+            <!--Fin Contenido-->
+          </div>
+
+          <!--Seccion Footer-->
+          <div id="footer-cont" class="row row-footer">
+          </div>
+          <!--Fin Seccion Footer-->
+
+        </div>
+      </div>
+    </div>
+    <!--Fin Del Contenedor Body-->  
+  </body>
+  <!--Scripts-->    
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/codemirror/lib/codemirror.js"></script>
+  <script src="js/codemirror/keymap/sublime.js"></script>
+  <script src="js/codemirror/addon/hint/show-hint.js"></script>
+  <script src="js/codemirror/mode/css/css.js"></script>
+  <script src="js/codemirror/addon/hint/css-hint.js"></script>
+  <script src="js/codemirror/mode/xml/xml.js"></script>
+  <script src="js/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+  <script src="js/codemirror/addon/hint/html-hint.js"></script>
+  <script src="js/codemirror/mode/javascript/javascript.js"></script>
+  <script src="js/codemirror/addon/hint/javascript-hint.js"></script>
+  <script src="js/editor.js"></script>
+
 </html>

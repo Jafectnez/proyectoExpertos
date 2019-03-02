@@ -1,21 +1,30 @@
 #barraNav{
     padding-left: 0;
     padding-right: 0;
-    width: 150px;
+    width: 100%;
 }
 
-.seccion-proyectos{
-    width: 100% - 150px;
-    height: 800px;
-    background: #28284e;
+.seccion-inferior{
+    height: 100%;
+    padding: 15px;
+}
+
+.contenedor-tarjeta{
+    width: 26%;
+}
+
+.card-img{
+    width: 100px;
+    height: 100px;
 }
 
 .tarjeta-proyecto{
-    width: 350px;
+    width: 100%;
     background: white;
     border: 5px solid white;
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
+    margin: 10px;
 }
 
 .tarjeta-proyecto:hover{
@@ -33,4 +42,29 @@ table td{
 
 .a-tarjeta:hover{
     color:blueviolet;
+}
+
+.well{
+    width: 100%;
+    height: 50%;
+    margin: 0;
+}
+
+.barra-menu{
+    width: 17%;
+    padding-right: 0;
+}
+
+.sector-contenido{
+    width: 83%;
+    margin: 0;
+    padding-left: 0;
+}
+
+body{
+    background: #28284e;
+}
+
+.portada{
+    width: 100%;
 }

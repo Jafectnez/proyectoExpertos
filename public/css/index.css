@@ -113,3 +113,7 @@ body{
     text-decoration: none;
     color: white;
 }
+
+ul.footer-menu{
+    height: 25%;
+}

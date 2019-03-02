@@ -1,0 +1,70 @@
+#barraNav{
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+}
+
+.seccion-inferior{
+    height: 100%;
+    padding: 15px;
+}
+
+.contenedor-tarjeta{
+    width: 26%;
+}
+
+.card-img{
+    width: 100px;
+    height: 100px;
+}
+
+.tarjeta-espacio-trabajo{
+    width: 100%;
+    background: white;
+    border: 5px solid white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.tarjeta-espacio-trabajo:hover{
+    border-left: 5px solid #ff0000;
+}
+
+table td{
+    padding: 10px;
+    padding-left: 25px;
+}
+
+.a-tarjeta{
+    color:black;
+}
+
+.a-tarjeta:hover{
+    color:blueviolet;
+}
+
+.well{
+    width: 100%;
+    height: 50%;
+    margin: 0;
+}
+
+.barra-menu{
+    width: 17%;
+    padding-right: 0;
+}
+
+.sector-contenido{
+    width: 83%;
+    margin: 0;
+    padding-left: 0;
+}
+
+body{
+    background: #28284e;
+}
+
+.portada{
+    width: 100%;
+}

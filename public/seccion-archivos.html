@@ -15,21 +15,23 @@
       <div class="row">
         <div id="barraNav" class="col-lg-12 col-md-12 col-sm-12 col-xl-12 lista"> 
           <div class="row justify-content-center interior-barraNav">
+            
             <!--Aqui Esta Contenida La Barra De Menu-->
             <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 barra-menu">
               <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="row justify-content-center foto-perfil">
                   <div class="profile-userpic">
-                    <img src="img/usuario.jpg" class="img-responsive" alt="">
+                    <img id="foto-usuario" src="img/usuario.jpg" class="img-responsive" alt="">
                   </div>
                 </div>
                 <!-- END SIDEBAR USERPIC -->
+
                 <!-- SIDEBAR USER TITLE -->
                 <div class="row justify-content-center nombre-perfil">
                   <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                      Zaden Ower - Gratuito
+                      <span id="usuario">Zaden Ower</span> - <span id="tipo-usuario">Tier 2</span>
                     </div>
                   </div>
                 </div>
@@ -41,8 +43,8 @@
                     <div class="profile-usermenu">
                       <ul class="nav">
                         <li>
-                          <a href="seccion-proyectos.html">
-                            <h4>Gestionar Proyectos</h4> 
+                          <a href="seccion-principal.html">
+                            <h4>Menu Principal</h4> 
                           </a>
                         </li>
                         <li>
@@ -66,91 +68,45 @@
 
             <!--Contenido-->
             <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 sector-contenido">
+              <!--Sector Superior-->
               <div class="row justify-content-center row-portada well">
                 <div class="portada col-lg-12 col-md-12 col-sm-12 col-xl-12">
                   <div class="text">
                     <div class="row">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
-                        <h1>Mi Carpeta</h1>
+                        <h1 id="nombre-carpeta">Mi Proyecto</h1>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
-                        <a href="editor.html" class="btn btn-primary btn-editor">Abrir Editor</a>
-                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                      <a href="editor.html" class="btn btn-primary btn-editor">Abrir Editor</a>
                     </div>
                   </div>		
                 </div>
               </div>
-
+              <!--Fin Sector Superior-->
+              
+              <!--Sector Inferior-->
               <div class="row row-seccion">
-                <div class="seccion-archivos col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                  
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 contenedor-tarjeta">
-                    <div id="mi-archivo-1" class="card mb-3 tarjeta-archivo" style="max-width: 540px;">
-                      <div class="row no-gutters">
-                        <img src="img/Logo-GEPO-page.svg" class="card-img" style="width:100px;height:100px">
-                        <div class="col-md-8">
-                        <div class="card-body">
-                          <h4 class="card-title">Mi Archivo.html</h4>
-                          <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>3 min</b></small></p>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 contenedor-tarjeta">
-                    <div id="mi-archivo-2" class="card mb-3 tarjeta-archivo" style="max-width: 540px;">
-                      <div class="row no-gutters">
-                        <img src="img/Logo-GEPO-page.svg" class="card-img" style="width:100px;height:100px">
-                        <div class="col-md-8">
-                        <div class="card-body">
-                          <h4 class="card-title">Mi Archivo.css</h4>
-                          <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>2 min</b></small></p>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 contenedor-tarjeta">
-                    <div id="mi-archivo-3" class="card mb-3 tarjeta-archivo" style="max-width: 540px;">
-                      <div class="row no-gutters">
-                        <img src="img/Logo-GEPO-page.svg" class="card-img" style="width:100px;height:100px">
-                        <div class="col-md-8">
-                          <div class="card-body">
-                            <h4 class="card-title">Mi Archivo.js</h4>
-                            <p class="card-text"><small class="text-muted">Ultima modificacion: hace <b>2 min</b></small></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div id="sector-inferior" class="seccion-archivos col-lg-12 col-md-12 col-sm-12 col-xl-12">
                         
                 </div>
               </div>
-              <!--Fin Contenido-->
+              <!--Fin Sector Inferior-->
             </div>
             <!--Fin Contenido-->
-
           </div>
 
-          <div class="row row-footer">
-            <footer id="footer-cont">
-              <ul class="footer-menu" id="footer-menu">
-                <li>
-                  <span>@ Copyright GEPO 2019</span>
-                  <span style="margin-left: 300px">Contáctanos</span>
-                </li>
-              </ul>   
-            </footer>
+          <!--Seccion Footer-->
+          <div id="footer-cont">
           </div>
+          <!--Fin Seccion Footer-->
+          
         </div>
       </div>
     </div>
-    <!--Fin Del Contenedor Body-->
-    
-    
+    <!--Fin Del Contenedor Body-->  
   </body>
   <!--Scripts-->    
   <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/seccion-archivos.js"></script>
 </html>
