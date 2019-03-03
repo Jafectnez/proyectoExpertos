@@ -127,6 +127,18 @@
         padding: 0;
         margin: 0;
     }
+    
+    #navigation:target .nav-items{
+        height: 158px;
+        transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
+    }
+    
+    #navigation:target .open{
+        display: none;
+    }
+    #navigation:target .close{
+        display: block;
+    }
 
     ul.nav-items{
         background: #41275a;
@@ -224,22 +236,5 @@
         width: 100%;
         padding-left: 1%;
         box-sizing: border-box;
-    }
-    #navigation:target .nav-items{
-        height: 158px;
-        transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
-    }
-    
-    #navigation:target .open{
-        display: none;
-    }
-    #navigation:target .perfil-pict{
-        display: none;
-    }
-    #navigation:target .perfil-usr{
-        display: none;
-    }
-    #navigation:target .close{
-        display: block;
     }
 }
