@@ -2,13 +2,70 @@
 <html>
   <head>
     <title>GEPO - Editor</title>
-      <meta charset="utf-8" />
+      <meta charset="utf-8"/>
+
       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="css/barra-menu.css">
       <link rel="stylesheet" type="text/css" href="css/editor.css">
       <link rel="stylesheet" type="text/css" href="js/codemirror/lib/codemirror.css">
       <link rel="stylesheet" type="text/css" href="js/codemirror/theme/icecoder.css">
       <link rel="stylesheet" type="text/css" href="js/codemirror/addon/hint/show-hint.css">
+
+      <link rel="stylesheet" href="js/codemirror/theme/3024-day.css">
+      <link rel="stylesheet" href="js/codemirror/theme/3024-night.css">
+      <link rel="stylesheet" href="js/codemirror/theme/abcdef.css">
+      <link rel="stylesheet" href="js/codemirror/theme/ambiance.css">
+      <link rel="stylesheet" href="js/codemirror/theme/base16-dark.css">
+      <link rel="stylesheet" href="js/codemirror/theme/bespin.css">
+      <link rel="stylesheet" href="js/codemirror/theme/base16-light.css">
+      <link rel="stylesheet" href="js/codemirror/theme/blackboard.css">
+      <link rel="stylesheet" href="js/codemirror/theme/cobalt.css">
+      <link rel="stylesheet" href="js/codemirror/theme/colorforth.css">
+      <link rel="stylesheet" href="js/codemirror/theme/dracula.css">
+      <link rel="stylesheet" href="js/codemirror/theme/duotone-dark.css">
+      <link rel="stylesheet" href="js/codemirror/theme/duotone-light.css">
+      <link rel="stylesheet" href="js/codemirror/theme/eclipse.css">
+      <link rel="stylesheet" href="js/codemirror/theme/elegant.css">
+      <link rel="stylesheet" href="js/codemirror/theme/erlang-dark.css">
+      <link rel="stylesheet" href="js/codemirror/theme/gruvbox-dark.css">
+      <link rel="stylesheet" href="js/codemirror/theme/hopscotch.css">
+      <link rel="stylesheet" href="js/codemirror/theme/icecoder.css">
+      <link rel="stylesheet" href="js/codemirror/theme/isotope.css">
+      <link rel="stylesheet" href="js/codemirror/theme/lesser-dark.css">
+      <link rel="stylesheet" href="js/codemirror/theme/liquibyte.css">
+      <link rel="stylesheet" href="js/codemirror/theme/lucario.css">
+      <link rel="stylesheet" href="js/codemirror/theme/material.css">
+      <link rel="stylesheet" href="js/codemirror/theme/mbo.css">
+      <link rel="stylesheet" href="js/codemirror/theme/mdn-like.css">
+      <link rel="stylesheet" href="js/codemirror/theme/midnight.css">
+      <link rel="stylesheet" href="js/codemirror/theme/monokai.css">
+      <link rel="stylesheet" href="js/codemirror/theme/neat.css">
+      <link rel="stylesheet" href="js/codemirror/theme/neo.css">
+      <link rel="stylesheet" href="js/codemirror/theme/night.css">
+      <link rel="stylesheet" href="js/codemirror/theme/nord.css">
+      <link rel="stylesheet" href="js/codemirror/theme/oceanic-next.css">
+      <link rel="stylesheet" href="js/codemirror/theme/panda-syntax.css">
+      <link rel="stylesheet" href="js/codemirror/theme/paraiso-dark.css">
+      <link rel="stylesheet" href="js/codemirror/theme/paraiso-light.css">
+      <link rel="stylesheet" href="js/codemirror/theme/pastel-on-dark.css">
+      <link rel="stylesheet" href="js/codemirror/theme/railscasts.css">
+      <link rel="stylesheet" href="js/codemirror/theme/rubyblue.css">
+      <link rel="stylesheet" href="js/codemirror/theme/seti.css">
+      <link rel="stylesheet" href="js/codemirror/theme/shadowfox.css">
+      <link rel="stylesheet" href="js/codemirror/theme/solarized.css">
+      <link rel="stylesheet" href="js/codemirror/theme/the-matrix.css">
+      <link rel="stylesheet" href="js/codemirror/theme/tomorrow-night-bright.css">
+      <link rel="stylesheet" href="js/codemirror/theme/tomorrow-night-eighties.css">
+      <link rel="stylesheet" href="js/codemirror/theme/ttcn.css">
+      <link rel="stylesheet" href="js/codemirror/theme/twilight.css">
+      <link rel="stylesheet" href="js/codemirror/theme/vibrant-ink.css">
+      <link rel="stylesheet" href="js/codemirror/theme/xq-dark.css">
+      <link rel="stylesheet" href="js/codemirror/theme/xq-light.css">
+      <link rel="stylesheet" href="js/codemirror/theme/yeti.css">
+      <link rel="stylesheet" href="js/codemirror/theme/idea.css">
+      <link rel="stylesheet" href="js/codemirror/theme/darcula.css">
+      <link rel="stylesheet" href="js/codemirror/theme/zenburn.css">
+
       <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -120,6 +177,67 @@
                   <div class="text">
                     <h1 id="nombre-portada">Mi Proyecto</h1>
                   </div>
+                  <div id="">
+                    Temas: 
+                    <select onchange="selectTheme()" id="select-tema">
+                      <option selected>default</option>
+                      <option>3024-day</option>
+                      <option>3024-night</option>
+                      <option>abcdef</option>
+                      <option>ambiance</option>
+                      <option>base16-dark</option>
+                      <option>base16-light</option>
+                      <option>bespin</option>
+                      <option>blackboard</option>
+                      <option>cobalt</option>
+                      <option>colorforth</option>
+                      <option>darcula</option>
+                      <option>dracula</option>
+                      <option>duotone-dark</option>
+                      <option>duotone-light</option>
+                      <option>eclipse</option>
+                      <option>elegant</option>
+                      <option>erlang-dark</option>
+                      <option>gruvbox-dark</option>
+                      <option>hopscotch</option>
+                      <option>icecoder</option>
+                      <option>idea</option>
+                      <option>isotope</option>
+                      <option>lesser-dark</option>
+                      <option>liquibyte</option>
+                      <option>lucario</option>
+                      <option>material</option>
+                      <option>mbo</option>
+                      <option>mdn-like</option>
+                      <option>midnight</option>
+                      <option>monokai</option>
+                      <option>neat</option>
+                      <option>neo</option>
+                      <option>night</option>
+                      <option>nord</option>
+                      <option>oceanic-next</option>
+                      <option>panda-syntax</option>
+                      <option>paraiso-dark</option>
+                      <option>paraiso-light</option>
+                      <option>pastel-on-dark</option>
+                      <option>railscasts</option>
+                      <option>rubyblue</option>
+                      <option>seti</option>
+                      <option>shadowfox</option>
+                      <option>solarized dark</option>
+                      <option>solarized light</option>
+                      <option>the-matrix</option>
+                      <option>tomorrow-night-bright</option>
+                      <option>tomorrow-night-eighties</option>
+                      <option>ttcn</option>
+                      <option>twilight</option>
+                      <option>vibrant-ink</option>
+                      <option>xq-dark</option>
+                      <option>xq-light</option>
+                      <option>yeti</option>
+                      <option>zenburn</option>
+                    </select>
+                  </div>
                 </div>
               </div>
               <!--Fin Sector Superior-->
@@ -127,42 +245,32 @@
               <!--Sector Inferior-->
               <div class="row row-seccion">
                 <div id="sector-inferior" class="seccion-inferior col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-code">
+                      <button onclick="cargarPlantillaHTML();" class="btn btn-primary btn-plantilla-html" sytle="margin-left:10%;">Cargar Plantilla Base</button>
+                      <h3 class="spn-ext">HTML</h3>
+                      <textarea id="editor-html" name="editor-html"></textarea>
+                    </div>
 
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-code">
-                    <div class="row">
-                      <span id="spn-html" class="spn-ext">HTML</span>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
+                      <textarea id="editor-js">
+                      </textarea>
+                      <h3 class="spn-ext">JS</h3>  
                     </div>
-                    <div class="row">
-                        <textarea id="txtA-html"></textarea>
-                    </div>
-                  </div>
 
-                  <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
-                    <div class="row">
-                      <textarea id="txtA-js"></textarea>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
+                      <textarea id="editor-css"> 
+                      </textarea>
+                      <h3 class="spn-ext">CSS</h3> 
                     </div>
-                    <div class="row">
-                      <span class="spn-ext">JS</span>
+                  
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-resultado">
+                        <div class="row">
+                          <h3 class="spn-ext">Resultado</h3>
+                        </div>
+                        <div class="row">
+                          <iframe id="resultado" class="resultado" src="ejemplo.html"></iframe>
+                        </div>
                     </div>
-                  </div>
-
-                  <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
-                    <div class="row">
-                        <textarea id="txtA-css"></textarea>
-                    </div>
-                    <div class="row">
-                      <span class="spn-ext">CSS</span>
-                    </div>
-                  </div>
-                
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-resultado">
-                      <div class="row">
-                        <span class="spn-ext">Resultado</span>
-                      </div>
-                      <div class="row">
-                        <iframe id="resultado" class="resultado"></iframe>
-                      </div>
-                  </div>
                 </div>
               </div>
               <!--Fin Sector Inferior-->
@@ -192,6 +300,8 @@
   <script src="js/codemirror/addon/hint/html-hint.js"></script>
   <script src="js/codemirror/mode/javascript/javascript.js"></script>
   <script src="js/codemirror/addon/hint/javascript-hint.js"></script>
-  <script src="js/editor.js"></script>
+  <script src="js/codemirror/addon/selection/active-line.js"></script>
+  <script src="js/codemirror/addon/edit/matchbrackets.js"></script>
+  <script src="js/editores.js"></script>
 
 </html>

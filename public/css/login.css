@@ -1,110 +1,308 @@
-body{
-    background: #1a293e;
-    background: url(../img/background-login.jpg);
-    background-repeat: no-repeat;
-    background-position:center top;
-    background-size: cover;
+@media only screen and (min-width: 800px){
+    body{
+        background: #1a293e;
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
+    }
+
+    .item:hover{
+        border-bottom: 2px solid white !important;
+    }
+
+    .sector-header{
+        padding: 0;
+    }
+
+    .sector-header .col-sm-2-mod{
+        padding-right: 0;
+        width: 12%;
+    }
+
+    .sector-header .col-sm-2{
+        padding: 0;
+        width: 12%;
+    }
+
+    .sector-header .item{
+        margin: 0 !important;
+    }
+
+    .sector-contenido{
+        margin-top: 10%;
+        margin-bottom: 10%;
+        box-sizing: border-box;
+    }
+
+    #login-div{
+        margin-left: 40%;
+        padding: 20px;
+        background: rgb(56, 55, 55);
+        align-content: center;
+        width: 23%;
+        border-radius: 5px;
+    }
+
+    #login-div span{
+        color: white;
+        font-size: 20px;
+        margin-left: 25%;
+    }
+
+    #login-div input[type="text"], input[type="password"]{
+        color: white;
+        background:  #5a5454;
+        padding: 15px;
+        border: 0;
+        border-radius: 4px;
+        margin: 20px;
+        margin-bottom: 0px;
+        width: 87%;
+        box-sizing: border-box;
+    }
+
+    #login-div input[type="text"]:hover, input[type="password"]:hover{
+        border-bottom: 3px solid;
+        border-bottom-color: #ff9900;
+    }
+
+    #login-div input[type="button"]{
+        border:0;
+        border-radius: 4px;
+        background: blueviolet;
+        padding: 15px;
+        width: 87%;
+        margin: 20px;
+        margin-bottom: 5px;
+        color:white;
+    }
+
+    #login-div input[type="button"]:hover{
+        text-decoration: none;
+        background: rgb(78, 24, 128);
+    }
+
+    #login-div a{
+        color: white;
+        margin-top: 15px;
+        margin-left: 33%;
+        font-size: 12px;
+    }
+
+    #login-div a:hover{
+        text-decoration: underline;
+    }
+
+    .sector-inferior{
+        padding: 0;
+    }
+
+    #footer-cont{
+        color: white;
+    }
+
+    #footer-menu {
+        list-style:none;
+        padding-bottom: 50px;
+    }
+
+    #footer-menu li a{
+        text-decoration:none;
+    }
+
+    .menu-footer{
+        padding: 0;
+    }
+
+    ul.footer-menu{
+        background-color: #1b1f1f80;
+        height: 20%;
+    }
+
+    #menu-grande{
+        display: block;
+    }
+
+    #menu-pequeño{
+        display: none;
+    }
 }
 
-header{
-    padding-bottom: 200px;
-}
+@media only screen and (max-width: 800px){
+    body{
+        background: #1a293e;
+        background: url(../img/background-login.jpg);
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
+    }
 
-#main-cont{
-    padding-top: 200px;
-}
+    #menu-grande{
+        display: none;
+    }
 
-#login-div{
-    margin-left: 600px;
-    margin-bottom: 15px;
-    padding: 20px;
-    background: rgb(56, 55, 55);
-    align-content: center;
-    width: 321px;
-    border-radius: 5px;
-}
+    #menu-pequeño{
+        display: block;
+    }
 
-#login-div span{
-    color: white;
-    font-size: 20px;
-    margin-left: 60px;
-}
+    .control-menu{
+        padding-top: 0;
+        padding-left: 85%;
+    }
 
-#login-div input[type="text"], input[type="password"]{
-    color: white;
-    background:  #5a5454;
-    padding:15px;
-    border: 0;
-    border-radius: 4px;
-    margin: 20px;
-    width: 87%;
-    box-sizing: border-box;
-}
+    .control-menu img{
+        width: 40px;
+        height: 60px;
+    }
 
-#login-div input[type="text"]{
-    margin-bottom: 0px;
-}
+    .items{
+        padding: 0;
+        margin: 0;
+    }
+    
+    #navigation:target .nav-items{
+        height: 158px;
+        transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
+    }
+    
+    #navigation:target .open{
+        display: none;
+    }
+    #navigation:target .close{
+        display: block;
+    }
 
-#login-div input[type="password"]{
-    margin-bottom: 0px;
-}
+    ul.nav-items{
+        background: #41275a;
+        list-style: none;
+        clear: both;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.4s ease-in-out 0s, background-color 2s ease 0s;
+    }
 
-#login-div input[type="text"]:hover, input[type="password"]:hover{
-    border-bottom: 3px solid;
-    border-bottom-color: #ff9900;
-}
+    ul.nav-item:hover{
+        background: #7a26c9;
+    }
+    
+    .close{
+        display: none;
+    }
 
-#login-div input[type="button"]{
-    border:0;
-    border-radius: 4px;
-    background: blueviolet;
-    padding: 15px;
-    width: 87%;
-    margin: 20px;
-    margin-bottom: 5px;
-    color:white;
-}
+    .sector-header{
+        padding: 0;
+    }
 
-#login-div input[type="button"]:hover{
-    text-decoration: none;
-    background: rgb(78, 24, 128);
-}
+    .sector-header .col-sm-2-mod{
+        padding-right: 0;
+        width: 12%;
+    }
 
-.alert{
-    margin-left: 600px;
-    margin-bottom: 150px;
-    padding: 20px;
-    align-content: center;
-    width: 321px;
-    border-radius: 5px;
-}
+    .sector-header .col-sm-2{
+        padding: 0;
+        width: 12%;
+    }
 
-#login-div a{
-    color: white;
-    margin-top: 15px;
-    margin-left: 90px;
-    font-size: 12px;
-}
+    .sector-header .item{
+        margin: 0 !important;
+    }
 
-#login-div a:hover{
-    text-decoration: underline;
-}
+    .sector-contenido{
+        padding-top: 15%;
+        padding-bottom: 15%;
+    }
 
-#footer-cont{
-    color: white;
-}
+    #login-div{
+        padding: 20px;
+        background: rgb(56, 55, 55);
+        align-content: center;
+        width: 100%;
+        border-radius: 5px;
+    }
 
-#footer-menu {
-    list-style:none;
-    padding-bottom: 50px;
-}
-#footer-menu li{ 
-    line-height:180%;
-}
-#footer-menu li a{
-    text-decoration:none;
-}
+    #login-div span{
+        color: white;
+        font-size: 20px;
+        margin-left: 25%;
+    }
 
-ul.footer-menu{
-    background-color: #1b1f1f80
+    #login-div input[type="text"], input[type="password"]{
+        color: white;
+        background:  #5a5454;
+        padding:15px;
+        border: 0;
+        border-radius: 4px;
+        margin: 20px;
+        width: 87%;
+        box-sizing: border-box;
+    }
+
+    #login-div input[type="text"]{
+        margin-bottom: 0px;
+    }
+
+    #login-div input[type="password"]{
+        margin-bottom: 0px;
+    }
+
+    #login-div input[type="text"]:hover, input[type="password"]:hover{
+        border-bottom: 3px solid;
+        border-bottom-color: #ff9900;
+    }
+
+    #login-div input[type="button"]{
+        border:0;
+        border-radius: 4px;
+        background: blueviolet;
+        padding: 15px;
+        width: 87%;
+        margin: 20px;
+        margin-bottom: 5px;
+        color:white;
+    }
+
+    #login-div input[type="button"]:hover{
+        text-decoration: none;
+        background: rgb(78, 24, 128);
+    }
+
+    #login-div a{
+        color: white;
+        margin-top: 15px;
+        margin-left: 33%;
+        font-size: 12px;
+    }
+
+    #login-div a:hover{
+        text-decoration: underline;
+    }
+
+    .sector-inferior{
+        padding: 0;
+    }
+
+    #footer-cont{
+        color: white;
+    }
+
+    #footer-menu {
+        list-style:none;
+        padding-bottom: 50px;
+    }
+    #footer-menu li a{
+        text-decoration:none;
+    }
+
+    .menu-footer{
+        padding: 0;
+    }
+
+    ul.footer-menu{
+        background-color: #1b1f1f80;
+        height: 20%;
+    }
+    
+    ul.footer-menu a{
+        color: white;
+    }
 }

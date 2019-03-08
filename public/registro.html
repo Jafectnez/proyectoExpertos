@@ -1,98 +1,101 @@
 <html>
-    <head>
-        <title>GEPO - Registro</title>
-        <meta charset="utf-8">
-        <link rel="shortcut icon" href="img/Logo-GEPO.svg">
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/barra-menu.css">
-		<link rel="stylesheet" type="text/css" href="css/registro.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <header id="header-cont">
-            <ul class="menu">
-                <li><a href="index.html"><img src="img/Logo-GEPO-page.svg" style="width:40px;height:40px;" class="d-inline-block align-top" alt="">GEPO</a></li>
-                <li><a class="item" href="index.html">Página Principal</a></li>
-                <li class="menu2"><a class="item" href="login.html">Iniciar Sesión</a></li>
-                <li><a class="item selected" href="#">Registro</a></li>
-            </ul>
-        </header>
-        <!---->
-        <main id="main-cont" >
-            <div id="registro-div">
-                <span class="titulo">Ingrese sus datos:</span>
-                <form>
-                    <table>
-                        <tr>
-                            <td>
-                                <span>Nombre:</span> 
-                            </td>
-                            <td>
-                                <input type="text" placeholder="Nombre" autofocus>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Apellido:</span> 
-                            </td>
-                            <td>
-                                <input type="text" placeholder="Apellido" >
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Correo:</span> 
-                            </td>
-                            <td>
-                                <input type="email" placeholder="Correo">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Usuario:</span> 
-                            </td>
-                            <td>
-                                <input type="text" placeholder="Usuario">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Contraseña:</span> 
-                            </td>
-                            <td>
-                                <input type="password" placeholder="Contraseña">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span>Pais de Residencia:</span> 
-                            </td>
-                            <td>
-                                <select>
-                                    <option value="0">-- Seleccione su pais --</option>
-                                    <option value="1">Honduras</option>
-                                    <option value="2">Costa Rica</option>
-                                    <option value="3">Nicaragua</option>
-                                    <option value="4">Panama</option>
-                                    <option value="5">El Salvador</option>
-                                    <option value="1">Guatemala</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                    <input type="button" value="Registrarme!">
-                </form>
+  <head>
+    <title>GEPO - Registro</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="img/Logo-GEPO.svg">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/barra-menu.css">
+    <link rel="stylesheet" type="text/css" href="css/registro.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!--Sector Superior
+      <div class="row">
+        <div id="navbar-menu" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-header"></div>
+      </div>
+      Fin Sector Superior-->
+
+      <!--Sector Contenido-->
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-contenido">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div id="registro-div">
+                <div class="row">
+                  <div class="col-12">
+                    <span class="titulo">Ingrese sus datos:</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <span>Nombre:</span>
+                    <input id="txt-nombre" type="text" placeholder="Nombre" autofocus>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <span>Apellido:</span>
+                    <input id="txt-apellido" type="text" placeholder="Apellido">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <span>Genero:</span>
+                    <select id="select-genero">
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <span>Correo:</span>
+                    <input id="txt-correo" type="email" placeholder="Correo">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <span>Usuario:</span>
+                    <input id="txt-usuario" type="text" placeholder="Usuario">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <span>Contraseña:</span>
+                    <input id="txt-password" type="password" placeholder="Contraseña">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <span>País de Residencia:</span>
+                    <select id="select-pais">
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <input id="btn-registro" type="button" value="Registrarme!">
+                </div>
+              </div>
             </div>
-            <div class="alert alert-danger fade" role="alert">
-               Error! Por favor revise los datos e intente de nuevo.
+          </div>
+        </div>
+      </div>
+      <!--Fin Sector Contenido-->
+
+      <!--Seccion Inferior-->
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-inferior">
+          <div class="row">
+            <div id="footer-cont">
             </div>
-        </main>
-        <!---->
-        <footer id="footer-cont">
-            <ul class="footer-menu" id="footer-menu">
-                <li><span>@ Copyright GEPO 2019</span>
-                    <span style="margin-left: 300px">Contáctanos</span></li>
-            </ul>   
-        </footer>
-    </body>
+          </div>
+        </div>
+      </div>
+      <!--Fin Seccion Inferior-->
+    </div>
+  </body>
+  <!--Scripts-->
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/menu-navbar.js"></script>
+  <script src="js/registro.js"></script>
 </html>

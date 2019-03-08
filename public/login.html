@@ -1,41 +1,63 @@
 <html>
-    <head>
-        <title>GEPO - Iniciar Sesión</title>
-        <meta charset="utf-8">
-        <link rel="shortcut icon" href="img/Logo-GEPO.svg">
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/barra-menu.css">
-		<link rel="stylesheet" type="text/css" href="css/login.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <header id="header-cont">
-            <ul class="menu">
-                <li><a href="index.html"><img src="img/Logo-GEPO-page.svg" style="width:40px;height:40px;" class="d-inline-block align-top" alt="">GEPO</a></li>
-                <li><a class="item" href="index.html">Página Principal</a></li>
-                <li class="menu2"><a class="item selected" href="#">Iniciar Sesión</a></li>
-                <li><a class="item" href="registro.html">Registro</a></li>
-            </ul>
-        </header>
-        <!---->
-        <main id="main-cont" >
-            <div id="login-div">
-                <span>Ingrese sus datos:</span>
-                <input type="text" placeholder="Nombre de Usuario o Correo" autofocus>
-                <input type="password" placeholder="Contraseña">
-                <input type="button" href="seccion-creacion.html" value="Iniciar Sesion">
-                <a href="#">Olvide mi contraseña</a>
+  <head>
+    <title>GEPO - Iniciar Sesión</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="img/Logo-GEPO.svg">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/barra-menu.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!--Sector Superior-->
+      <div class="row">
+        <div id="navbar-menu" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-header"></div>
+      </div>
+      <!--Fin Sector Superior-->
+    
+      <!--Sector Contenido-->
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-contenido">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div id="login-div">
+                <div class="row">
+                  <div class="col-12">
+                    <span>Ingrese sus datos:</span>
+                  </div>
+                  <div class="col-12">
+                    <input id="txt-nombre" type="text" placeholder="Nombre de Usuario o Correo" autofocus>
+                  </div>
+                  <div class="col-12">
+                    <input id="txt-password" type="password" placeholder="Contraseña">
+                  </div>
+                  <div class="col-12">
+                    <input type="button" onclick="validar();" value="Iniciar Sesión">
+                    <a href="#">Olvidé mi contraseña</a>
+                  </div> 
+                </div>
+              </div>
             </div>
-            <div class="alert alert-danger fade" role="alert">
-                Datos erroneos, intente de nuevo.
+          </div>
+        </div>
+      </div>
+      <!--Fin Sector Contenido-->
+
+      <!--Seccion Inferior-->
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-inferior">
+          <div class="row">
+            <div id="footer-cont">
             </div>
-        </main>
-        <!---->
-        <footer id="footer-cont">
-            <ul class="footer-menu" id="footer-menu">
-                <li><span>@ Copyright GEPO 2019</span>
-                    <span style="margin-left: 300px">Contáctanos</span></li>
-            </ul>   
-        </footer>
-    </body>
+          </div>
+        </div>
+      </div>
+      <!--Fin Seccion Inferior-->
+    </div>
+  </body>
+  <!--Scripts-->
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/menu-navbar.js"></script>
 </html>
