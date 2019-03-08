@@ -1,119 +1,229 @@
-#main-cont{
-    text-align: center;
-    padding-top: 60px;
+@media only screen and (min-width: 800px){
+    .sector-header{
+        padding: 0;
+    }
+
+    .sector-header .col-sm-2-mod{
+        padding-right: 0;
+        width: 12%;
+    }
+
+    .sector-header .col-sm-2{
+        padding: 0;
+        width: 12%;
+    }
+
+    .sector-header .item{
+        margin: 0 !important;
+    }
+
+    .sector-header .item:hover{
+        border-bottom: 2px solid white;
+    }
+
+    .sector-contenido .display-4{
+        margin-top: 0;
+        margin-bottom: 13%;
+        border-right: 2px solid white;
+    }
+
+    .sector-contenido .info-1{
+        margin-top: 3%;
+    }
+
+    .sector-contenido .img-jumbotron{
+        width: 150px;
+        height: 150px;
+    }
+
+    .sector-contenido .img-logo{
+        width: 100px;
+        height: 100px;
+    }
+
+    table td, th{
+        padding: 20px;
+        text-align: center;
+    }
+
+    .variacion-carousel{
+        background: blueviolet;
+        color: white;
+        padding: 20px;
+    }
+
+    .variacion-texto{
+        background: #28284e;
+        color: white;
+    }
+
+    .variacion-texto h2, h5{
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 10%;
+        padding: 20px;
+    }
+
+    .variacion-texto h5{
+        margin-left: 35%;
+    }
+
+    .variacion-1{
+        background: #28284e;
+        padding:0 10% 0 10%;
+    }
+
+    .variacion-2{
+        background: white;
+        padding: 20px;
+        color: black;
+    }
+
+    .jumbotron{
+        margin-bottom: 0;
+        background: #28284e;
+        color: white;
+    }
+
+    .card{
+        width: 80%;
+        height: 70%;
+        border: 1px solid #d4d3d3;
+        border-top: 5px solid blueviolet;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        padding: 20px;
+        background: white;
+        align-items: center;
+    }
+
+    .card-title{
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 2%;
+        
+    }
+
+    #card-gratuito button{
+        margin-top: 38px;
+    }
+
+    #card-gratuito:hover{
+        border: blue;
+        border-top: 3px solid blueviolet;
+        box-shadow: 0 0 40px blue;
+    }
+
+    #card-tier1 button{
+        margin-top: 1px;
+    }
+
+    #card-tier1:hover{
+        border: magenta;
+        border-top: 3px solid blueviolet;
+        box-shadow: 0 0 40px magenta;
+    }
+
+    #card-tier2 button{
+        margin-top: 19px;
+    }
+
+    #card-tier2:hover{
+        border: red;
+        border-top: 3px solid blueviolet;
+        box-shadow: 0 0 40px red;
+    }
+
+    .circle{
+        width: 300px;
+        height: 300px;
+        border-radius: 100%;
+        align-content: center;
+        background: rgb(163, 104, 218);
+    }
+
+    .circle-text{
+        padding-top: 130px;
+    }
+
+    #footer-cont{
+        color: white;
+        margin-bottom: 0;
+    }
+
+    body{
+        padding-bottom: 0;
+        background: #28284e;
+    }
+
+    .red-social{
+        text-decoration: none;
+        color: white;
+    }
+
+    ul.footer-menu{
+        height: 25%;
+    }
+
+    #menu-grande{
+        display: block;
+    }
+
+    #menu-pequeño{
+        display: none;
+    }
 }
 
-table td, th{
-    padding: 20px;
-    text-align: center;
-}
+@media only screen and (max-width: 800px){
+    #menu-grande{
+        display: none;
+    }
 
-.variacion-carousel{
-    background: blueviolet;
-    color: white;
-    padding: 20px;
-}
+    #menu-pequeño{
+        display: block;
+    }
 
-.variacion-texto{
-    background: #28284e;
-    color: white;
-}
+    .control-menu{
+        padding-top: 0;
+        padding-left: 85%;
+    }
 
-.variacion-texto h2, h5{
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 20px;
-}
+    .control-menu img{
+        width: 40px;
+        height: 60px;
+    }
 
-.variacion-1{
-    background: #28284e;
-    padding-left:250px;
-}
+    .items{
+        padding: 0;
+        margin: 0;
+    }
+    
+    #navigation:target .nav-items{
+        height: 158px;
+        transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
+    }
+    
+    #navigation:target .open{
+        display: none;
+    }
+    #navigation:target .close{
+        display: block;
+    }
 
-.variacion-2{
-    background: white;
-    padding: 20px;
-    color: black;
-}
+    ul.nav-items{
+        background: #41275a;
+        list-style: none;
+        clear: both;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.4s ease-in-out 0s, background-color 2s ease 0s;
+    }
 
-.jumbotron{
-    margin-bottom: 0;
-    background: #28284e;
-    color: white;
-}
-
-.card{
-    width: 180px;
-    height: 350px;
-    margin-top:20px;
-    margin-left:90px;
-    border: 1px solid #d4d3d3;
-    border-top: 5px solid blueviolet;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background: white;
-}
-
-#card-gratuito button{
-    margin-top: 38px;
-}
-
-#card-gratuito:hover{
-    border: blue;
-    border-top: 3px solid blueviolet;
-    box-shadow: 0 0 40px blue;
-}
-
-#card-tier1 button{
-    margin-top: 1px;
-}
-
-#card-tier1:hover{
-    border: magenta;
-    border-top: 3px solid blueviolet;
-    box-shadow: 0 0 40px magenta;
-}
-
-#card-tier2 button{
-    margin-top: 19px;
-}
-
-#card-tier2:hover{
-    border: red;
-    border-top: 3px solid blueviolet;
-    box-shadow: 0 0 40px red;
-}
-
-.circle{
-    width: 300px;
-    height: 300px;
-    border-radius: 100%;
-    align-content: center;
-    background: rgb(163, 104, 218);
-}
-
-.circle-text{
-    padding-top: 130px;
-}
-
-#footer-cont{
-    color: white;
-    margin-bottom: 0;
-}
-
-body{
-    padding-bottom: 0;
-    background: #28284e;
-}
-
-.red-social{
-    text-decoration: none;
-    color: white;
-}
-
-ul.footer-menu{
-    height: 25%;
+    ul.nav-item:hover{
+        background: #7a26c9;
+    }
+    
+    .close{
+        display: none;
+    }
 }
