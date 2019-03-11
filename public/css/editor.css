@@ -1,10 +1,18 @@
 @media only screen and (min-width: 800px){
-
+    
+    body{
+        background: #28284e;
+    }
+    
     .barraNav{
         width: 100%;
         background: blueviolet;
         color: white;
         margin: 0;
+    }
+
+    .fas{
+        padding-right: 6%; 
     }
 
     .perfil-pict{
@@ -43,8 +51,7 @@
     }
 
     .text{
-        margin-top: 0;
-        height: 75px;
+        margin: 0;
         background: #f5f5f5;
     }
 
@@ -93,6 +100,11 @@
         width: 100%;
         padding-left: 1%;
         box-sizing: border-box;
+    }
+
+    .sector-inferior, .row-contenido, .seccion-inferior, .row-resultado, .row-footer{
+        padding: 0;
+        margin: 0;
     }
 
     #menu-grande{
@@ -242,5 +254,14 @@
         width: 100%;
         padding-left: 1%;
         box-sizing: border-box;
+    }
+
+    .sector-inferior, .row-contenido, .seccion-inferior, .row-resultado, .row-footer{
+        padding: 0;
+        margin: 0;
+    }
+
+    body{
+        background: #28284e;
     }
 }

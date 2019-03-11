@@ -45,6 +45,11 @@
         margin-left: 25%;
     }
 
+    #login-div h5{
+        color: white;
+        margin-left: 25%;
+    }
+
     #login-div input[type="text"], input[type="password"]{
         color: white;
         background:  #5a5454;
@@ -78,6 +83,12 @@
         background: rgb(78, 24, 128);
     }
 
+    #btn-registro{
+        padding: 5px !important;
+        width: 50% !important;
+        margin-left: 25% !important;
+    }
+
     #login-div a{
         color: white;
         margin-top: 15px;
@@ -91,6 +102,7 @@
 
     .sector-inferior{
         padding: 0;
+        margin: 0;
     }
 
     #footer-cont{
@@ -121,6 +133,19 @@
 
     #menu-pequeño{
         display: none;
+    }
+
+    .row, .container-fluid{
+        margin: 0;
+        padding: 0;
+    }
+
+    .is-invalid{
+      border: 1px solid red !important;
+    }
+    
+    .is-valid{
+      border: 1px solid green !important;
     }
 }
 
@@ -247,5 +272,18 @@
     
     ul.footer-menu a{
         color: white;
+    }
+
+    .row, .container-fluid{
+        margin: 0;
+        padding: 0;
+    }
+
+    .is-invalid{
+      border: 1px solid red !important;
+    }
+    
+    .is-valid{
+      border: 1px solid green !important;
     }
 }

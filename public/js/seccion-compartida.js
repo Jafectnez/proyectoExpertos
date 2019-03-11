@@ -11,11 +11,7 @@ function obtenerJSONs(){
     {nombre:'Mi Carpeta 1',
      fechaCreacion:'3/02/2019'},
     {nombre:'Mi Carpeta 2',
-     fechaCreacion:'1/02/2019'},
-    {nombre:'Mi Carpeta 3',
-     fechaCreacion:'10/02/2019'},
-    {nombre:'Mi Carpeta 4',
-     fechaCreacion:'5/02/2019'});
+     fechaCreacion:'1/02/2019'});
 
   creacionTarjetas();
 }
@@ -32,17 +28,14 @@ function creacionTarjetas(){
             <div class="col-xl-6 col-lg-6 col-md-6 tarj">
               <div class="card-body">
                 <h4 class="card-title" id="nombre-carpeta">${informacion[i].nombre}</h4>
-                <p class="card-text"><small class="text-muted">Fecha Creación:</small></p>
-                <p class="card-text"><small class="text-muted"><b id="fecha-creacion">${informacion[i].fechaCreacion}</b></small></p>
+                <p class="card-text"><small class="text-muted">Fecha Creacion:</small></p>
+                <p class="card-text"><small class="text-muted"><b>${informacion[i].fechaCreacion}</b></small></p>
               </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 tarj-carp">
               <i class="fas fa-folder card-img"></i>
             </div>
             <div class="col-xl-1 col-lg-1 col-md-1 btn-func">
-              <a href="#">
-                <i class="fas fa-share-alt"></i>
-              </a><br>
               <a href="#">
               <i class="fas fa-trash"></i>
               </a>

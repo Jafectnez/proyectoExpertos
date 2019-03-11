@@ -30,11 +30,12 @@ function creacionTarjetas(){
       <div id="mi-archivo-${i}" class="card mb-3 tarjeta-archivo">
         <div class="row no-gutters">
           <img src="img/Logo-GEPO-page.svg" class="card-img">
-          <div class="col-md-8">
-          <div class="card-body">
-            <h4 class="card-title">${informacion[i].nombre}.${informacion[i].extension}</h4>
-            <p class="card-text"><small class="text-muted">Fecha Creación: <b>${informacion[i].fechaCreacion}</b></small></p>
-          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <h4 class="card-title">${informacion[i].nombre}.${informacion[i].extension}</h4>
+              <p class="card-text"><small class="text-muted">Fecha Creacion:</small></p>
+              <p class="card-text"><small class="text-muted"><b>${informacion[i].fechaCreacion}</b></small></p>
+            </div>
           </div>
         </div>
       </div>

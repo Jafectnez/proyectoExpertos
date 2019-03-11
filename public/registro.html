@@ -10,12 +10,6 @@
   </head>
   <body>
     <div class="container-fluid">
-      <!--Sector Superior
-      <div class="row">
-        <div id="navbar-menu" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-header"></div>
-      </div>
-      Fin Sector Superior-->
-
       <!--Sector Contenido-->
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-contenido">
@@ -30,13 +24,13 @@
                 <div class="row">
                   <div class="col-12">
                     <span>Nombre:</span>
-                    <input id="txt-nombre" type="text" placeholder="Nombre" autofocus>
+                    <input id="txt-nombre" type="text" onkeypress="enterPress(event);" placeholder="Nombre" autofocus>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <span>Apellido:</span>
-                    <input id="txt-apellido" type="text" placeholder="Apellido">
+                    <input id="txt-apellido" type="text" onkeypress="enterPress(event);" placeholder="Apellido">
                   </div>
                 </div>
                 <div class="row">
@@ -49,19 +43,19 @@
                 <div class="row">
                   <div class="col-12">
                     <span>Correo:</span>
-                    <input id="txt-correo" type="email" placeholder="Correo">
+                    <input id="txt-correo" type="email" onkeypress="enterPress(event);" placeholder="Correo">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <span>Usuario:</span>
-                    <input id="txt-usuario" type="text" placeholder="Usuario">
+                    <input id="txt-usuario" type="text" onkeypress="enterPress(event);" placeholder="Usuario">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <span>Contraseña:</span>
-                    <input id="txt-password" type="password" placeholder="Contraseña">
+                    <input id="txt-password" type="password" onkeypress="enterPress(event);" placeholder="Contraseña">
                   </div>
                 </div>
                 <div class="row">
@@ -72,7 +66,14 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <input id="btn-registro" type="button" value="Registrarme!">
+                  <input id="btn-registro" type="button" onclick="registro();" value="Registrarme!">
+                </div>
+                <hr>
+                <div class="col-12">
+                  <h5>Ya tienes cuenta?</h5>
+                </div>
+                <div class="col-12">
+                  <input id="btn-login" type="button" onclick="location.href='login.html';" value="Ir al Inicio de Sesión">
                 </div>
               </div>
             </div>
@@ -81,16 +82,10 @@
       </div>
       <!--Fin Sector Contenido-->
 
-      <!--Seccion Inferior-->
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-inferior">
-          <div class="row">
-            <div id="footer-cont">
-            </div>
-          </div>
-        </div>
+      <!--Seccion Footer-->
+      <div id="footer-cont" class="row row-footer footer-menu">
       </div>
-      <!--Fin Seccion Inferior-->
+      <!--Fin Seccion Footer-->
     </div>
   </body>
   <!--Scripts-->

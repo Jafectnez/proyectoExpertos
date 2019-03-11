@@ -4,10 +4,6 @@
     width: 100%;
 }
 
-.btn-editor{
-    margin-top: 3%;
-}
-
 .seccion-archivos{
     height: 100%;
     padding: 15px;
@@ -15,7 +11,6 @@
 
 .contenedor-tarjeta{
     width: 26%;
-
 }
 
 .card-img{
@@ -36,11 +31,6 @@
     border-left: 5px solid #ff0000;
 }
 
-table td{
-    padding: 10px;
-    padding-left: 25px;
-}
-
 .a-tarjeta{
     color:black;
 }
@@ -55,15 +45,21 @@ table td{
     margin: 0;
 }
 
+.portada{
+    padding: 1%;
+}
+
 .barra-menu{
     width: 17%;
     padding-right: 0;
+    padding-left: 0;
 }
 
 .sector-contenido{
     width: 83%;
     margin: 0;
     padding-left: 0;
+    padding-right: 0;
 }
 
 body{
@@ -72,4 +68,9 @@ body{
 
 .portada{
     width: 100%;
+}
+
+.row, .container-fluid{
+    margin: 0;
+    padding: 0;
 }

@@ -1,5 +1,6 @@
 @media only screen and (min-width: 800px){
     body{
+        background: #1a293e;
         background-repeat: no-repeat;
         background-position: center top;
         background-size: cover;
@@ -56,6 +57,11 @@
         padding-top: 3%;
     }
 
+    #registro-div h5{
+        color: white;
+        margin-left: 40%;
+    }
+
     #registro-div div.row > div.col-12{
         margin-bottom: 5%;
     }
@@ -101,6 +107,12 @@
         background: rgb(78, 24, 128);
     }
 
+    #btn-login{
+        padding: 5px !important;
+        width: 50% !important;
+        margin-left: 25% !important;
+    }
+
     .sector-inferior{
         padding: 0;
     }
@@ -132,12 +144,19 @@
     #menu-pequeño{
         display: none;
     }
+
+    .is-invalid{
+      border: 1px solid red !important;
+    }
+    
+    .is-valid{
+      border: 1px solid green !important;
+    }
 }
 
 @media only screen and(max-width: 800px){
     body{
         background: #1a293e;
-        background: url(../img/background-registro.jpg);
         background-repeat: no-repeat;
         background-position:center top;
         background-size: cover;
@@ -311,5 +330,13 @@
     
     ul.footer-menu{
         background-color: #1b1f1f80
+    }
+
+    .is-invalid{
+      border: 1px solid red !important;
+    }
+    
+    .is-valid{
+      border: 1px solid green !important;
     }
 }

@@ -21,7 +21,7 @@ body {
 .profile-sidebar {
   padding: 20px 0 10px 0;
   background: blueviolet;
-  height: 800px;
+  padding-bottom: 100%;
   left: 0;
   top: 0;
 }
@@ -128,6 +128,8 @@ body {
   min-height: 460px;
 }
 
+/* Footer Content */
+
 #footer-menu {
   color: white;
   padding-bottom: 50px;
@@ -142,10 +144,9 @@ body {
 }
 
 ul.footer-menu{
-  background-color: #00000080;
   margin-bottom: 0;
 }
 
-.well{
-  /*width: 100%;*/
+.footer-menu{
+  background: #00000080;
 }

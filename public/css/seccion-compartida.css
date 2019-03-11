@@ -1,30 +1,30 @@
 #barraNav{
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
 }
 
 .seccion-inferior{
-    height: 100%;
-    padding: 15px;
+  height: 100%;
+  padding: 15px;
 }
 
 .contenedor-tarjeta{
-    width: 26%;
+  width: 26%;
 }
 
 .card-img{
-    color: #571d8d;
-    font-size: 80px;
-}   
+  color: blue;
+  font-size: 80px;
+}
 
 .tarjeta-carpeta{
-    width: 100%;
-    background: white;
-    border: 5px solid white;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 10px;
+  width: 100%;
+  background: white;
+  border: 5px solid white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
 }
 
 .tarjeta-carpeta .tarj{
@@ -42,21 +42,21 @@
 }
 
 .tarjeta-carpeta:hover{
-    border-left: 5px solid #ff0000;
+  border-left: 5px solid #ff0000;
 }
 
 .a-tarjeta{
-    color:black;
+  color:black;
 }
 
 .a-tarjeta:hover{
-    color:blueviolet;
+  color:blueviolet;
 }
 
 .well{
-    width: 100%;
-    height: 50%;
-    margin: 0;
+  width: 100%;
+  height: 50%;
+  margin: 0;
 }
 
 .barra-menu{
@@ -73,14 +73,14 @@
 }
 
 body{
-    background: #28284e;
+  background: #28284e;
 }
 
 .portada{
-    width: 100%;
+  width: 100%;
 }
 
 .row, .container-fluid{
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }

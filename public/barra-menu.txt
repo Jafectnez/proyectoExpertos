@@ -28,12 +28,17 @@
             </a>
           </li>
           <li>
+            <a href="seccion-compartida.html">
+              <h4>Compartido Conmigo</h4> 
+            </a>
+          </li>
+          <li>
             <a href="perfil.html">
               <h4>Perfil</h4> 
             </a>
           </li>
           <li>
-            <a href="index.html">
+            <a href="login.html">
               <h4>Cerrar Sesión</h4> 
             </a>
           </li>

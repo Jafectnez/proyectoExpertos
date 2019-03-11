@@ -1,15 +1,3 @@
-/*jQuery(document).ready(function() {
-  var dir_select = "temas.txt"; //direccion donde se encuentra el menu
-  $.ajax({
-    url : dir_select,
-    dataType: "text",
-    success : function (data) 
-    {
-      $("#select-tema").html(data);
-    }
-  });
-});*/
-
 var editorHTML = CodeMirror.fromTextArea(document.getElementById("editor-html"), {
   lineNumbers: true,
   mode : "xml",
@@ -74,7 +62,7 @@ CodeMirror.on(window, "hashchange", function() {
 });
 
 function cargarPlantillaHTML(){
-  var dir_plantilla = "../ejemplo.html"; //direccion donde se encuentra el menu
+  var dir_plantilla = "../ejemplo.html";
   $.ajax({
     url : dir_plantilla,
     dataType: "text",
@@ -83,4 +71,15 @@ function cargarPlantillaHTML(){
       editorHTML.setOption("value", data);
     }
   });
+
+  $("#resultado").attr("src", "ejemplo.html");
+}
+
+function cargarPlantillaJS(){
+  console.log("No hay plantilla base creada");
+}
+
+
+function cargarPlantillaCSS(){
+  console.log("No hay plantilla base creada");
 }

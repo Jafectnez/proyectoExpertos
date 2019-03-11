@@ -3,10 +3,12 @@
   <head>
     <title>GEPO - Editor</title>
       <meta charset="utf-8"/>
-
+      
+      <link rel="shortcut icon" href="img/Logo-GEPO.svg">
       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="css/barra-menu.css">
       <link rel="stylesheet" type="text/css" href="css/editor.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="js/codemirror/lib/codemirror.css">
       <link rel="stylesheet" type="text/css" href="js/codemirror/theme/icecoder.css">
       <link rel="stylesheet" type="text/css" href="js/codemirror/addon/hint/show-hint.css">
@@ -79,16 +81,16 @@
               <ul class="menu">
                 <div id="menu-grande">
                   <!-- SIDEBAR USERPIC/USER/USERTYPE -->
-                  <div class="col-lg-8 col-md-6 col-sm-10 col-xl-8">
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-10">
                     <div class="row justify-content-center">
-                        <div class="col-lg-1 col-md-1 col-sm-1 col-xl-1 perfil-pict">
+                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 perfil-pict">
                           <li>
                             <div class="profile-userpic">
                               <img id="foto-usuario" src="img/usuario.jpg" class="img-responsive">
                             </div>
                           </li>
                         </div>
-                        <div class="col-lg-10 col-md-8 col-sm-10 col-xl-10 perfil-usr">
+                        <div class="col-xl-10 col-lg-10 col-md-8 col-sm-10 perfil-usr">
                           <li>
                             <div class="profile-usertitle">
                               <div class="profile-usertitle-name">
@@ -100,13 +102,22 @@
                     </div>
                   </div>
                   <!-- END SIDEBAR USERPIC/USER/USERTYPE -->
-                  <div class="col-lg-4 col-md-2 col-xl-4">
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-2">
                     <div class="row justify-content-center">
                       <li>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 secciones-menu">
                           <div class="profile-usermenu">
                             <a class="item-menu" href="seccion-principal.html">
                               <h4>Menu Principal</h4> 
+                            </a>
+                          </div>
+                        </div> 
+                      </li>
+                      <li>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 secciones-menu">
+                          <div class="profile-usermenu">
+                            <a class="item-menu" href="seccion-compartida.html">
+                              <h4>Compartido Conmigo</h4> 
                             </a>
                           </div>
                         </div> 
@@ -123,7 +134,7 @@
                       <li>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 secciones-menu">
                           <div class="profile-usermenu">
-                            <a class="item-menu" href="index.html">
+                            <a class="item-menu" href="login.html">
                               <h4>Cerrar Sesión</h4> 
                             </a>
                           </div>
@@ -155,8 +166,9 @@
     
                           <ul class="nav-items">
                             <li><a class="nav-item" href="seccion-principal.html"><h4>Menu Principal</h4></a></li>
+                            <li><a class="nav-item" href="seccion-compartida.html"><h4>Compartido Conmigo</h4></a></li>
                             <li><a class="nav-item" href="perfil.html"><h4>Perfil</h4></a></li>
-                            <li><a class="nav-item" href="index.html"><h4>Cerrar Sesión</h4></a></li>
+                            <li><a class="nav-item" href="login.html"><h4>Cerrar Sesión</h4></a></li>
                           </ul>
                         </nav>
                       </div>
@@ -175,12 +187,10 @@
               <div class="row justify-content-center row-portada well">
                 <div class="portada col-lg-12 col-md-12 col-sm-12 col-xl-12">
                   <div class="text">
-                    <h1 id="nombre-portada">Mi Proyecto</h1>
-                  </div>
-                  <div id="">
-                    Temas: 
+                    <h1 id="nombre-portada">Editor</h1>
+                    Cambiar tema: 
                     <select onchange="selectTheme()" id="select-tema">
-                      <option selected>default</option>
+                      <option>default</option>
                       <option>3024-day</option>
                       <option>3024-night</option>
                       <option>abcdef</option>
@@ -200,7 +210,7 @@
                       <option>erlang-dark</option>
                       <option>gruvbox-dark</option>
                       <option>hopscotch</option>
-                      <option>icecoder</option>
+                      <option selected>icecoder</option>
                       <option>idea</option>
                       <option>isotope</option>
                       <option>lesser-dark</option>
@@ -246,29 +256,35 @@
               <div class="row row-seccion">
                 <div id="sector-inferior" class="seccion-inferior col-lg-12 col-md-12 col-sm-12 col-xl-12">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-code">
-                      <button onclick="cargarPlantillaHTML();" class="btn btn-primary btn-plantilla-html" sytle="margin-left:10%;">Cargar Plantilla Base</button>
-                      <h3 class="spn-ext">HTML</h3>
+                      <h3 class="spn-ext">
+                        <button onclick="cargarPlantillaHTML();" class="btn btn-primary btn-plantilla-html"><i class="fas fa-file-upload"></i>HTML</button>
+                      </h3>
                       <textarea id="editor-html" name="editor-html"></textarea>
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
                       <textarea id="editor-js">
                       </textarea>
-                      <h3 class="spn-ext">JS</h3>  
+                      <h3 class="spn-ext">
+                        
+                          <button onclick="cargarPlantillaJS();" class="btn btn-primary btn-plantilla-html"><i class="fas fa-file-upload"></i>JS</button>
+                      </h3>  
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
                       <textarea id="editor-css"> 
                       </textarea>
-                      <h3 class="spn-ext">CSS</h3> 
+                      <h3 class="spn-ext">
+                          <button onclick="cargarPlantillaCSS();" class="btn btn-primary btn-plantilla-html"><i class="fas fa-file-upload"></i>CSS</button>
+                      </h3> 
                     </div>
                   
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-resultado">
-                        <div class="row">
+                        <div class="row row-resultado">
                           <h3 class="spn-ext">Resultado</h3>
                         </div>
-                        <div class="row">
-                          <iframe id="resultado" class="resultado" src="ejemplo.html"></iframe>
+                        <div class="row row-resultado">
+                          <iframe id="resultado" class="resultado"></iframe>
                         </div>
                     </div>
                 </div>
@@ -279,11 +295,9 @@
           </div>
 
           <!--Seccion Footer-->
-          <div id="footer-cont" class="row row-footer">
+          <div id="footer-cont" class="row row-footer footer-menu">
           </div>
           <!--Fin Seccion Footer-->
-
-        </div>
       </div>
     </div>
     <!--Fin Del Contenedor Body-->  

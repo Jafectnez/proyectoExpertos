@@ -1,5 +1,11 @@
 @media only screen and (min-width: 800px){
-    .sector-header{
+
+    ul.menu {
+        position: fixed;
+        z-index: 2;
+    }
+
+    .sector-header, .sector-contenido, .row{
         padding: 0;
     }
 
@@ -41,13 +47,18 @@
         height: 100px;
     }
 
-    table td, th{
-        padding: 20px;
-        text-align: center;
+    .sector-contenido .img-logo-2{    
+        width: 50%;
+        height: 50%;
+        margin-left: 25%;
+    }
+    
+    .sector-contenido .card-title{
+        margin-left: 20% !important;
     }
 
     .variacion-carousel{
-        background: blueviolet;
+        background: #391875;
         color: white;
         padding: 20px;
     }
@@ -65,53 +76,65 @@
     }
 
     .variacion-texto h5{
-        margin-left: 35%;
+        margin-left: 38%;
     }
 
     .variacion-1{
         background: #28284e;
-        padding:0 10% 0 10%;
+        padding: 0 10% 0 10%;
+        padding-left: 5% !important;
     }
 
     .variacion-2{
-        background: white;
-        padding: 20px;
+        width: 100%;
+        margin: 0;
+        padding-bottom: 2% !important;
+        background: #391875;
+        padding: 30px;
         color: black;
     }
 
+    .variacion-2 h1{
+        margin-left: 15%;
+        color: white;
+    }
+
+    .variacion-2 a{
+        padding: 3%;
+        margin-left: 40%;
+        font-size: 25px;
+    }
+
     .jumbotron{
+        margin-top: 5%;
         margin-bottom: 0;
         background: #28284e;
         color: white;
     }
 
     .card{
-        width: 80%;
-        height: 70%;
+        width: 90%;
+        height: 80%;
         border: 1px solid #d4d3d3;
         border-top: 5px solid blueviolet;
         border-radius: 5px;
-        margin-bottom: 20px;
         padding: 20px;
         background: white;
         align-items: center;
-    }
-
-    .card-title{
-        border: 1px solid black;
-        border-radius: 5px;
-        padding: 2%;
-        
-    }
-
-    #card-gratuito button{
-        margin-top: 38px;
     }
 
     #card-gratuito:hover{
         border: blue;
         border-top: 3px solid blueviolet;
         box-shadow: 0 0 40px blue;
+    }
+
+    .sector-contenido #card-gratuito .card-title{
+        margin-left: 40% !important;
+    }
+
+    .sector-contenido #card-gratuito .logo-gepo-svg{
+        fill: blue;
     }
 
     #card-tier1 button{
@@ -124,6 +147,14 @@
         box-shadow: 0 0 40px magenta;
     }
 
+    #card-tier1 .card-title{
+        margin-left: 30% !important;
+    }
+
+    .sector-contenido #card-tier1 .logo-gepo-svg{
+        fill: magenta;
+    }
+
     #card-tier2 button{
         margin-top: 19px;
     }
@@ -134,16 +165,12 @@
         box-shadow: 0 0 40px red;
     }
 
-    .circle{
-        width: 300px;
-        height: 300px;
-        border-radius: 100%;
-        align-content: center;
-        background: rgb(163, 104, 218);
+    #card-tier2 .card-title{
+        margin-left: 30% !important;
     }
 
-    .circle-text{
-        padding-top: 130px;
+    .sector-contenido #card-tier2 .logo-gepo-svg{
+        fill: red;
     }
 
     #footer-cont{
@@ -159,6 +186,11 @@
     .red-social{
         text-decoration: none;
         color: white;
+    }
+
+    .row, .container-fluid{
+        margin: 0;
+        padding: 0;
     }
 
     ul.footer-menu{
@@ -224,6 +256,10 @@
     }
     
     .close{
+        display: none;
+    }
+
+    .variacion-carousel{
         display: none;
     }
 }

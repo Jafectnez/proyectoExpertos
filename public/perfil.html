@@ -1,100 +1,93 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>GEPO - Mi perfil</title>
-    <meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/styleBarra.css">
-		<link rel="stylesheet" type="text/css" href="css/perfil.css">
-</head>
-<body>
+  <head>
+    <title>GEPO - Perfil</title>
+    <meta charset="utf-8"/>
+    <link rel="shortcut icon" href="img/Logo-GEPO.svg">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styleBarra.css">
+    <link rel="stylesheet" type="text/css" href="css/perfil.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
 
-	<!--Contenedor-->
-	<div class="container-fluid">
-		<div class="row">
-			<!--Aqui Esta Contenida La Barra De Menu-->
-			<div id="barraNav" class="col-lg-3 lista">
-                <div class="profile-sidebar">
-                    <!-- SIDEBAR USERPIC -->
-                    <div class="profile-userpic">
-                        <img src="img/usuario.jpg" class="img-responsive" alt="">
-                    </div>
-                    <!-- END SIDEBAR USERPIC -->
-                    <!-- SIDEBAR USER TITLE -->
-                    <div class="profile-usertitle">
-                        <div class="profile-usertitle-name">
-                                Zaden Ower - Gratuito
-                        </div>
-                    </div>
-                    <!-- END SIDEBAR USER TITLE -->
-                    <!-- SIDEBAR MENU -->
-                    <div class="profile-usermenu">
-                        <ul class="nav">
-                            <li>
-                                <a href="seccion-principal.html">
-                                    <h4>Gestionar Proyectos</h4> 
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <h4>Perfil</h4> 
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html">
-                                    <h4>Cerrar Sesión</h4> 
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- END MENU -->
-                </div>
-            </div>
-            <!--Aqui Esta Finaliza La La Barra De Menu-->
+    <!--Contenedor Body-->
+    <div class="container-fluid">
+      <div class="row">
+        <div id="barraNav" class="col-lg-12 col-md-12 col-sm-12 col-xl-12 lista"> 
+          <div class="row justify-content-center interior-barraNav">
             
+            <!--Aqui Esta Contenida La Barra De Menu-->
+            <div id="barra-menu" class="col-lg-3 col-md-3 col-sm-3 col-xl-3 barra-menu">             
+            </div> 
+            <!--Aqui Finaliza La La Barra De Menu-->
+
             <!--Contenido-->
-            <div>
-                <div class="col-lg-9 well">
-                    <div class="portada">
-                        <div class="text">
-                            <h1>Mi Perfil</h1>
-                        </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 sector-contenido">
+              <!--Sector Superior-->
+              <div class="row justify-content-center row-portada well">
+                <div class="portada col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                  <div class="text">
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                        <h1 id="nombre-carpeta">Mi Perfil</h1>
+                      </div>
                     </div>
+                  </div>		
                 </div>
-                <div class="perfil">
-                    <table>
-                        <tr>
-                            <td>
-                                <h4>Nombre de Usuario:</h4>
-                            </td>
-                            <td>
-                                <input class="form-control" type="text">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td>
-                                <h4>Biografía:</h4>
-                            </td>
-                            <td>
-                                <input class="form-control" type="textArea">
-                            </td>
-                        </tr>
-                    </table>
+              </div>
+              <!--Fin Sector Superior-->
+              
+              <!--Sector Inferior-->
+              <div class="row row-seccion">
+                <div id="sector-inferior" class="seccion-perfil col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                  <h3>Foto Perfil:</h3>
+                    <img src="img/usuario.jpg" style="width:150px;height:150px;" class="d-inline-block align-top" alt="">
+                  <h3>Usuario: </h3>
+                    <input type="text" class="form-control" id="txt-usuario" placeholder="Usuario">
+                  <h3>Contraseña:</h3>
+                    <input type="password" class="form-control" id="txt-password" placeholder="Contraseña">
+                  <h3>Nivel de Usuario:</h3>
+                    <span id="spn-tipo-usuario">Tier 2</span>
+                  <h3>Biografía:</h3>
+                    <textarea class="form-control" id="txtA-biografia" placeholder="Cuentanos sobre tí!"></textarea>
+                  <h3>Correo:</h3>
+                    <input type="email" class="form-control" id="txt-correo" placeholder="Ej: ejemplo@ejemplo.com">
+                  <h3>Nombre:</h3>
+                    <input type="text" class="form-control" id="txt-nombre" placeholder="Ej: Juanito">
+                  <h3>Apellido:</h3>
+                    <input type="text" class="form-control" id="txt-apellido" placeholder="Ej: Alcachofa">
+                  <h3>Genero</h3>
+                    <span id="spn-genero">Masculino</span>
+                  <h3>Residencia</h3>
+                    <span id="spn-residencia">Honduras</span>
                 </div>
+                <div class="seccion-perfil-pago col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                  <h2>Cambiar Plan de Cuenta</h2>
+                  <select class="form-control" id="select-tipos-usuarios">
+                  </select>
+                  <h3>Ingrese su numero de tarjeta de débito/crédito</h3>
+                  <input class="form-control" type="text" id="txt-num-tarjeta" placeholder="XXXX-XXXX-XXXX-XXXX">
+                  <input class="btn btn-primary" type="button" id="btn-pagar" value="Pagar!">
+                </div>
+              </div>
+              <!--Fin Sector Inferior-->
             </div>
             <!--Fin Contenido-->
-		</div>
-	</div>
-    <!--Fin Del Contenedor-->
-    
-    <footer id="footer-cont">
-        <ul class="footer-menu" id="footer-menu">
-            <li><span>@ Copyright GEPO 2019</span>
-                <span style="margin-left: 300px">Contáctanos</span></li>
-        </ul>   
-    </footer>
+          </div>
 
-	<script src="js/jquery-3.2.1.min.js"></script>
-</body>
+          <!--Seccion Footer-->
+          <div id="footer-cont" class="row row-footer footer-menu">
+          </div>
+          <!--Fin Seccion Footer-->
+          
+        </div>
+      </div>
+    </div>
+    <!--Fin Del Contenedor Body-->  
+  </body>
+  <!--Scripts-->    
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/perfil.js"></script>
 </html>

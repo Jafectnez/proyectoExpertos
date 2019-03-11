@@ -10,12 +10,6 @@
   </head>
   <body>
     <div class="container-fluid">
-      <!--Sector Superior-->
-      <div class="row">
-        <div id="navbar-menu" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-header"></div>
-      </div>
-      <!--Fin Sector Superior-->
-    
       <!--Sector Contenido-->
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-contenido">
@@ -27,15 +21,24 @@
                     <span>Ingrese sus datos:</span>
                   </div>
                   <div class="col-12">
-                    <input id="txt-nombre" type="text" placeholder="Nombre de Usuario o Correo" autofocus>
+                    <input id="txt-nombre" type="text" placeholder="Nombre de Usuario o Correo" autofocus onkeypress="enterPress(event);">
                   </div>
                   <div class="col-12">
-                    <input id="txt-password" type="password" placeholder="Contraseña">
+                    <input id="txt-password" type="password" placeholder="Contraseña" onkeypress="enterPress(event);">
                   </div>
                   <div class="col-12">
-                    <input type="button" onclick="validar();" value="Iniciar Sesión">
+                    <input id="btn-login" type="button" onclick="login();" value="Iniciar Sesión">
                     <a href="#">Olvidé mi contraseña</a>
                   </div> 
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-12">
+                    <h5>AUN NO TIENES CUENTA?</h5>
+                  </div>
+                  <div class="col-12">
+                    <input id="btn-registro" type="button" onclick="location.href='registro.html';" value="Registrarme!">
+                  </div>
                 </div>
               </div>
             </div>
@@ -44,20 +47,15 @@
       </div>
       <!--Fin Sector Contenido-->
 
-      <!--Seccion Inferior-->
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-inferior">
-          <div class="row">
-            <div id="footer-cont">
-            </div>
-          </div>
-        </div>
+      <!--Seccion Footer-->
+      <div id="footer-cont" class="row row-footer footer-menu">
       </div>
-      <!--Fin Seccion Inferior-->
+      <!--Fin Seccion Footer-->
     </div>
   </body>
   <!--Scripts-->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/menu-navbar.js"></script>
+  <script src="js/login.js"></script>
 </html>
