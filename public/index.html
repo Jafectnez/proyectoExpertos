@@ -4,16 +4,16 @@
     <title>GEPO Gestión de Proyectos Online</title>
     <link rel="shortcut icon" href="img/Logo-GEPO.svg">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/barra-menu.css">
     <link rel="stylesheet" type="text/css" href="css/carousel.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
     <div class="container-fluid">
       <!--Sector Superior-->
       <div class="row">
-        <div id="navbar-menu" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-header"></div>
+        <div id="navbar-menu" class="navbar"></div>
       </div>
       <!--Fin Sector Superior-->
 
@@ -21,7 +21,14 @@
       <div class="row justify-content-center sector-contenido">
         <div class="col-12">
           <!--Seccion 1-->
-          <div class="row">
+          <div class="row landing-page">
+            <div class="page-content">
+              <img class="img-jumbotron" src="img/Logo-GEPO-page.svg">
+              <h1>GEPO</h1>
+
+              <p><b>Gestión de Proyectos Online</b> (GEPO) es una plataforma que te ayuda a preparar tus proyectos de desarrollo web en un solo lugar y con almacenamiento en la nube.</p>
+            </div>
+            <!--
             <div class="jumbotron">
               <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 info-img">
                 <h1 class="display-4">
@@ -33,7 +40,7 @@
                 <p class="lead"><b>Gestión de Proyectos Online</b> (GEPO) es una plataforma que te ayuda a preparar tus proyectos de desarrollo web en un solo lugar y con almacenamiento en la nube.</p>
               </div>
               <hr class="my-4">
-            </div>
+            </div>-->
           </div>
           <!--Fin Seccion 1-->
   
@@ -52,7 +59,7 @@
                   <div class="container">
                     <div class="carousel-caption">
                       <h1><img class="img-logo" src="img/Logo-GEPO-page.svg">GEPO</h1>
-                      <h1>Todo lo que debes saber en un solo lugar.</h1>
+                      <h1>Trabaja en tus proyectos desde cualquier lugar.</h1>
                       <br>
                       <br>
                       <br>
@@ -93,9 +100,55 @@
               <h2>ANALIZA NUESTROS PLANES DE TRABAJO Y ELIGE EL QUE MEJOR TE CONVENGA.</h2>
             </div>
           </div>
-            
-          <div class="row variacion-1">
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+
+          <div class="row variacion-1 tabla-precios justify-content-center">
+            <div class="col">
+              <div class="table">
+                <h2>Gratuito</h2>
+                <div class="price">
+                  $0
+                  <span>Sin costo</span>
+                </div>
+                <ul>
+                  <li><strong>1</strong> Carpetas</li>
+                  <li><strong>2</strong> Proyectos</li>
+                  <li><strong>2</strong> Colaboradores</li>
+                </ul>
+                <a href="registro.html">Registrate ahora!</a>
+              </div>
+            </div>
+            <div class="col">
+              <div class="table">
+                <h2>Regular</h2>
+                <div class="pop">Popular!</div>
+                <div class="price">
+                  $10
+                  <span>Al mes</span>
+                </div>
+                <ul>
+                  <li><strong>4</strong> Carpetas</li>
+                  <li><strong>3</strong> Proyectos</li>
+                  <li><strong>5</strong> Colaboradores</li>
+                </ul>
+                <a href="registro.html">Registrate ahora!</a>
+              </div>
+            </div>
+            <div class="col">
+              <div class="table">
+                <h2>Premium</h2>
+                <div class="price">
+                  $100
+                  <span>Al año</span>
+                </div>
+                <ul>
+                  <li><strong>10</strong> Carpetas</li>
+                  <li><strong>8</strong> Proyectos</li>
+                  <li><strong>10</strong> Colaboradores</li>
+                </ul>
+                <a href="registro.html">Registrate ahora!</a>
+              </div>
+            </div>
+            <!--<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
               <div class="card" id="card-gratuito">
                 <div class="col-12">
                   <svg class="img-logo-2 logo-gepo-svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="215.9mm" height="279.4mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 21590 27940" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -181,12 +234,12 @@
                   <p class="card-text"><b>Máximo de 9 colaboradores por carpeta y 10 proyectos por carpeta</b></p>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
 
           <div class="row variacion-texto">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-              <h5>*El máximo de colaboradores no incluye al creador.</h5>
+              <h5>*El número de proyectos es por carpeta.</h5>
             </div>
           </div>
           <!--Fin Seccion 3-->
@@ -194,7 +247,7 @@
           <!--Seccion 4-->
           <div class="row variacion-2">
             <h1>NO ESPERES MAS Y REGISTRATE EN NUESTRA PLATAFORMA</h1>
-            <a class="btn btn-success" href="registro.html">IR A REGISTRO</a>
+            <a class="btn-ir-registro" href="registro.html">IR A REGISTRO</a>
           </div>
           <!--Fin Seccion 4-->
         </div>

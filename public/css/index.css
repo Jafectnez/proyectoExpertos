@@ -1,208 +1,275 @@
-@media only screen and (min-width: 800px){
+ul.menu {
+    position: fixed;
+    z-index: 2;
+}
 
-    ul.menu {
-        position: fixed;
-        z-index: 2;
-    }
+.sector-header, .sector-contenido, .row{
+    padding: 0;
+}
 
-    .sector-header, .sector-contenido, .row{
-        padding: 0;
-    }
+.sector-header .col-sm-2-mod{
+    padding-right: 0;
+    width: 12%;
+}
 
-    .sector-header .col-sm-2-mod{
-        padding-right: 0;
-        width: 12%;
-    }
+.sector-header .col-sm-2{
+    padding: 0;
+    width: 12%;
+}
 
-    .sector-header .col-sm-2{
-        padding: 0;
-        width: 12%;
-    }
+.sector-header .item{
+    margin: 0 !important;
+}
 
-    .sector-header .item{
-        margin: 0 !important;
-    }
+.sector-header .item:hover{
+    border-bottom: 2px solid white;
+}
 
-    .sector-header .item:hover{
-        border-bottom: 2px solid white;
-    }
+.sector-contenido .display-4{
+    margin-top: 0;
+    margin-bottom: 13%;
+    border-right: 2px solid white;
+}
 
-    .sector-contenido .display-4{
-        margin-top: 0;
-        margin-bottom: 13%;
-        border-right: 2px solid white;
-    }
+.sector-contenido .info-1{
+    margin-top: 3%;
+}
 
-    .sector-contenido .info-1{
-        margin-top: 3%;
-    }
+.sector-contenido .img-jumbotron{
+    width: 150px;
+    height: 150px;
+}
 
-    .sector-contenido .img-jumbotron{
-        width: 150px;
-        height: 150px;
-    }
+.sector-contenido .img-logo{
+    width: 100px;
+    height: 100px;
+}
 
-    .sector-contenido .img-logo{
-        width: 100px;
-        height: 100px;
-    }
+.variacion-carousel{
+    background: #391875;
+    color: white;
+    padding: 20px;
+}
 
-    .sector-contenido .img-logo-2{    
-        width: 50%;
-        height: 50%;
-        margin-left: 25%;
-    }
-    
-    .sector-contenido .card-title{
-        margin-left: 20% !important;
-    }
+.variacion-carousel #myCarousel{
+    transform: translate(50%);
+    margin-left: 0;
+}
 
-    .variacion-carousel{
-        background: #391875;
-        color: white;
-        padding: 20px;
-    }
+.variacion-texto{
+    background: #28284e;
+    color: white;
+}
 
-    .variacion-texto{
-        background: #28284e;
-        color: white;
-    }
+.variacion-texto h2, h5{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 10%;
+    padding: 20px;
+}
 
-    .variacion-texto h2, h5{
-        margin-top: 0;
-        margin-bottom: 0;
-        margin-left: 10%;
-        padding: 20px;
-    }
+.variacion-texto h5{
+    margin-left: 38%;
+}
 
-    .variacion-texto h5{
-        margin-left: 38%;
-    }
+.variacion-1{
+    background: #28284e;
+    padding: 0 10% 0 10%;
+    padding-left: 5% !important;
+}
 
-    .variacion-1{
-        background: #28284e;
-        padding: 0 10% 0 10%;
-        padding-left: 5% !important;
-    }
+.variacion-2{
+    width: 100%;
+    height: 30%;
+    margin: 0;
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+    background: #391875;
+    padding: 30px;
+    color: black;
+    text-align: center;
+}
 
-    .variacion-2{
-        width: 100%;
-        margin: 0;
-        padding-bottom: 2% !important;
-        background: #391875;
-        padding: 30px;
-        color: black;
-    }
+.variacion-2 h1{
+    color: white;
+}
 
-    .variacion-2 h1{
-        margin-left: 15%;
-        color: white;
-    }
+.landing-page{
+    width: 100%;
+    height: 100vh;
+    margin-top: 80px;
+}
 
-    .variacion-2 a{
-        padding: 3%;
-        margin-left: 40%;
-        font-size: 25px;
-    }
+.landing-page::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
 
-    .jumbotron{
-        margin-top: 5%;
-        margin-bottom: 0;
-        background: #28284e;
-        color: white;
-    }
+.page-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
 
-    .card{
-        width: 90%;
-        height: 80%;
-        border: 1px solid #d4d3d3;
-        border-top: 5px solid blueviolet;
-        border-radius: 5px;
-        padding: 20px;
-        background: white;
-        align-items: center;
-    }
+.page-content h1{
+    color: white;
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
 
-    #card-gratuito:hover{
-        border: blue;
-        border-top: 3px solid blueviolet;
-        box-shadow: 0 0 40px blue;
-    }
+.page-content p{
+    color: white;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
 
-    .sector-contenido #card-gratuito .card-title{
-        margin-left: 40% !important;
-    }
+.tabla-precios{
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    transform: translate(10%);
+}
 
-    .sector-contenido #card-gratuito .logo-gepo-svg{
-        fill: blue;
-    }
+.col{
+    flex: 25%;
+    padding: 10px;
+    max-width: 320px;
+    box-sizing: border-box;
+}
 
-    #card-tier1 button{
-        margin-top: 1px;
-    }
+.table{
+    background: white;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px #00000070;
+}
 
-    #card-tier1:hover{
-        border: magenta;
-        border-top: 3px solid blueviolet;
-        box-shadow: 0 0 40px magenta;
-    }
+.table h2{
+    text-transform: uppercase;
+}
 
-    #card-tier1 .card-title{
-        margin-left: 30% !important;
-    }
+.table ul{
+    margin: 0;
+    padding: 0;
+}
 
-    .sector-contenido #card-tier1 .logo-gepo-svg{
-        fill: magenta;
-    }
+.table ul li{
+    padding: 10px 0;
+    list-style: none;
+}
 
-    #card-tier2 button{
-        margin-top: 19px;
-    }
+.price{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
 
-    #card-tier2:hover{
-        border: red;
-        border-top: 3px solid blueviolet;
-        box-shadow: 0 0 40px red;
-    }
+.price span{
+    display: block;
+    font-size: 14px;
+}
 
-    #card-tier2 .card-title{
-        margin-left: 30% !important;
-    }
+.table a{
+    text-decoration: none;
+    color: blueviolet;
+    border: 2px solid black;
+    display: block;
+    padding: 10px 0;
+    margin: 10px 0;
+    border-radius: 40px;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition: 0.5s linear;
+}
 
-    .sector-contenido #card-tier2 .logo-gepo-svg{
-        fill: red;
-    }
+.table a:hover{
+    background: blueviolet;
+    color: white;
+}
 
-    #footer-cont{
-        color: white;
-        margin-bottom: 0;
-    }
+.pop{
+    background: blueviolet;
+    color: white;
+    transform: rotate(45deg);
+    padding: 10px 40px;
+    position: absolute;
+    top: 14px;
+    right: -34px;
+}
 
-    body{
-        padding-bottom: 0;
-        background: #28284e;
-    }
+.btn-ir-registro{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    border: 2px solid white;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    transition: 0.4s linear;
+}
 
-    .red-social{
-        text-decoration: none;
-        color: white;
-    }
+.btn-ir-registro:hover{
+    color: white;
+    background: blueviolet;
+}
 
-    .row, .container-fluid{
-        margin: 0;
-        padding: 0;
-    }
+#footer-cont{
+    color: white;
+    margin-bottom: 0;
+    height: 25%;
+}
 
-    ul.footer-menu{
-        height: 25%;
-    }
+body{
+    padding-bottom: 0;
+    background: #28284e;
+}
 
-    #menu-grande{
-        display: block;
-    }
+.red-social{
+    text-decoration: none;
+    color: white;
+}
 
-    #menu-pequeño{
-        display: none;
+.row, .container-fluid{
+    margin: 0;
+    padding: 0;
+}
+
+ul.footer-menu{
+    height: 25%;
+}
+
+#menu-grande{
+    display: block;
+}
+
+#menu-pequeño{
+    display: none;
+}
+
+@media only screen and (max-width: 980px){
+    .col{
+        flex: 50%;
+    }
+}
+
+@media only screen and (max-width: 700px){
+    .col{
+        flex: 100%;
     }
 }
 

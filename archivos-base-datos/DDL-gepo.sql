@@ -14,13 +14,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema gepo_db
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS 'gepo_db' DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA 'gepo_db' DEFAULT CHARACTER SET utf8 ;
 USE 'gepo_db' ;
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblTipoLugar'
+-- Table TblTipoLugar
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblTipoLugar' (
+CREATE TABLE TblTipoLugar (
   'idTipoLugar' INT NOT NULL,
   'tipoLugar' VARCHAR(200) NOT NULL,
   PRIMARY KEY ('idTipoLugar'))
@@ -28,9 +28,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblLugares'
+-- Table 'TblLugares'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblLugares' (
+CREATE TABLE 'TblLugares' (
   'idLugar' INT NOT NULL,
   'idLugarPadre' INT NULL,
   'idTipoLugar' INT NOT NULL,
@@ -40,21 +40,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblLugares' (
   INDEX 'fk_TblLugares_TblLugares1_idx' ('idLugarPadre' ASC) VISIBLE,
   CONSTRAINT 'fk_TblLugares_TblTipoLugar'
     FOREIGN KEY ('idTipoLugar')
-    REFERENCES 'gepo_db'.'TblTipoLugar' ('idTipoLugar')
+    REFERENCES 'TblTipoLugar' ('idTipoLugar')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblLugares_TblLugares1'
     FOREIGN KEY ('idLugarPadre')
-    REFERENCES 'gepo_db'.'TblLugares' ('idLugar')
+    REFERENCES 'TblLugares' ('idLugar')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblGenero'
+-- Table 'TblGenero'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblGenero' (
+CREATE TABLE 'TblGenero' (
   'idGenero' INT NOT NULL,
   'genero' VARCHAR(10) NOT NULL,
   PRIMARY KEY ('idGenero'))
@@ -62,9 +62,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblPersona'
+-- Table 'TblPersona'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblPersona' (
+CREATE TABLE 'TblPersona' (
   'idPersona' INT GENERATED ALWAYS AS () VIRTUAL COMMENT 'Identificador de la persona',
   'idLugarResidencia' INT NOT NULL COMMENT 'Guardara el id del lugar en que reside la persona.',
   'idGenero' INT NOT NULL,
@@ -76,21 +76,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblPersona' (
   INDEX 'fk_TblPersona_TblGenero1_idx' ('idGenero' ASC) VISIBLE,
   CONSTRAINT 'fk_TblPersona_TblLugares1'
     FOREIGN KEY ('idLugarResidencia')
-    REFERENCES 'gepo_db'.'TblLugares' ('idLugar')
+    REFERENCES 'TblLugares' ('idLugar')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblPersona_TblGenero1'
     FOREIGN KEY ('idGenero')
-    REFERENCES 'gepo_db'.'TblGenero' ('idGenero')
+    REFERENCES 'TblGenero' ('idGenero')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblTipoUsuario'
+-- Table 'TblTipoUsuario'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblTipoUsuario' (
+CREATE TABLE 'TblTipoUsuario' (
   'idTipoUsuario' INT NOT NULL,
   'tipoUsuario' VARCHAR(45) NOT NULL,
   PRIMARY KEY ('idTipoUsuario'))
@@ -98,9 +98,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblUsuario'
+-- Table 'TblUsuario'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblUsuario' (
+CREATE TABLE 'TblUsuario' (
   'idUsuario' INT NOT NULL,
   'idPersona' INT NOT NULL COMMENT 'Identificador de la persona que creo el usuario',
   'idTipoUsuario' INT NOT NULL,
@@ -114,21 +114,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblUsuario' (
   INDEX 'fk_TblUsuario_TblTipoUsuario1_idx' ('idTipoUsuario' ASC) VISIBLE,
   CONSTRAINT 'fk_TblUsuario_TblPersona1'
     FOREIGN KEY ('idPersona')
-    REFERENCES 'gepo_db'.'TblPersona' ('idPersona')
+    REFERENCES 'TblPersona' ('idPersona')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblUsuario_TblTipoUsuario1'
     FOREIGN KEY ('idTipoUsuario')
-    REFERENCES 'gepo_db'.'TblTipoUsuario' ('idTipoUsuario')
+    REFERENCES 'TblTipoUsuario' ('idTipoUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblEstadoSolicitud'
+-- Table 'TblEstadoSolicitud'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblEstadoSolicitud' (
+CREATE TABLE 'TblEstadoSolicitud' (
   'idEstadoSolicitud' INT NOT NULL,
   'estadoSolicitud' VARCHAR(50) NOT NULL,
   PRIMARY KEY ('idEstadoSolicitud'))
@@ -136,9 +136,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblSolicitudesColaboracion'
+-- Table 'TblSolicitudesColaboracion'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblSolicitudesColaboracion' (
+CREATE TABLE 'TblSolicitudesColaboracion' (
   'idSolicitud' INT NOT NULL,
   'idEstadoSolicitud' INT NOT NULL,
   'idUsuarioEmisor' INT NOT NULL,
@@ -152,26 +152,26 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblSolicitudesColaboracion' (
   INDEX 'fk_TblSolicitudesColaboracion_TblUsuario2_idx' ('idUsuarioEmisor' ASC) VISIBLE,
   CONSTRAINT 'fk_TblSolicitudesColaboracion_TblEstadoSolicitud1'
     FOREIGN KEY ('idEstadoSolicitud')
-    REFERENCES 'gepo_db'.'TblEstadoSolicitud' ('idEstadoSolicitud')
+    REFERENCES 'TblEstadoSolicitud' ('idEstadoSolicitud')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblSolicitudesColaboracion_TblUsuario1'
     FOREIGN KEY ('idUsuarioReceptor')
-    REFERENCES 'gepo_db'.'TblUsuario' ('idUsuario')
+    REFERENCES 'TblUsuario' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblSolicitudesColaboracion_TblUsuario2'
     FOREIGN KEY ('idUsuarioEmisor')
-    REFERENCES 'gepo_db'.'TblUsuario' ('idUsuario')
+    REFERENCES 'TblUsuario' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblColaboradores'
+-- Table 'TblColaboradores'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblColaboradores' (
+CREATE TABLE 'TblColaboradores' (
   'idUsuario' INT NOT NULL,
   'idSolicitud' INT NOT NULL,
   INDEX 'fk_TblColaboradores_TblUsuario1_idx' ('idUsuario' ASC) VISIBLE,
@@ -179,21 +179,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblColaboradores' (
   INDEX 'fk_TblColaboradores_TblSolicitudesColaboracion1_idx' ('idSolicitud' ASC) VISIBLE,
   CONSTRAINT 'fk_TblColaboradores_TblUsuario1'
     FOREIGN KEY ('idUsuario')
-    REFERENCES 'gepo_db'.'TblUsuario' ('idUsuario')
+    REFERENCES 'TblUsuario' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblColaboradores_TblSolicitudesColaboracion1'
     FOREIGN KEY ('idSolicitud')
-    REFERENCES 'gepo_db'.'TblSolicitudesColaboracion' ('idSolicitud')
+    REFERENCES 'TblSolicitudesColaboracion' ('idSolicitud')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblModificaciones'
+-- Table 'TblModificaciones'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblModificaciones' (
+CREATE TABLE 'TblModificaciones' (
   'idModificacion' INT NOT NULL,
   'idUsuarioModificador' INT NOT NULL,
   'fechaModificacion' DATE NOT NULL,
@@ -202,16 +202,16 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblModificaciones' (
   INDEX 'fk_TblModificaciones_TblUsuario1_idx' ('idUsuarioModificador' ASC) VISIBLE,
   CONSTRAINT 'fk_TblModificaciones_TblUsuario1'
     FOREIGN KEY ('idUsuarioModificador')
-    REFERENCES 'gepo_db'.'TblUsuario' ('idUsuario')
+    REFERENCES 'TblUsuario' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblPreferencias'
+-- Table 'TblPreferencias'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblPreferencias' (
+CREATE TABLE 'TblPreferencias' (
   'idPreferencias' INT NOT NULL,
   'idUsuario' INT NOT NULL,
   'preferencias' JSON NOT NULL,
@@ -219,16 +219,16 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblPreferencias' (
   INDEX 'fk_TblPreferencias_TblUsuario1_idx' ('idUsuario' ASC) VISIBLE,
   CONSTRAINT 'fk_TblPreferencias_TblUsuario1'
     FOREIGN KEY ('idUsuario')
-    REFERENCES 'gepo_db'.'TblUsuario' ('idUsuario')
+    REFERENCES 'TblUsuario' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblEstadoNotificacion'
+-- Table 'TblEstadoNotificacion'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblEstadoNotificacion' (
+CREATE TABLE 'TblEstadoNotificacion' (
   'idEstadoNotificacion' INT NOT NULL,
   'estadoNotificacion' VARCHAR(45) NOT NULL,
   PRIMARY KEY ('idEstadoNotificacion'))
@@ -236,9 +236,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblTipoNotificacion'
+-- Table 'TblTipoNotificacion'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblTipoNotificacion' (
+CREATE TABLE 'TblTipoNotificacion' (
   'idTipoNotificacion' INT NOT NULL,
   'tipoNotificacion' VARCHAR(45) NOT NULL,
   PRIMARY KEY ('idTipoNotificacion'))
@@ -246,9 +246,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblNotificaciones'
+-- Table 'TblNotificaciones'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblNotificaciones' (
+CREATE TABLE 'TblNotificaciones' (
   'idNotificacion' INT NOT NULL,
   'idUsuarioReceptor' INT NOT NULL,
   'idEstadoNotificacion' INT NOT NULL,
@@ -261,26 +261,26 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblNotificaciones' (
   INDEX 'fk_TblNotificaciones_TblTipoNotificacion1_idx' ('idTipoNotificacion' ASC) VISIBLE,
   CONSTRAINT 'fk_TblNotificaciones_TblUsuario1'
     FOREIGN KEY ('idUsuarioReceptor')
-    REFERENCES 'gepo_db'.'TblUsuario' ('idUsuario')
+    REFERENCES 'TblUsuario' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblNotificaciones_TblEstadoNotificacion1'
     FOREIGN KEY ('idEstadoNotificacion')
-    REFERENCES 'gepo_db'.'TblEstadoNotificacion' ('idEstadoNotificacion')
+    REFERENCES 'TblEstadoNotificacion' ('idEstadoNotificacion')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblNotificaciones_TblTipoNotificacion1'
     FOREIGN KEY ('idTipoNotificacion')
-    REFERENCES 'gepo_db'.'TblTipoNotificacion' ('idTipoNotificacion')
+    REFERENCES 'TblTipoNotificacion' ('idTipoNotificacion')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblPagos'
+-- Table 'TblPagos'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblPagos' (
+CREATE TABLE 'TblPagos' (
   'idPago' INT NOT NULL,
   'fechaPago' DATE NOT NULL,
   'descripcionPago' VARCHAR(200) NOT NULL,
@@ -289,25 +289,25 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblInformacionTipoUsuario'
+-- Table 'TblInformacionTipoUsuario'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblInformacionTipoUsuario' (
+CREATE TABLE 'TblInformacionTipoUsuario' (
   'idTipoUsuario' INT NOT NULL,
   'maxColaboradores' INT NOT NULL,
   'maxProyectos' INT NOT NULL,
   INDEX 'fk_TblInformacionTipoUsuario_TblTipoUsuario1_idx' ('idTipoUsuario' ASC) VISIBLE,
   CONSTRAINT 'fk_TblInformacionTipoUsuario_TblTipoUsuario1'
     FOREIGN KEY ('idTipoUsuario')
-    REFERENCES 'gepo_db'.'TblTipoUsuario' ('idTipoUsuario')
+    REFERENCES 'TblTipoUsuario' ('idTipoUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblCarpetas'
+-- Table 'TblCarpetas'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblCarpetas' (
+CREATE TABLE 'TblCarpetas' (
   'idCarpeta' INT NOT NULL,
   'idUsuarioCreador' INT NOT NULL,
   'idCarpetaPadre' INT NULL,
@@ -318,21 +318,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblCarpetas' (
   INDEX 'fk_TblCarpetas_TblCarpetas1_idx' ('idCarpetaPadre' ASC) VISIBLE,
   CONSTRAINT 'fk_TblCarpetas_TblUsuario1'
     FOREIGN KEY ('idUsuarioCreador')
-    REFERENCES 'gepo_db'.'TblUsuario' ('idUsuario')
+    REFERENCES 'TblUsuario' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblCarpetas_TblCarpetas1'
     FOREIGN KEY ('idCarpetaPadre')
-    REFERENCES 'gepo_db'.'TblCarpetas' ('idCarpeta')
+    REFERENCES 'TblCarpetas' ('idCarpeta')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblProyectos'
+-- Table 'TblProyectos'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblProyectos' (
+CREATE TABLE 'TblProyectos' (
   'idProyecto' INT NOT NULL,
   'idCarpetaContenedora' INT NOT NULL,
   'idUsuarioCreador' INT NOT NULL,
@@ -345,21 +345,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblProyectos' (
   INDEX 'fk_TblProyectos_TblUsuario1_idx' ('idUsuarioCreador' ASC) VISIBLE,
   CONSTRAINT 'fk_TblProyectos_TblCarpetas1'
     FOREIGN KEY ('idCarpetaContenedora')
-    REFERENCES 'gepo_db'.'TblCarpetas' ('idCarpeta')
+    REFERENCES 'TblCarpetas' ('idCarpeta')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblProyectos_TblUsuario1'
     FOREIGN KEY ('idUsuarioCreador')
-    REFERENCES 'gepo_db'.'TblUsuario' ('idUsuario')
+    REFERENCES 'TblUsuario' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblExtensiones'
+-- Table 'TblExtensiones'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblExtensiones' (
+CREATE TABLE 'TblExtensiones' (
   'idExtension' INT NOT NULL,
   'Extension' VARCHAR(5) NOT NULL,
   PRIMARY KEY ('idExtension'))
@@ -367,9 +367,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblArchivos'
+-- Table 'TblArchivos'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblArchivos' (
+CREATE TABLE 'TblArchivos' (
   'idArchivo' INT NOT NULL,
   'idProyectoContenedor' INT NOT NULL,
   'idUsuarioCreador' INT NOT NULL,
@@ -383,26 +383,26 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblArchivos' (
   INDEX 'fk_TblArchivos_TblExtensiones1_idx' ('idExtensionArchivo' ASC) VISIBLE,
   CONSTRAINT 'fk_TblArchivos_TblProyectos1'
     FOREIGN KEY ('idProyectoContenedor')
-    REFERENCES 'gepo_db'.'TblProyectos' ('idProyecto')
+    REFERENCES 'TblProyectos' ('idProyecto')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblArchivos_TblUsuario1'
     FOREIGN KEY ('idUsuarioCreador')
-    REFERENCES 'gepo_db'.'TblUsuario' ('idUsuario')
+    REFERENCES 'TblUsuario' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblArchivos_TblExtensiones1'
     FOREIGN KEY ('idExtensionArchivo')
-    REFERENCES 'gepo_db'.'TblExtensiones' ('idExtension')
+    REFERENCES 'TblExtensiones' ('idExtension')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblArchivosCompartidos'
+-- Table 'TblArchivosCompartidos'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblArchivosCompartidos' (
+CREATE TABLE 'TblArchivosCompartidos' (
   'idArchivo' INT NOT NULL,
   'idUsuarioColaborador' INT NOT NULL,
   PRIMARY KEY ('idArchivo', 'idUsuarioColaborador'),
@@ -410,21 +410,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblArchivosCompartidos' (
   INDEX 'fk_TblArchivos_has_TblColaboradores_TblArchivos1_idx' ('idArchivo' ASC) VISIBLE,
   CONSTRAINT 'fk_TblArchivos_has_TblColaboradores_TblArchivos1'
     FOREIGN KEY ('idArchivo')
-    REFERENCES 'gepo_db'.'TblArchivos' ('idArchivo')
+    REFERENCES 'TblArchivos' ('idArchivo')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblArchivos_has_TblColaboradores_TblColaboradores1'
     FOREIGN KEY ('idUsuarioColaborador')
-    REFERENCES 'gepo_db'.'TblColaboradores' ('idUsuario')
+    REFERENCES 'TblColaboradores' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblProyectosCompartidos'
+-- Table 'TblProyectosCompartidos'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblProyectosCompartidos' (
+CREATE TABLE 'TblProyectosCompartidos' (
   'idProyecto' INT NOT NULL,
   'idUsuarioColaborador' INT NOT NULL,
   PRIMARY KEY ('idProyecto', 'idUsuarioColaborador'),
@@ -432,21 +432,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblProyectosCompartidos' (
   INDEX 'fk_TblProyectos_has_TblColaboradores_TblProyectos1_idx' ('idProyecto' ASC) VISIBLE,
   CONSTRAINT 'fk_TblProyectos_has_TblColaboradores_TblProyectos1'
     FOREIGN KEY ('idProyecto')
-    REFERENCES 'gepo_db'.'TblProyectos' ('idProyecto')
+    REFERENCES 'TblProyectos' ('idProyecto')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblProyectos_has_TblColaboradores_TblColaboradores1'
     FOREIGN KEY ('idUsuarioColaborador')
-    REFERENCES 'gepo_db'.'TblColaboradores' ('idUsuario')
+    REFERENCES 'TblColaboradores' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblCarpetasCompartidas'
+-- Table 'TblCarpetasCompartidas'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblCarpetasCompartidas' (
+CREATE TABLE 'TblCarpetasCompartidas' (
   'idCarpeta' INT NOT NULL,
   'idUsuarioColaborador' INT NOT NULL,
   PRIMARY KEY ('idCarpeta', 'idUsuarioColaborador'),
@@ -454,21 +454,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblCarpetasCompartidas' (
   INDEX 'fk_TblCarpetas_has_TblColaboradores_TblCarpetas1_idx' ('idCarpeta' ASC) VISIBLE,
   CONSTRAINT 'fk_TblCarpetas_has_TblColaboradores_TblCarpetas1'
     FOREIGN KEY ('idCarpeta')
-    REFERENCES 'gepo_db'.'TblCarpetas' ('idCarpeta')
+    REFERENCES 'TblCarpetas' ('idCarpeta')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblCarpetas_has_TblColaboradores_TblColaboradores1'
     FOREIGN KEY ('idUsuarioColaborador')
-    REFERENCES 'gepo_db'.'TblColaboradores' ('idUsuario')
+    REFERENCES 'TblColaboradores' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblArchivosModificados'
+-- Table 'TblArchivosModificados'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblArchivosModificados' (
+CREATE TABLE 'TblArchivosModificados' (
   'idArchivo' INT NOT NULL,
   'idModificacion' INT NOT NULL,
   PRIMARY KEY ('idArchivo', 'idModificacion'),
@@ -476,21 +476,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblArchivosModificados' (
   INDEX 'fk_TblArchivos_has_TblModificaciones_TblArchivos1_idx' ('idArchivo' ASC) VISIBLE,
   CONSTRAINT 'fk_TblArchivos_has_TblModificaciones_TblArchivos1'
     FOREIGN KEY ('idArchivo')
-    REFERENCES 'gepo_db'.'TblArchivos' ('idArchivo')
+    REFERENCES 'TblArchivos' ('idArchivo')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblArchivos_has_TblModificaciones_TblModificaciones1'
     FOREIGN KEY ('idModificacion')
-    REFERENCES 'gepo_db'.'TblModificaciones' ('idModificacion')
+    REFERENCES 'TblModificaciones' ('idModificacion')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblProyectosModificados'
+-- Table 'TblProyectosModificados'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblProyectosModificados' (
+CREATE TABLE 'TblProyectosModificados' (
   'idProyecto' INT NOT NULL,
   'idModificacion' INT NOT NULL,
   PRIMARY KEY ('idProyecto', 'idModificacion'),
@@ -498,21 +498,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblProyectosModificados' (
   INDEX 'fk_TblProyectos_has_TblModificaciones_TblProyectos1_idx' ('idProyecto' ASC) VISIBLE,
   CONSTRAINT 'fk_TblProyectos_has_TblModificaciones_TblProyectos1'
     FOREIGN KEY ('idProyecto')
-    REFERENCES 'gepo_db'.'TblProyectos' ('idProyecto')
+    REFERENCES 'TblProyectos' ('idProyecto')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblProyectos_has_TblModificaciones_TblModificaciones1'
     FOREIGN KEY ('idModificacion')
-    REFERENCES 'gepo_db'.'TblModificaciones' ('idModificacion')
+    REFERENCES 'TblModificaciones' ('idModificacion')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'TblCarpetasModificadas'
+-- Table 'TblCarpetasModificadas'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblCarpetasModificadas' (
+CREATE TABLE 'TblCarpetasModificadas' (
   'idCarpeta' INT NOT NULL,
   'idModificacion' INT NOT NULL,
   PRIMARY KEY ('idCarpeta', 'idModificacion'),
@@ -520,21 +520,21 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'TblCarpetasModificadas' (
   INDEX 'fk_TblCarpetas_has_TblModificaciones_TblCarpetas1_idx' ('idCarpeta' ASC) VISIBLE,
   CONSTRAINT 'fk_TblCarpetas_has_TblModificaciones_TblCarpetas1'
     FOREIGN KEY ('idCarpeta')
-    REFERENCES 'gepo_db'.'TblCarpetas' ('idCarpeta')
+    REFERENCES 'TblCarpetas' ('idCarpeta')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblCarpetas_has_TblModificaciones_TblModificaciones1'
     FOREIGN KEY ('idModificacion')
-    REFERENCES 'gepo_db'.'TblModificaciones' ('idModificacion')
+    REFERENCES 'TblModificaciones' ('idModificacion')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table 'gepo_db'.'Pagos_x_Usuario'
+-- Table 'Pagos_x_Usuario'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS 'gepo_db'.'Pagos_x_Usuario' (
+CREATE TABLE 'Pagos_x_Usuario' (
   'idPago' INT NOT NULL,
   'idUsuario' INT NOT NULL,
   PRIMARY KEY ('idPago', 'idUsuario'),
@@ -542,12 +542,12 @@ CREATE TABLE IF NOT EXISTS 'gepo_db'.'Pagos_x_Usuario' (
   INDEX 'fk_TblPagos_has_TblUsuario_TblPagos1_idx' ('idPago' ASC) VISIBLE,
   CONSTRAINT 'fk_TblPagos_has_TblUsuario_TblPagos1'
     FOREIGN KEY ('idPago')
-    REFERENCES 'gepo_db'.'TblPagos' ('idPago')
+    REFERENCES 'TblPagos' ('idPago')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT 'fk_TblPagos_has_TblUsuario_TblUsuario1'
     FOREIGN KEY ('idUsuario')
-    REFERENCES 'gepo_db'.'TblUsuario' ('idUsuario')
+    REFERENCES 'TblUsuario' ('idUsuario')
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

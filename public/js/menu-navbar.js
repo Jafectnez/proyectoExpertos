@@ -9,3 +9,7 @@ jQuery(document).ready(function() {
     }
   });
 });
+
+$(".btn-navbar").on("click", function () {
+  $(".menu-navbar").toggleClass("show");
+});

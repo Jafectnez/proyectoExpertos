@@ -1,0 +1,87 @@
+.navbar{
+  position: fixed;
+  height: 80px;
+  overflow: hidden;
+  top: 0;
+  display: flex;
+  align-items: center;
+  background: blueviolet;
+  width: 100%;
+  z-index: 999;
+}
+
+.logo-navbar{
+  background: url("../img/logo-texto.png") no-repeat 50%;
+  background-size: cover;
+  width: 200px;
+  height: 70px;
+  float: left;
+  margin-left: 20px;
+}
+
+.menu-navbar{
+  position: absolute;
+  right: 20px;
+}
+
+.menu-navbar a{
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 20px;
+  transition: border 0.3s;
+  text-transform: uppercase;
+}
+.menu-navbar a:hover{
+  border-bottom: 2px solid white;
+}
+
+.btn-navbar{
+  display: none;
+  position: absolute;
+  right: 20px;
+}
+
+.btn-navbar span{
+  display: block;
+  margin: 6px;
+  width: 40px;
+  height: 3px;
+  background: white;
+}
+
+.btn-navbar:hover > span{
+  background: #333;
+}
+
+@media only screen and (max-width: 700px){
+  .navbar{
+    overflow: visible;
+  }
+
+  .menu-navbar{
+    width: 100%;
+    right: 0;
+    top: 80px;
+    background: blueviolet;
+    overflow: hidden;
+    max-height: 0;
+  }
+
+  .menu-navbar a{
+    display: block;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .btn-navbar{
+    display: block;
+    cursor: pointer;
+  }
+
+  .show{
+    max-height: 500px;
+  }
+}
