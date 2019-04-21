@@ -10,45 +10,45 @@
   </head>
   <body>
     <div class="container-fluid">
-      <!--Sector Contenido-->
       <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-contenido">
-          <div class="row justify-content-center">
-            <div class="col-12">
-              <div id="login-div">
-                <div class="row">
-                  <div class="col-12">
-                    <span>Ingrese sus datos:</span>
-                  </div>
-                  <div class="col-12">
-                    <input id="txt-nombre" type="text" placeholder="Nombre de Usuario o Correo" autofocus onkeypress="enterPress(event);">
-                  </div>
-                  <div class="col-12">
-                    <input id="txt-password" type="password" placeholder="Contraseña" onkeypress="enterPress(event);">
-                  </div>
-                  <div class="col-12">
-                    <input id="btn-login" type="button" onclick="login();" value="Iniciar Sesión">
-                    <a href="#">Olvidé mi contraseña</a>
-                  </div> 
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-12">
-                    <h5>AUN NO TIENES CUENTA?</h5>
-                  </div>
-                  <div class="col-12">
-                    <input id="btn-registro" type="button" onclick="location.href='registro.html';" value="Registrarme!">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="login-div">
+          <h1>Ingrese sus datos</h1>
+          <input id="txt-nombre" type="text" placeholder="Usuario" onkeypress="enterPress(event);">
+          <input id="txt-password" type="password" placeholder="Contraseña" onkeypress="enterPress(event);">
+          <input id="btn-login" type="button" onclick="login();" value="Iniciar Sesión">
+          <a href="#">Olvidé mi contraseña</a> 
+          <hr>
+          <h5>AUN NO TIENES CUENTA?</h5>
+          <input id="btn-registro" type="button" onclick="location.href='registro.html';" value="Registrarme!">
         </div>
       </div>
-      <!--Fin Sector Contenido-->
 
       <!--Seccion Footer-->
-      <div id="footer-cont" class="row row-footer footer-menu">
+      <div class="row">
+        <footer class="menu-footer">
+          <div class="wrapper">
+            <div class="col links">
+              <h4>@ Copyright GEPO 2019</h4>
+            </div>
+    
+            <div class="col redes-sociales">
+              <nav class="col">
+                <h4>Buscanos en las redes sociales</h4>
+          
+                <label>
+                  <img src="img/tw_icon.svg" width="35px" height="35px">
+                  <a class="red-social" href="https://twitter.com/GEPOHN1">Twitter</a>
+                </label>
+              
+                <label>
+                  <img src="img/Fb_icon.svg" width="35px" height="35px">
+                  <a class="red-social" href="https://www.facebook.com/GEPOHN">Facebook</a>
+                </label>
+              </nav>
+    
+            </div>
+          </div> 
+        </footer>
       </div>
       <!--Fin Seccion Footer-->
     </div>

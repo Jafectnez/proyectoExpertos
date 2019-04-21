@@ -6,15 +6,6 @@
     font-family: "montserrat", sans-serif;
 }
 
-/*Estilos Navbar*/
-
-ul.menu {
-    position: fixed;
-    z-index: 2;
-}
-
-
-
 .sector-contenido .display-4{
     margin-top: 0;
     margin-bottom: 13%;
@@ -205,6 +196,41 @@ ul.menu {
     right: -34px;
 }
 
+.btn-login{
+    border: 1px solid white;
+    background: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.8s;
+    position: relative;
+    overflow: hidden;
+    color: #391875;
+    z-index: 9999;
+    float: right;
+}
+
+.btn-login:hover{
+    color: white;
+}
+
+.btn-login::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: #391875;
+    transition: 0.8s;
+    top: 0;
+    border-radius: 0 0 50% 50%;
+}
+
+.btn-login:hover::before{
+    height: 150%;
+}
+
 .btn-ir-registro{
     border: 1px solid white;
     background: white;
@@ -238,20 +264,10 @@ ul.menu {
     height: 150%;
 }
 
-#footer-cont{
-    color: white;
-    margin-bottom: 0;
-    height: 25%;
-}
 
 body{
     padding-bottom: 0;
     background: #28284e;
-}
-
-.red-social{
-    text-decoration: none;
-    color: white;
 }
 
 .row, .container-fluid{
@@ -263,6 +279,16 @@ ul#footer-menu{
     text-transform: uppercase;
     margin: 1% 0;
     list-style: none;
+}
+
+.red-social{
+    text-decoration: none;
+    color: white;
+}
+#footer-cont{
+    color: white;
+    margin-bottom: 0;
+    height: 25%;
 }
 
 ul#footer-menu li{

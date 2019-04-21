@@ -1,152 +1,134 @@
-@media only screen and (min-width: 800px){
-    body{
-        background: #1a293e;
-        background-repeat: no-repeat;
-        background-position: center top;
-        background-size: cover;
-    }
+body{
+    margin: 0;
+    padding: 0;
+    background: #34495E;
+    font-family: "montserrat", sans-serif;
+}
 
-    .sector-header{
-        padding: 0;
-    }
+#login-div{
+    width: 350px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #191919;
+    text-align: center;
+}
 
-    .sector-header .col-sm-2-mod{
-        padding-right: 0;
-        width: 12%;
-    }
+#login-div h1{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
 
-    .sector-header .col-sm-2{
-        padding: 0;
-        width: 12%;
-    }
+#login-div h5{
+    color: white;
+}
 
-    .sector-header .item{
-        margin: 0 !important;
-    }
+#login-div input[type="text"], input[type="password"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
 
-    .sector-contenido{
-        margin-top: 10%;
-        margin-bottom: 10%;
-        box-sizing: border-box;
-    }
+#login-div input[type="text"]:hover, input[type="password"]:hover{
+    border-color: blueviolet;
+}
 
-    #login-div{
-        margin-left: 40%;
-        padding: 20px;
-        background: rgb(56, 55, 55);
-        align-content: center;
-        width: 23%;
-        border-radius: 5px;
-    }
+#login-div input[type="text"]:focus, input[type="password"]:focus{
+    width: 280px;
+    border-color: blueviolet;
+}
 
-    #login-div span{
-        color: white;
-        font-size: 20px;
-        margin-left: 25%;
-    }
+#login-div input[type="button"]{
+    border: 0;
+    background: none;
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid blueviolet;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.5s;
+    cursor: pointer;
+}
 
-    #login-div h5{
-        color: white;
-        margin-left: 25%;
-    }
+#login-div input[type="button"]:hover{
+    background: blueviolet;
+}
 
-    #login-div input[type="text"], input[type="password"]{
-        color: white;
-        background:  #5a5454;
-        padding: 15px;
-        border: 0;
-        border-radius: 4px;
-        margin: 20px;
-        margin-bottom: 0px;
-        width: 87%;
-        box-sizing: border-box;
-    }
+#btn-registro{
+    padding: 5px !important;
+    width: 50% !important;
+    margin-left: 25% !important;
+}
 
-    #login-div input[type="text"]:hover, input[type="password"]:hover{
-        border-bottom: 3px solid;
-        border-bottom-color: #ff9900;
-    }
+#login-div a{
+    color: white;
+    margin-top: 15px;
+    font-size: 12px;
+}
 
-    #login-div input[type="button"]{
-        border:0;
-        border-radius: 4px;
-        background: blueviolet;
-        padding: 15px;
-        width: 87%;
-        margin: 20px;
-        margin-bottom: 5px;
-        color:white;
-    }
+#login-div a:hover{
+    text-decoration: underline;
+}
 
-    #login-div input[type="button"]:hover{
-        text-decoration: none;
-        background: rgb(78, 24, 128);
-    }
+.menu-footer{    
+    padding-top: 15px;
+    background: #f0f0f0;
+    box-shadow: 0 1px 1px 0 rgba(240,240,240,0.1) inset;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8em;
+    bottom: 0;
+}
 
-    #btn-registro{
-        padding: 5px !important;
-        width: 50% !important;
-        margin-left: 25% !important;
-    }
+.menu-footer *{
+    box-sizing: border-box;
+}
 
-    #login-div a{
-        color: white;
-        margin-top: 15px;
-        margin-left: 33%;
-        font-size: 12px;
-    }
+.menu-footer .wrapper{
+    position: relative;
+    width: 94%;
+    max-width: 1200px;
+    padding: 2em 0;
+    margin: 0 auto;
+}
 
-    #login-div a:hover{
-        text-decoration: underline;
-    }
+.menu-footer .links{
+    width: 20%;
+    float: left;
+}
 
-    .sector-inferior{
-        padding: 0;
-        margin: 0;
-    }
+.menu-footer .redes-sociales{
+    width: 80%;
+    float: right
+}
 
-    #footer-cont{
-        color: white;
-    }
+.menu-footer .col{
+    display: block;
+    float: left;
+}
 
-    #footer-menu {
-        list-style:none;
-        padding-bottom: 50px;
-    }
+.is-invalid{
+    border: 1px solid red !important;
+}
 
-    #footer-menu li a{
-        text-decoration:none;
-    }
-
-    .menu-footer{
-        padding: 0;
-    }
-
-    ul.footer-menu{
-        background-color: #1b1f1f80;
-        height: 20%;
-    }
-
-    #menu-grande{
-        display: block;
-    }
-
-    #menu-pequeño{
-        display: none;
-    }
-
-    .row, .container-fluid{
-        margin: 0;
-        padding: 0;
-    }
-
-    .is-invalid{
-      border: 1px solid red !important;
-    }
-    
-    .is-valid{
-      border: 1px solid green !important;
-    }
+.is-valid{
+    border: 1px solid green !important;
 }
 
 @media only screen and (max-width: 800px){
