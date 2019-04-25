@@ -1,342 +1,89 @@
-@media only screen and (min-width: 800px){
-    body{
-        background: #1a293e;
-        background-repeat: no-repeat;
-        background-position: center top;
-        background-size: cover;
-    }
-
-    .item:hover{
-        border-bottom: 2px solid white !important;
-    }
-
-    .sector-header{
-        padding: 0;
-    }
-
-    .sector-header .col-sm-2-mod{
-        padding-right: 0;
-        width: 12%;
-    }
-
-    .sector-header .col-sm-2{
-        padding: 0;
-        width: 12%;
-    }
-
-    .sector-header .item{
-        margin: 0 !important;
-    }
-
-    .sector-contenido{
-        margin-top: 5%;
-        margin-bottom: 5%;
-        box-sizing: border-box;
-    }
-
-    #registro-div{
-        margin-left: 35%;
-        padding: 20px;
-        background: rgb(56, 55, 55);
-        align-content: center;
-        width: 35%;
-        border-radius: 5px;
-        box-sizing: border-box;
-    }
-
-    #registro-div span.titulo{
-        color: white;
-        font-size: 20px;
-        margin-left: 33%;
-    }
-
-    #registro-div span{
-        color: white;
-        font-size: 20px;
-        margin-left: 5%;
-        padding-top: 3%;
-    }
-
-    #registro-div h5{
-        color: white;
-        margin-left: 40%;
-    }
-
-    #registro-div div.row > div.col-12{
-        margin-bottom: 5%;
-    }
-
-    #registro-div
-    select,
-    select>option,
-    input[type="text"],
-    input[type="email"],
-    input[type="password"]{
-        color: white;
-        background:  rgb(90, 84, 84);
-        padding:15px;
-        border: 0;
-        border-radius: 4px;
-        margin-left: 5%;
-        margin-bottom: 0px;
-        width: 90%;
-        box-sizing: border-box;
-    }
-
-    #registro-div 
-    input[type="text"]:hover, 
-    input[type="email"]:hover, 
-    input[type="password"]:hover{
-        border-bottom: 2px solid;
-        border-bottom-color: #ff9900;
-    }
-
-    #registro-div input[type="button"]{
-        border:0;
-        border-radius: 4px;
-        background: blueviolet;
-        padding: 15px;
-        width: 90%;
-        margin: 20px;
-        margin-left: 5%;
-        margin-bottom: 5px;
-        color:white;
-    }
-
-    #registro-div input[type="button"]:hover{
-        background: rgb(78, 24, 128);
-    }
-
-    #btn-login{
-        padding: 5px !important;
-        width: 50% !important;
-        margin-left: 25% !important;
-    }
-
-    .sector-inferior{
-        padding: 0;
-    }
-
-    #footer-cont{
-        color: white;
-    }
-
-    #footer-menu {
-        list-style:none;
-        padding-bottom: 50px;
-    }
-    #footer-menu li{ 
-        line-height:180%;
-    }
-    #footer-menu li a{
-        text-decoration:none;
-    }
-
-    ul.footer-menu{
-        background-color: #1b1f1f80;
-        height: 20%;
-    }
-
-    #menu-grande{
-        display: block;
-    }
-
-    #menu-pequeño{
-        display: none;
-    }
-
-    .is-invalid{
-      border: 1px solid red !important;
-    }
-    
-    .is-valid{
-      border: 1px solid green !important;
-    }
+body{
+    margin: 0;
+    padding: 0;
+    background: #487EB0;
+    font-family: "montserrat", sans-serif;
 }
 
-@media only screen and(max-width: 800px){
-    body{
-        background: #1a293e;
-        background-repeat: no-repeat;
-        background-position:center top;
-        background-size: cover;
-    }
+.box{
+    width: 35%;
+    padding: 20px;
+    text-align: center;
+    background: #121d2c;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
 
-    #menu-grande{
-        display: none;
-    }
+#registro-div{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 80%;
+}
 
-    #menu-pequeño{
-        display: block;
-    }
+#registro-div span.titulo{
+    margin-top: 100px;
+    color: white;
+    font-size: 40px;
+}
 
-    .control-menu{
-        padding-top: 0;
-        padding-left: 85%;
-    }
+#registro-div input, #registro-div select{
+    display: block;
+    width: 100%;
+    padding: 0 16px;
+    height: 44px;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    transition: 0.8s
+}
 
-    .control-menu img{
-        width: 40px !important;
-        height: 60px !important;
-    }
+#registro-div input:focus, #registro-div select:focus{
+    background: white
+}
 
-    .items{
-        padding: 0;
-        margin: 0;
-    }
-    
-    #navigation:target .nav-items{
-        height: 158px;
-        transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
-    }
-    
-    #navigation:target .open{
-        display: none;
-    }
-    #navigation:target .close{
-        display: block;
-    }
+#registro-div .txtb{
+    margin: 20px 0;
+    background: rgba(255,255,255,.5);
+    border-radius: 6px;
+}
 
-    ul.nav-items{
-        background: #41275a;
-        list-style: none;
-        clear: both;
-        height: 0;
-        overflow: hidden;
-        transition: height 0.4s ease-in-out 0s, background-color 2s ease 0s;
-    }
+#registro-div input[type="button"]{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    background: blueviolet;
+    color: white;
+    border-radius: 44px;
+    cursor: pointer;
+    transition: 0.8s; 
+}
 
-    ul.nav-item:hover{
-        background: #7a26c9;
-    }
-    
-    .close{
-        display: none;
-    }
-    
-    .sector-header{
-        padding: 0;
-        padding-bottom: 15%;
-    }
-    
-    .sector-header .col-sm-2-mod{
-        padding-right: 0;
-        width: 12%;
-    }
-    
-    .sector-header .col-sm-2{
-        padding: 0;
-        width: 12%;
-    }
-    
-    .sector-header .item{
-        margin: 0 !important;
-    }
-    
-    #registro-div{
-        margin-left: 500px;
-        margin-bottom: 15px;
-        padding: 20px;
-        background: rgb(56, 55, 55);
-        align-content: center;
-        width: 550px;
-        border-radius: 5px;
-    }
-    
-    #registro-div span.titulo{
-        color: white;
-        font-size: 20px;
-        margin-left: 170px;
-    }
-    
-    #registro-div span{
-        color: white;
-        font-size: 20px;
-    }
-    
-    #registro-div table{
-        margin: 20px;
-    }
-    
-    #registro-div
-    select,
-    input[type="text"],
-    input[type="email"],
-    input[type="password"]{
-        color: white;
-        background:  rgb(90, 84, 84);
-        padding:15px;
-        border: 0;
-        border-radius: 4px;
-        margin: 20px;
-        margin-bottom: 0px;
-        width: 110%;
-        box-sizing: border-box;
-    }
-    
-    #registro-div input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover{
-        border-bottom: 3px solid;
-        border-bottom-color: #ff9900;
-    }
-    
-    #registro-div input[type="button"]{
-        border:0;
-        border-radius: 4px;
-        background: blueviolet;
-        padding: 15px;
-        width: 87%;
-        margin: 20px;
-        margin-left: 35px;
-        margin-bottom: 5px;
-        color:white;
-    }
-    
-    #registro-div input[type="button"]:hover{
-        background: rgb(78, 24, 128);
-    }
-    
-    #registro-div a{
-        color: white;
-        margin-left: 90px;
-        font-size: 12px;
-    }
-    
-    #registro-div a:hover{
-        text-decoration: underline;
-    }
+#registro-div input[type="button"]:hover{
+    transform: scale(0.96);
+}
 
-    .sector-inferior{
-        padding: 0;
-    }
-    
-    #footer-cont{
-        color: white;
-    }
-    
-    #footer-menu {
-        list-style:none;
-        padding-bottom: 50px;
-    }
-    #footer-menu li{ 
-        line-height:180%;
-    }
-    #footer-menu li a{
-        text-decoration:none;
-    }
+#registro-div a{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    transition: 0.8s;
+    display: block;
+}
 
-    .menu-footer{
-        padding: 0;
-    }
-    
-    ul.footer-menu{
-        background-color: #1b1f1f80
-    }
+#registro-div a:hover{
+    background: rgba(0, 0, 0, 0.3)
+}
 
-    .is-invalid{
-      border: 1px solid red !important;
-    }
-    
-    .is-valid{
-      border: 1px solid green !important;
-    }
+.is-invalid{
+    border: 1px solid red !important;
+}
+
+.is-valid{
+    border: 1px solid green !important;
 }

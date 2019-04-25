@@ -9,14 +9,14 @@ function obtenerJSONs(){
 
   informacion.push(
     {nombre:'Mi Archivo',
-     extension:'html',
-     fechaCreacion:'3/02/2019'},
+     extension:'HTML',
+     fechaModificacion:'3/02/2019'},
     {nombre:'Mi Archivo',
-     extension:'css',
-     fechaCreacion:'3/02/2019'},
+     extension:'CSS',
+     fechaModificacion:'3/02/2019'},
     {nombre:'Mi Archivo',
-     extension:'js',
-     fechaCreacion:'3/02/2019'});
+     extension:'JS',
+     fechaModificacion:'3/02/2019'});
 
   creacionTarjetas();
 }
@@ -26,20 +26,36 @@ function creacionTarjetas(){
 
   for(var i=0; i<informacion.length; i++){
     document.getElementById('sector-inferior').innerHTML += 
-    `<div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 contenedor-tarjeta">
-      <div id="mi-archivo-${i}" class="card mb-3 tarjeta-archivo">
-        <div class="row no-gutters">
-          <img src="img/Logo-GEPO-page.svg" class="card-img">
-          <div class="col-md-7">
-            <div class="card-body">
-              <h4 class="card-title">${informacion[i].nombre}.${informacion[i].extension}</h4>
-              <p class="card-text"><small class="text-muted">Fecha Creacion:</small></p>
-              <p class="card-text"><small class="text-muted"><b>${informacion[i].fechaCreacion}</b></small></p>
+    ` <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+        <div class="tarjeta">
+          <div class="cabecera-tarjeta">
+            <img src="img/Logo-GEPO-page.svg" alt="">
+            <div class="cover"></div>
+            <div class="menu">
+              <ul>
+                <li class="fas fa-share-alt"></li>
+                <li class="fas fa-trash"></li>
+              </ul>
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+
+            <div class="nombre">
+              <span class="nombre-tarjeta">${informacion[i].nombre}</span>
+            </div>
+          </div>
+          <div class="descripcion-tarjeta">
+            <div class="seccion-izquierda">
+              <h3>Última Modificación</h3>
+              <p>${informacion[i].fechaModificacion}</p>
+            </div>
+            <div class="seccion-derecha">
+              <div class="item">
+                <span class="num">${informacion[i].extension}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-     </div>`;
+      </div>`;
   }
 
 }

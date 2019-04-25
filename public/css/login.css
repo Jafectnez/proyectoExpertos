@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background: #34495E;
+    background: #487EB0;
     font-family: "montserrat", sans-serif;
 }
 
@@ -12,7 +12,7 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #191919;
+    background: #121d2c;
     text-align: center;
 }
 
@@ -32,7 +32,7 @@ body{
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #3498db;
+    border: 2px solid rgb(46, 132, 245);
     padding: 14px 10px;
     width: 200px;
     outline: none;
@@ -42,10 +42,6 @@ body{
 }
 
 #login-div input[type="text"]:hover, input[type="password"]:hover{
-    border-color: blueviolet;
-}
-
-#login-div input[type="text"]:focus, input[type="password"]:focus{
     width: 280px;
     border-color: blueviolet;
 }
@@ -57,7 +53,7 @@ body{
     width: 200px;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid blueviolet;
+    border: 2px solid white;
     padding: 14px 40px;
     outline: none;
     color: white;
@@ -77,18 +73,28 @@ body{
 }
 
 #login-div a{
+    text-decoration: none;
     color: white;
-    margin-top: 15px;
-    font-size: 12px;
+    font-size: 14px;
+    padding: 10px;
+    transition: 0.8s;
+    display: block;
 }
 
 #login-div a:hover{
-    text-decoration: underline;
+    background: rgba(0, 0, 0, 0.3)
+}
+
+footer{
+    position: absolute; 
+    bottom: 0; 
+    width: 100%;
+    background: #f0f0f0;
+    box-sizing: border-box;
 }
 
 .menu-footer{    
     padding-top: 15px;
-    background: #f0f0f0;
     box-shadow: 0 1px 1px 0 rgba(240,240,240,0.1) inset;
     font-size: 13px;
     color: #666;
@@ -104,7 +110,7 @@ body{
     position: relative;
     width: 94%;
     max-width: 1200px;
-    padding: 2em 0;
+    padding-bottom: 10em;
     margin: 0 auto;
 }
 
@@ -129,143 +135,4 @@ body{
 
 .is-valid{
     border: 1px solid green !important;
-}
-
-@media only screen and (max-width: 800px){
-    body{
-        background: #1a293e;
-        background-repeat: no-repeat;
-        background-position: center top;
-        background-size: cover;
-    }
-
-    .sector-header{
-        padding: 0;
-    }
-
-    .sector-header .col-sm-2-mod{
-        padding-right: 0;
-        width: 12%;
-    }
-
-    .sector-header .col-sm-2{
-        padding: 0;
-        width: 12%;
-    }
-
-    .sector-header .item{
-        margin: 0 !important;
-    }
-
-    .sector-contenido{
-        padding-top: 15%;
-        padding-bottom: 15%;
-    }
-
-    #login-div{
-        padding: 20px;
-        background: rgb(56, 55, 55);
-        align-content: center;
-        width: 100%;
-        border-radius: 5px;
-    }
-
-    #login-div span{
-        color: white;
-        font-size: 20px;
-        margin-left: 25%;
-    }
-
-    #login-div input[type="text"], input[type="password"]{
-        color: white;
-        background:  #5a5454;
-        padding:15px;
-        border: 0;
-        border-radius: 4px;
-        margin: 20px;
-        width: 87%;
-        box-sizing: border-box;
-    }
-
-    #login-div input[type="text"]{
-        margin-bottom: 0px;
-    }
-
-    #login-div input[type="password"]{
-        margin-bottom: 0px;
-    }
-
-    #login-div input[type="text"]:hover, input[type="password"]:hover{
-        border-bottom: 3px solid;
-        border-bottom-color: #ff9900;
-    }
-
-    #login-div input[type="button"]{
-        border:0;
-        border-radius: 4px;
-        background: blueviolet;
-        padding: 15px;
-        width: 87%;
-        margin: 20px;
-        margin-bottom: 5px;
-        color:white;
-    }
-
-    #login-div input[type="button"]:hover{
-        text-decoration: none;
-        background: rgb(78, 24, 128);
-    }
-
-    #login-div a{
-        color: white;
-        margin-top: 15px;
-        margin-left: 33%;
-        font-size: 12px;
-    }
-
-    #login-div a:hover{
-        text-decoration: underline;
-    }
-
-    .sector-inferior{
-        padding: 0;
-    }
-
-    #footer-cont{
-        color: white;
-    }
-
-    #footer-menu {
-        list-style:none;
-        padding-bottom: 50px;
-    }
-    #footer-menu li a{
-        text-decoration:none;
-    }
-
-    .menu-footer{
-        padding: 0;
-    }
-
-    ul.footer-menu{
-        background-color: #1b1f1f80;
-        height: 20%;
-    }
-    
-    ul.footer-menu a{
-        color: white;
-    }
-
-    .row, .container-fluid{
-        margin: 0;
-        padding: 0;
-    }
-
-    .is-invalid{
-      border: 1px solid red !important;
-    }
-    
-    .is-valid{
-      border: 1px solid green !important;
-    }
 }

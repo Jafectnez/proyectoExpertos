@@ -9,9 +9,11 @@ function obtenerJSONs(){
 
   informacion.push(
     {nombre:'Mi Carpeta 1',
-     fechaCreacion:'3/02/2019'},
-    {nombre:'Mi Carpeta 2',
-     fechaCreacion:'1/02/2019'});
+     descripcion:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, itaque! Doloremque, officiis?',
+     carpetas: 3},
+     {nombre:'Mi Carpeta 2',
+     descripcion:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, itaque! Doloremque, officiis?',
+     carpetas: 1});
 
   creacionTarjetas();
 }
@@ -21,29 +23,38 @@ function creacionTarjetas(){
 
   for(var i=0; i<informacion.length; i++){
     document.getElementById('sector-inferior').innerHTML += 
-    `<div class="col-lg-4 col-md-4 col-sm-4 col-xl-4 contenedor-tarjeta">
-      <a class="a-tarjeta" href="seccion-proyectos.html">
-        <div id="mi-carpeta-${i}" class="card mb-3 tarjeta-carpeta"">
-          <div class="row no-gutters">
-            <div class="col-xl-6 col-lg-6 col-md-6 tarj">
-              <div class="card-body">
-                <h4 class="card-title" id="nombre-carpeta">${informacion[i].nombre}</h4>
-                <p class="card-text"><small class="text-muted">Fecha Creacion:</small></p>
-                <p class="card-text"><small class="text-muted"><b>${informacion[i].fechaCreacion}</b></small></p>
+    ` <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+        <div class="tarjeta">
+          <div class="cabecera-tarjeta">
+            <img src="img/Logo-GEPO-page.svg" alt="">
+            <div class="cover"></div>
+            <div class="menu">
+              <ul>
+                <li class="fas fa-share-alt"></li>
+                <li class="fas fa-trash"></li>
+              </ul>
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+
+            <div class="nombre">
+              <span class="nombre-tarjeta">${informacion[i].nombre}</span>
+            </div>
+          </div>
+          <div class="descripcion-tarjeta">
+            <div class="seccion-izquierda">
+              <h3>Descripción</h3>
+              <p>${informacion[i].descripcion}</p>
+              <a href="seccion-proyectos.html">Abrir</a>
+            </div>
+            <div class="seccion-derecha">
+              <div class="item">
+                <span class="num">${informacion[i].carpetas}</span>
+                <span class="word">Carpetas</span>
               </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 tarj-carp">
-              <i class="fas fa-folder card-img"></i>
-            </div>
-            <div class="col-xl-1 col-lg-1 col-md-1 btn-func">
-              <a href="#">
-              <i class="fas fa-trash"></i>
-              </a>
             </div>
           </div>
         </div>
-      </a>
-     </div>`;
+      </div>`;
   }
 
 }

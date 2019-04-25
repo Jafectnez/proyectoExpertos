@@ -1,8 +1,12 @@
+$(".btn-navbar").on("click", function () {
+  $(".menu-navbar").toggleClass("show");
+});
+
 var editorHTML = CodeMirror.fromTextArea(document.getElementById("editor-html"), {
   lineNumbers: true,
   mode : "xml",
   htmlMode: true,
-  theme: "icecoder",
+  theme: "dracula",
   tabSize: 2,
   smartIndent: true,
   matchBrackets: true,
@@ -13,7 +17,7 @@ var editorHTML = CodeMirror.fromTextArea(document.getElementById("editor-html"),
 var editorCSS = CodeMirror.fromTextArea(document.getElementById("editor-css"), {
   lineNumbers: true,
   mode:"css",
-  theme: "icecoder",
+  theme: "dracula",
   tabSize: 2,
   smartIndent: true,
   matchBrackets: true,
@@ -24,7 +28,7 @@ var editorCSS = CodeMirror.fromTextArea(document.getElementById("editor-css"), {
 var editorJS = CodeMirror.fromTextArea(document.getElementById("editor-js"), {
   lineNumbers: true,
   mode:"javascript",
-  theme: "icecoder",
+  theme: "dracula",
   tabSize: 2,
   smartIndent: true,
   keyMap: "sublime",

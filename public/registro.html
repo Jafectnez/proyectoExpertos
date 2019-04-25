@@ -4,93 +4,35 @@
     <meta charset="utf-8">
     <link rel="shortcut icon" href="img/Logo-GEPO.svg">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/barra-menu.css">
     <link rel="stylesheet" type="text/css" href="css/registro.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <div class="container-fluid">
-      <!--Sector Contenido-->
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sector-contenido">
-          <div class="row justify-content-center">
-            <div class="col-12">
-              <div id="registro-div">
-                <div class="row">
-                  <div class="col-12">
-                    <span class="titulo">Ingrese sus datos:</span>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <span>Nombre:</span>
-                    <input id="txt-nombre" type="text" onkeypress="enterPress(event);" placeholder="Nombre" autofocus>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <span>Apellido:</span>
-                    <input id="txt-apellido" type="text" onkeypress="enterPress(event);" placeholder="Apellido">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <span>Genero:</span>
-                    <select id="select-genero">
-                    </select>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <span>Correo:</span>
-                    <input id="txt-correo" type="email" onkeypress="enterPress(event);" placeholder="Correo">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <span>Usuario:</span>
-                    <input id="txt-usuario" type="text" onkeypress="enterPress(event);" placeholder="Usuario">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <span>Contraseña:</span>
-                    <input id="txt-password" type="password" onkeypress="enterPress(event);" placeholder="Contraseña">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <span>País de Residencia:</span>
-                    <select id="select-pais">
-                    </select>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <input id="btn-registro" type="button" onclick="registro();" value="Registrarme!">
-                </div>
-                <hr>
-                <div class="col-12">
-                  <h5>Ya tienes cuenta?</h5>
-                </div>
-                <div class="col-12">
-                  <input id="btn-login" type="button" onclick="location.href='login.html';" value="Ir al Inicio de Sesión">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!--Sector Contenido-->
+    <div class="box">
+      <div id="registro-div">
+        <span class="titulo">Ingrese sus datos:</span>
+        <input class="txtb" id="txt-nombre" type="text" onkeypress="enterPress(event);" placeholder="Ingrese su Nombre">
+        <input class="txtb" id="txt-apellido" type="text" onkeypress="enterPress(event);" placeholder="Ingrese su Apellido">
+        <select class="txtb" id="select-genero">
+          <option>--Seleccione su Género</option>
+        </select>
+        <input class="txtb" id="txt-correo" type="email" onkeypress="enterPress(event);" placeholder="Ingrese su Correo">
+        <input class="txtb" id="txt-usuario" type="text" onkeypress="enterPress(event);" placeholder="Ingrese su Usuario">
+        <input class="txtb" id="txt-password" type="password" onkeypress="enterPress(event);" placeholder="Ingrese su Contraseña">
+        <select class="txtb" id="select-pais">
+            <option>--Seleccione su País</option>
+        </select>
+        <input id="btn-registro" type="button" onclick="registro();" value="Registrarme!">
+        
+        <hr>
+        <a href='login.html'>Ya tienes cuenta?</a>
       </div>
-      <!--Fin Sector Contenido-->
-
-      <!--Seccion Footer-->
-      <div id="footer-cont" class="row row-footer footer-menu">
-      </div>
-      <!--Fin Seccion Footer-->
     </div>
+    <!--Fin Sector Contenido-->
   </body>
   <!--Scripts-->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script src="js/menu-navbar.js"></script>
   <script src="js/registro.js"></script>
 </html>

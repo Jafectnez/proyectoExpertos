@@ -8,6 +8,13 @@
   background: blueviolet;
   width: 100%;
   z-index: 999;
+  border: 0;
+  border-radius: 0;
+}
+
+.well{
+  border: 0;
+  border-radius: 0;
 }
 
 .logo-navbar{
@@ -27,14 +34,15 @@
 .menu-navbar a{
   color: white;
   text-decoration: none;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 700;
   margin-left: 20px;
-  transition: border 0.3s;
+  transition: 0.3s;
   text-transform: uppercase;
 }
+
 .menu-navbar a:hover{
-  border-bottom: 2px solid white;
+  color: #6b359e;
 }
 
 .btn-navbar{
@@ -55,7 +63,7 @@
   background: #333;
 }
 
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 1300px){
   .navbar{
     overflow: visible;
   }
@@ -64,9 +72,10 @@
     width: 100%;
     right: 0;
     top: 80px;
-    background: blueviolet;
+    background: #381c52;
     overflow: hidden;
     max-height: 0;
+    transition: 0.8s;
   }
 
   .menu-navbar a{
@@ -74,6 +83,10 @@
     text-align: center;
     padding: 10px;
     margin: 0;
+  }
+
+  .menu-navbar a:hover{
+    background: #6b359e;
   }
 
   .btn-navbar{

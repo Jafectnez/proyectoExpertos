@@ -4,58 +4,21 @@
     <meta charset="utf-8">
     <link rel="shortcut icon" href="img/Logo-GEPO.svg">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/barra-menu.css">
     <link rel="stylesheet" type="text/css" href="css/login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div id="login-div">
-          <h1>Ingrese sus datos</h1>
-          <input id="txt-nombre" type="text" placeholder="Usuario" onkeypress="enterPress(event);">
-          <input id="txt-password" type="password" placeholder="Contraseña" onkeypress="enterPress(event);">
-          <input id="btn-login" type="button" onclick="login();" value="Iniciar Sesión">
-          <a href="#">Olvidé mi contraseña</a> 
-          <hr>
-          <h5>AUN NO TIENES CUENTA?</h5>
-          <input id="btn-registro" type="button" onclick="location.href='registro.html';" value="Registrarme!">
-        </div>
-      </div>
-
-      <!--Seccion Footer-->
-      <div class="row">
-        <footer class="menu-footer">
-          <div class="wrapper">
-            <div class="col links">
-              <h4>@ Copyright GEPO 2019</h4>
-            </div>
-    
-            <div class="col redes-sociales">
-              <nav class="col">
-                <h4>Buscanos en las redes sociales</h4>
-          
-                <label>
-                  <img src="img/tw_icon.svg" width="35px" height="35px">
-                  <a class="red-social" href="https://twitter.com/GEPOHN1">Twitter</a>
-                </label>
-              
-                <label>
-                  <img src="img/Fb_icon.svg" width="35px" height="35px">
-                  <a class="red-social" href="https://www.facebook.com/GEPOHN">Facebook</a>
-                </label>
-              </nav>
-    
-            </div>
-          </div> 
-        </footer>
-      </div>
-      <!--Fin Seccion Footer-->
+    <div id="login-div">
+      <h1>Ingrese sus datos</h1>
+      <input id="txt-nombre" type="text" placeholder="Usuario" onkeypress="enterPress(event);">
+      <input id="txt-password" type="password" placeholder="Contraseña" onkeypress="enterPress(event);">
+      <input id="btn-login" type="button" onclick="login();" value="Iniciar Sesión">
+      <hr>
+      <a href='registro.html'>AUN NO TIENES CUENTA?</a>
     </div>
   </body>
   <!--Scripts-->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script src="js/menu-navbar.js"></script>
   <script src="js/login.js"></script>
 </html>

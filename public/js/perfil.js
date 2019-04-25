@@ -5,7 +5,6 @@ var informacion = [
 
 jQuery(document).ready(function() {
   document.getElementById("txt-usuario").value = "Zaden Ower";
-  document.getElementById("txt-password").value = "asd";
   document.getElementById("txt-correo").value = "allan@gepo.hn";
   document.getElementById("txt-nombre").value = "Allan";
   document.getElementById("txt-apellido").value = "Martínez";

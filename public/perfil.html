@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/styleBarra.css">
     <link rel="stylesheet" type="text/css" href="css/perfil.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -40,35 +41,88 @@
               
               <!--Sector Inferior-->
               <div class="row row-seccion">
-                <div id="sector-inferior" class="seccion-perfil col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                  <h3>Foto Perfil:</h3>
-                    <img src="img/usuario.jpg" style="width:150px;height:150px;" class="d-inline-block align-top" alt="">
-                  <h3>Usuario: </h3>
+                <div id="sector-inferior" class="seccion-perfil">
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <h3>Foto de Perfil</h3>
+                    <img src="img/usuario.jpg" style="width:150px;height:150px;" class="d-inline-block align-top" alt=""><br><br>
+                    <button class="btn btn-primary">Subir Imagen</button>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <h3>Usuario</h3>
                     <input type="text" class="form-control" id="txt-usuario" placeholder="Usuario">
-                  <h3>Contraseña:</h3>
-                    <input type="password" class="form-control" id="txt-password" placeholder="Contraseña">
-                  <h3>Nivel de Usuario:</h3>
-                    <span id="spn-tipo-usuario">Tier 2</span>
-                  <h3>Biografía:</h3>
-                    <textarea class="form-control" id="txtA-biografia" placeholder="Cuentanos sobre tí!"></textarea>
-                  <h3>Correo:</h3>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <h3>Correo Electrónico</h3>
                     <input type="email" class="form-control" id="txt-correo" placeholder="Ej: ejemplo@ejemplo.com">
-                  <h3>Nombre:</h3>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <h3>Nivel de Usuario</h3>
+                    <span id="spn-tipo-usuario">ULTIMATE</span>
+                    <button id="btn-cambiar-plan" class="btn btn-primary" data-toggle="modal" data-target="#modalPlanCuenta">Cambiar plan</button>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <h3>Nombre</h3>
                     <input type="text" class="form-control" id="txt-nombre" placeholder="Ej: Juanito">
-                  <h3>Apellido:</h3>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <h3>Biografía</h3>
+                    <textarea class="form-control" id="txtA-biografia" placeholder="Cuentanos sobre tí!">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, fugiat.</textarea>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <h3>Apellido</h3>
                     <input type="text" class="form-control" id="txt-apellido" placeholder="Ej: Alcachofa">
-                  <h3>Genero</h3>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <h3>Género</h3>
                     <span id="spn-genero">Masculino</span>
-                  <h3>Residencia</h3>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <h3>Residencia</h3>
                     <span id="spn-residencia">Honduras</span>
+                  </div>
                 </div>
+
+                <!-- Modal Ver Solicitud -->
+                <div class="modal fade" id="modalPlanCuenta" tabindex="-1" role="dialog" aria-labelledby="modalPlanCuentaLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h3 class="modal-title" id="modalPlanCuentaLabel" style="text-align: center;font-weight: bold;">CAMBIAR PLAN DE LA CUENTA</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="row modal-body" style="padding-bottom: 0;">
+                        <!-- Formulario -->
+                        <div class="form-group col-12 col-sm-6 col-md-6">
+                          <h4 class="palido">Plan</h4>
+                          <select class="form-control" id="select-tipos-usuarios">
+                          </select>
+                        </div>
+  
+                        <div class="form-group col-12 col-sm-6 col-md-6">
+                          <h4 class="palido">Tarjeta de débito/crédito:</h4>
+                          <input class="form-control" type="text" id="txt-num-tarjeta" placeholder="XXXX-XXXX-XXXX-XXXX">
+                        </div>
+  
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btn-pagar">Realizar Pago</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="seccion-perfil-pago col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                  <h2>Cambiar Plan de Cuenta</h2>
-                  <select class="form-control" id="select-tipos-usuarios">
-                  </select>
-                  <h3>Ingrese su numero de tarjeta de débito/crédito</h3>
-                  <input class="form-control" type="text" id="txt-num-tarjeta" placeholder="XXXX-XXXX-XXXX-XXXX">
-                  <input class="btn btn-primary" type="button" id="btn-pagar" value="Pagar!">
                 </div>
               </div>
               <!--Fin Sector Inferior-->
@@ -88,6 +142,7 @@
   </body>
   <!--Scripts-->    
   <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/perfil.js"></script>
 </html>
