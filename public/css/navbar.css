@@ -37,12 +37,8 @@
   font-size: 20px;
   font-weight: 700;
   margin-left: 20px;
-  transition: 0.3s;
+  transition: 0.7s;
   text-transform: uppercase;
-}
-
-.menu-navbar a:hover{
-  color: #6b359e;
 }
 
 .btn-navbar{

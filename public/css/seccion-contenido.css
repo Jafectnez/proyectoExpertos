@@ -1,16 +1,8 @@
-#barraNav{
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
-}
-
 .seccion-inferior{
     height: 100%;
     padding: 15px;
-}
-
-.contenedor-tarjeta{
-    width: 26%;
+    margin-top: 1%;
+    padding: 0 1%;
 }
 
 .well{
@@ -20,13 +12,13 @@
 }
 
 .barra-menu{
-    width: 17%;
+    width: 100%;
     padding-right: 0;
     padding-left: 0;
 }
 
 .sector-contenido{
-    width: 83%;
+    width: 100%;
     margin: 0;
     padding-left: 0;
     padding-right: 0;
@@ -38,6 +30,7 @@ body{
 
 .portada{
     width: 100%;
+    padding: 10px;
 }
 
 .row, .container-fluid{

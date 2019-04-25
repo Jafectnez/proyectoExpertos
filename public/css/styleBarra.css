@@ -43,7 +43,7 @@ body {
 
 .profile-usertitle-name {
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   margin-bottom: 7px;
 }
@@ -88,9 +88,10 @@ body {
 
 .profile-usermenu ul li a {
   color: white;
-  font-size: 14px;
-  font-weight: 400;
-  transition: 0.5s;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  transition: 0.3s;
 }
 
 .profile-usermenu ul li a i {
@@ -152,20 +153,167 @@ ul.footer-menu{
   background: #00000080;
 }
 
-@media only screen and (max-width: 1210px){
+.barra{
+  width: 16%;
+  float: left;
+}
+
+.menu-navbar{
+  position: absolute;
+  right: 20px;
+  display: none;
+}
+
+.menu-navbar a{
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 20px;
+  transition: 0.3s;
+}
+
+.contenido{
+  width: 84%;
+  float: right;
+}
+
+.btn-navbar{
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 1%;
+}
+
+.btn-navbar span{
+  display: block;
+  margin: 6px;
+  width: 40px;
+  height: 3px;
+  background: white;
+}
+
+.btn-navbar:hover > span{
+  background: #333;
+}
+
+@media only screen and (max-width: 1500px){
+
+  .profile-usermenu ul li{
+    border: none;
+    margin-left: 25%;
+    width: 30px;
+  }
+
   .profile-usermenu ul li a h4{
     display: none;
   }
   
   .profile-usermenu ul li a i {
-    font-size: 25px;
+    font-size: 30px;
+    display: block;
+    text-align: center;
   }
 
-  .profile-usermenu ul li {
-    border: none;
+  .profile-usermenu ul li a:focus, .profile-usermenu ul li a:hover {
+    background: none;
   }
 
-  .profile-usermenu ul li a:hover {
+  .profile-usermenu ul li:hover {
+    animation: boing 0.8s;
+  }
+
+}
+
+@media only screen and (max-width: 1200px){
+
+  .secciones-menu{
+    display: none;
+  }
+
+  .contenido{
+    width: 100%;
+  }
+
+  .barra{
+    width: 100% !important;
+    height: 80px !important;
+    padding: 0 20px;
+    padding-bottom: 0 !important;
     background: blueviolet;
+  }
+
+  .profile-sidebar{
+    background: none;
+    overflow: visible;
+  }
+
+  .foto-perfil{
+    width: 100px;
+    height: 70px;
+    float: left;
+    margin-left: 20px;
+  }
+
+  .nombre-perfil{
+    width: 200px;
+    height: 70px;
+    float: left;
+    margin-left: 20px;
+  }
+
+  .nombre-perfil .profile-usertitle{
+    margin-top: 0;
+  }
+
+  .nombre-perfil .profile-usertitle-name{
+    margin-top: 0;
+    font-size: 30px;
+    float: left
+  }
+
+  .menu-navbar{
+    display: block;
+    width: 100%;
+    right: 0;
+    top: 80px;
+    background: #381c52;
+    overflow: hidden;
+    max-height: 0;
+    transition: 0.8s;
+    z-index: 9999;
+  }
+
+  .menu-navbar a{
+    display: block;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    transition: 0.8s;
+  }
+
+  .menu-navbar a:hover{
+    background: #6b359e;
+  }
+
+  .btn-navbar{
+    display: block;
+    cursor: pointer;
+  }
+
+  .show{
+    max-height: 500px;
+  }
+}
+
+@keyframes boing {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.4);
+  }
+  100%{
+    transform: scale(1);
   }
 }

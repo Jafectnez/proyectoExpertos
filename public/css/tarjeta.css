@@ -6,14 +6,25 @@
   text-decoration: none;
 }
 
+.sector-inferior{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .well{
   border: 0;
   border-radius: 0;
 }
 
+.col{
+  flex: 30%;
+  max-width: 376px;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
 .tarjeta{
-  width: 90%;
-  position: absolute;
   background: #f1f1f1;
   overflow: hidden;
   box-shadow: 0px 0px 20px #00000063;
@@ -146,4 +157,16 @@
 
 .descripcion-tarjeta .seccion-derecha .item .word{
   font-size: 16px;
+}
+
+@media only screen and (max-width: 1500px){
+  .col{
+    flex: 50%;
+  }
+}
+
+@media only screen and (max-width: 1000px){
+  .col{
+    flex: 100%;
+  }
 }

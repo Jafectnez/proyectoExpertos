@@ -26,7 +26,7 @@ function creacionTarjetas(){
 
   for(var i=0; i<informacion.length; i++){
     document.getElementById('sector-inferior').innerHTML += 
-    ` <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+    ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="tarjeta">
           <div class="cabecera-tarjeta">
             <img src="img/Logo-GEPO-page.svg" alt="">

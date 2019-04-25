@@ -6,6 +6,11 @@ jQuery(document).ready(function() {
 		success : function (data) 
 		{
 			$("#barra-menu").html(data);
+			
+			$(".btn-navbar").on("click", function () {
+				$(".menu-navbar").toggleClass("show");
+			});
 		}
 	});
 });
+
