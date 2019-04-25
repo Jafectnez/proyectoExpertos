@@ -8,4 +8,5 @@ var esquema = new mongoose.Schema(
         contenedor: mongoose.Schema.Types.ObjectId
     }
 );
-module.exports = mongoose.model('carpetas',esquema);
+
+module.exports = mongoose.model('Carpetas', esquema);
