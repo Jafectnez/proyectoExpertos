@@ -31,7 +31,7 @@ body{
     font-size: 40px;
 }
 
-#registro-div input, #registro-div select{
+#registro-div input, #registro-div select, #registro-div textarea{
     display: block;
     width: 100%;
     padding: 0 16px;
@@ -43,7 +43,11 @@ body{
     transition: 0.8s
 }
 
-#registro-div input:focus, #registro-div select:focus{
+#registro-div textarea{
+    padding-top: 10px;
+}
+
+#registro-div input:focus, #registro-div select:focus, #registro-div textarea:focus{
     background: white
 }
 
@@ -64,7 +68,7 @@ body{
 }
 
 #registro-div input[type="button"]:hover{
-    transform: scale(0.96);
+    animation: boton 0.3s;
 }
 
 #registro-div a{
@@ -86,4 +90,23 @@ body{
 
 .is-valid{
     border: 1px solid green !important;
+}
+
+#estado{
+    transition: 0.5s;
+}
+
+@keyframes boton{
+    0%{
+        transform: scale(1);
+    }
+    33%{
+        transform: scale(0.9);
+    }
+    66%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
 }

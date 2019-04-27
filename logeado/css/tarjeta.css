@@ -82,10 +82,12 @@
 
 .cabecera-tarjeta .menu ul li:hover{
   color: #3c0074;
+  transition: 0.4s;
 }
 
 .cabecera-tarjeta .menu:hover{
   color: #3c0074;
+  transition: 0.4s;
 }
 
 .cabecera-tarjeta .menu:hover> ul{

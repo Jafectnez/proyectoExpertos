@@ -37,3 +37,34 @@ body{
     margin: 0;
     padding: 0;
 }
+
+.btn-agregar{
+    padding: 5px 15px;
+    font-size: 30px;
+    float: right;
+    background: blueviolet;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    margin: 0 5px;
+    margin-top: 1%;
+}
+
+.rebotar{
+    animation: rebote 0.3s;
+}
+
+@keyframes rebote{
+    0%{
+        transform: scale(1);
+    }
+    33%{
+        transform: scale(0.7);
+    }
+    66%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}

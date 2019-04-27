@@ -12,19 +12,20 @@
     <div class="box">
       <div id="registro-div">
         <span class="titulo">Ingrese sus datos:</span>
-        <input class="txtb" id="txt-nombre" type="text" onkeypress="enterPress(event);" placeholder="Ingrese su Nombre">
-        <input class="txtb" id="txt-apellido" type="text" onkeypress="enterPress(event);" placeholder="Ingrese su Apellido">
+        <input class="txtb" id="txt-nombre" type="text" placeholder="Ingrese su Nombre">
+        <input class="txtb" id="txt-apellido" type="text" placeholder="Ingrese su Apellido">
         <select class="txtb" id="select-genero">
-          <option>--Seleccione su Género</option>
+          <option>--Seleccione su Género--</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Helicóptero Apache de Combate">Helicóptero Apache de Combate</option>
         </select>
-        <input class="txtb" id="txt-correo" type="email" onkeypress="enterPress(event);" placeholder="Ingrese su Correo">
-        <input class="txtb" id="txt-usuario" type="text" onkeypress="enterPress(event);" placeholder="Ingrese su Usuario">
-        <input class="txtb" id="txt-password" type="password" onkeypress="enterPress(event);" placeholder="Ingrese su Contraseña">
-        <select class="txtb" id="select-pais">
-            <option>--Seleccione su País</option>
-        </select>
+        <input class="txtb" id="txt-correo" type="email" placeholder="Ingrese su Correo">
+        <input class="txtb" id="txt-usuario" type="text" placeholder="Ingrese su Usuario">
+        <input class="txtb" id="txt-password" type="password" placeholder="Ingrese su Contraseña">
+        <textarea class="txtb" id="txtA-residencia" placeholder="Ingrese su lugar de Residencia"></textarea>
         <input id="btn-registro" type="button" onclick="registro();" value="Registrarme!">
-        
+        <div id="estado"></div>
         <hr>
         <a href='login.html'>Ya tienes cuenta?</a>
       </div>

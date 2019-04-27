@@ -1,51 +1,112 @@
-var informacionPais = ["Honduras",
-                       "Costa Rica",
-                       "Nicaragua",
-                       "Panama",
-                       "El Salvador",
-                       "Guatemala"];
-
-var informacionGenero = ["Masculino", "Femenino", "Helicoptero Apache de Combate"]
-
-jQuery(document).ready(function() {
-  var data = ``;
-  for(var i=0; i < informacionPais.length; i++){
-    data += `<option value="${i+1}">${informacionPais[i]}</option>`;
-  }
-  $("#select-pais").html(data)
-
-  data = ``;
-  for(var i=0; i < informacionGenero.length; i++){
-    data += `<option value="${i+1}">${informacionGenero[i]}</option>`;
-  }
-  $("#select-genero").html(data)
-});
-
 function registro() {
   var campos = [
-    {campo:'txt-nombre',valido:false},
-    {campo:'txt-apellido',valido:false},
-    {campo:'select-genero',valido:false},
-    {campo:'txt-correo',valido:false},
-    {campo:'txt-usuario',valido:false},
-    {campo:'txt-password',valido:false},
-    {campo:'select-pais',valido:false}
+    {parametro:'nombreUsuario',
+     campo:'txt-nombre',
+     valido:false,
+     regex: /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*$/
+    },
+    {parametro:'apellidoUsuario',
+    campo:'txt-apellido',
+     valido:false,
+     regex: /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*$/
+    },
+    {parametro:'generoUsuario',
+     campo:'select-genero',
+     valido:false,
+     regex: /.+/
+    },
+    {parametro:'correoUsuario',
+     campo:'txt-correo',
+     valido:false,
+     regex: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+    },
+    {parametro:'nickUsuario',
+     campo:'txt-usuario',
+     valido:false,
+     regex: /(([A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*$/
+    },
+    {parametro:'contraseniaUsuario',
+     campo:'txt-password',
+     valido:false,
+     regex: /.*/
+    },
+    {parametro:'residenciaUsuario',
+     campo:'txtA-residencia',
+     valido:false,
+     regex: /([A-Za-z0-9]+.)+/}
   ];
 
   for (var i=0;i<campos.length;i++){
-    campos[i].valido = validarCampoVacio(campos[i].campo);
+    campos[i].valido = validarCampo(campos[i].campo, campos[i].regex);
   }
+
+  var parametros = {
+    "nombreUsuario" : "",
+    "apellidoUsuario" : "",
+    "generoUsuario" : "",
+    "correoUsuario" : "",
+    "nickUsuario" : "",
+    "contraseniaUsuario" : "",
+    "residenciaUsuario" : ""
+  };
 
   for(var i=0;i<campos.length;i++){
-    if (!campos[i].valido)
+    if (!campos[i].valido){
+      $("#estado").text("Asegurese de llenar todos los datos necesarios");
+      $("#estado").css("color", "red");
+
+      setTimeout(function () {
+        $("#estado").text("");
+        $("#estado").css("color", "");
+        for(var j=0;j<campos.length;j++)
+          document.getElementById(campos[j].campo).classList.remove('is-invalid');
+      },3000);
       return;
+    }
+    parametros[campos[i].parametro]=$("#"+campos[i].campo).val();
   }
 
-  location.href = "../login.html";
+  $.ajax({
+    type: "POST",
+    url: "/registrar",
+    data: parametros,
+    dataType: "json",
+    success: function (res) {
+      if(res.status == 1){
+        $("#estado").text(res.mensaje);
+        $("#estado").css("color", "green");
+        $.ajax({
+          type: "POST",
+          url: "/carpetas/crear",
+          data: {
+            nombre: 'Mi Carpeta 1',
+            descripcion: 'Carpeta creada automáticamente',
+            id: res.objeto._id
+          },
+          dataType: "json",
+          success: function (response) {
+            setTimeout(function() {  
+              location.href = "../login.html";
+            }, 3000);
+          }
+        });
+      }else{
+        $("#estado").text(res.mensaje);
+        $("#estado").css("color", "red");
+      }
+    },
+    error: function (error) {
+      console.error(error);
+    }
+  });
 }
     
-function validarCampoVacio(campo){
+function validarCampo(campo, regex){
   if (document.getElementById(campo).value ==''){   
+    document.getElementById(campo).classList.add('input-error');
+    document.getElementById(campo).className += ' is-invalid';
+    return false;
+  }else if(!regex.exec(document.getElementById(campo).value)){
     document.getElementById(campo).classList.add('input-error');
     document.getElementById(campo).className += ' is-invalid';
     return false;
@@ -53,11 +114,5 @@ function validarCampoVacio(campo){
     document.getElementById(campo).classList.remove('input-error');
     document.getElementById(campo).className += ' is-valid ';
     return true;
-  }
-}
-
-function enterPress(e) {
-  if (e.keyCode == 13) {
-    registro();
   }
 }

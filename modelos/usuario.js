@@ -8,9 +8,9 @@ var esquema = new mongoose.Schema(
         genero : String,
         residencia : String,
         correo : String,
-        usuario: String,
-        contrasenia:String,
-        plan_activo: mongoose.Schema.Types.ObjectId
+        usuario : String,
+        contrasenia : String,
+        plan_activo : mongoose.Schema.Types.ObjectId
     }
 );
 module.exports = mongoose.model('usuarios',esquema);

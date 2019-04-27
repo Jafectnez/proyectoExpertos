@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $.ajax({
-    url: "/carpetas/5cc244b2eeb38871d1a3338f",
+    url: "/carpetas",
     method: "GET",
     dataType: "json",
     success: function(res) {
@@ -16,6 +16,9 @@ function creacionTarjetas(datos){
   document.getElementById('sector-inferior').innerHTML = '';
 
   for(var i=0; i<datos.length; i++){
+    if(datos[i].proyectos == undefined){
+      datos[i].proyectos = 0;
+    }
     
     document.getElementById('sector-inferior').innerHTML += 
     ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">

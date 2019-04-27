@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GEPO - Menu Principal</title>
+    <meta charset="utf-8"/>
+    <link rel="shortcut icon" href="img/Logo-GEPO.svg">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styleBarra.css">
+    <link rel="stylesheet" type="text/css" href="css/seccion-contenido.css">
+    <link rel="stylesheet" type="text/css" href="css/tarjeta.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!--Aqui Esta Contenida La Barra De Menu-->
+      <div class="row barra">            
+        <div id="barra-menu" class="col-lg-3 col-md-3 col-sm-3 col-xl-3 barra-menu">
+        </div> 
+      </div>
+      <!--Aqui Finaliza La La Barra De Menu-->
+
+      <!--Contenido-->
+      <div class="row contenido">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 sector-contenido">
+          <!--Sector Superior-->
+          <div class="row justify-content-center row-portada well">
+            <div class="portada col-lg-12 col-md-12 col-sm-12 col-xl-12">
+              <div class="text">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                    <h1 id="nombre-portada">Mi Espacio de Trabajo</h1>
+                  </div>
+                  
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                    <button id="btn-agregar-carpeta" class="btn-agregar" data-toggle="modal" data-target="#modalAgregarCarpeta"><i class="fas fa-folder-plus"></i></button>
+                  </div>
+
+                  <!-- Modal Agregar Carpeta -->
+                  <div class="modal fade" id="modalAgregarCarpeta" tabindex="-1" role="dialog" aria-labelledby="modalAgregarCarpetaLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalAgregarCarpetaLabel" style="text-align: center;font-weight: bold;">AGREGAR CARPETA</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;">
+                          <!-- Formulario -->
+                          <div class="form-group col-12 col-sm-6 col-md-6">
+                            <h4 class="palido">Nombre</h4>
+                            <input class="form-control" type="text" id="txt-nombre-carpeta" placeholder="">
+                            </select>
+                          </div>
+    
+                          <div class="form-group col-12 col-sm-6 col-md-6">
+                            <h4 class="palido">Descripcion</h4> 
+                            <textarea class="form-control"  id="txtA-descripcion-tarjeta" cols="30" rows="10"></textarea>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-pagar">Crear Carpeta</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>		
+            </div>
+          </div>
+          <!--Fin Sector Superior-->
+
+          <!--Sector Inferior-->
+          <div class="row row-seccion">
+            <div id="sector-inferior" class="seccion-inferior">
+            </div>
+          </div>
+          <!--Fin Sector Inferior-->
+        </div>
+      </div>
+      <!--Fin Contenido-->
+    </div>
+  </body>
+  <!--Scripts-->    
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/controladores/seccion-carpetas.js"></script>
+</html>
