@@ -10,7 +10,7 @@ var esquema = new mongoose.Schema(
         correo : String,
         usuario: String,
         contrasenia:String,
-        plan_activo: ObjectId
+        plan_activo: mongoose.Schema.Types.ObjectId
     }
 );
 module.exports = mongoose.model('usuarios',esquema);

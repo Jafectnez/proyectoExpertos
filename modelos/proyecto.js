@@ -3,9 +3,9 @@ var mongoose = require("mongoose");
 var esquema = new mongoose.Schema(
     {
         nombre : String,
-        fecha_creacion : Date,
+        fecha_creacion : mongoose.Schema.Types.Date,
         descripcion : String,
-        contenedor: ObjectId
+        contenedor: mongoose.Schema.Types.ObjectId
     }
 );
 module.exports = mongoose.model('proyectos',esquema);

@@ -1,30 +1,27 @@
-$(document).ready(function() {
-	obtenerJSONs();
+$(document).ready(function () {
+  datosProyecto();
+
+  $.ajax({
+    url: "/archivos/"+localStorage.getItem("Id_Proyecto"),
+    method: "GET",
+    dataType: "json",
+    success: function(res) {
+      creacionTarjetas(res);
+    },
+    error: function(error) {
+      console.error(error);
+    }
+  });
 });
 
-
-var informacion=[];
-
-function obtenerJSONs(){
-
-  informacion.push(
-    {nombre:'Mi Archivo',
-     extension:'HTML',
-     fechaModificacion:'3/02/2019'},
-    {nombre:'Mi Archivo',
-     extension:'CSS',
-     fechaModificacion:'3/02/2019'},
-    {nombre:'Mi Archivo',
-     extension:'JS',
-     fechaModificacion:'3/02/2019'});
-
-  creacionTarjetas();
+function datosProyecto() {
+    $("#nombre-portada").text(localStorage.getItem("Nombre_Proyecto"));
 }
 
-function creacionTarjetas(){
+function creacionTarjetas(datos){
   document.getElementById('sector-inferior').innerHTML = '';
 
-  for(var i=0; i<informacion.length; i++){
+  for(var i=0; i<datos.length; i++){
     document.getElementById('sector-inferior').innerHTML += 
     ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="tarjeta">
@@ -40,17 +37,17 @@ function creacionTarjetas(){
             </div>
 
             <div class="nombre">
-              <span class="nombre-tarjeta">${informacion[i].nombre}</span>
+              <span class="nombre-tarjeta">${datos[i].nombre}.${datos[i].extension}</span>
             </div>
           </div>
           <div class="descripcion-tarjeta">
             <div class="seccion-izquierda">
               <h3>Última Modificación</h3>
-              <p>${informacion[i].fechaModificacion}</p>
+              <p>${datos[i].modificaciones[datos[i].modificaciones.length - 1].mensaje}</p>
             </div>
             <div class="seccion-derecha">
               <div class="item">
-                <span class="num">${informacion[i].extension}</span>
+                <span class="num">${datos[i].modificaciones[datos[i].modificaciones.length - 1].fecha}</span>
               </div>
             </div>
           </div>

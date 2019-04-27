@@ -124,7 +124,7 @@
   margin: 30px 0;
 }
 
-.descripcion-tarjeta .seccion-izquierda a{
+.descripcion-tarjeta .seccion-izquierda button{
   width: 100%;
   background: #9b59b6;
   border-radius: 12px;
@@ -136,7 +136,7 @@
   text-decoration: none;
 }
 
-.descripcion-tarjeta .seccion-izquierda a:hover{
+.descripcion-tarjeta .seccion-izquierda button:hover{
   background: #8e44ad;
 }
 
@@ -152,7 +152,7 @@
 
 .descripcion-tarjeta .seccion-derecha .item .num{
   display: block;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .descripcion-tarjeta .seccion-derecha .item .word{

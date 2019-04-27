@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $.ajax({
-    url: "/carpetas/5cc21ecebb85f813043174ad",
+    url: "/carpetas/5cc244b2eeb38871d1a3338f",
     method: "GET",
     dataType: "json",
     success: function(res) {
@@ -12,28 +12,11 @@ $(document).ready(function () {
   });
 });
 
-var informacion=[];
-
-function obtenerJSONs(){
-
-  informacion.push(
-    {nombre:'Mi Carpeta 1',
-     descripcion:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, itaque! Doloremque, officiis?',
-     proyectos: 4},
-     {nombre:'Mi Carpeta 2',
-     descripcion:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, itaque! Doloremque, officiis?',
-     proyectos: 2},
-     {nombre:'Mi Carpeta 3',
-     descripcion:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, itaque! Doloremque, officiis?',
-     proyectos: 3});
-
-  creacionTarjetas();
-}
-
 function creacionTarjetas(datos){
   document.getElementById('sector-inferior').innerHTML = '';
 
   for(var i=0; i<datos.length; i++){
+    
     document.getElementById('sector-inferior').innerHTML += 
     ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="tarjeta">
@@ -56,11 +39,11 @@ function creacionTarjetas(datos){
             <div class="seccion-izquierda">
               <h3>Descripción</h3>
               <p>${datos[i].descripcion}</p>
-              <a href="seccion-proyectos.html">Abrir</a>
+              <button onclick="abrirCarpeta('${datos[i]._id}', '${datos[i].nombre}');">Abrir</button>
             </div>
             <div class="seccion-derecha">
               <div class="item">
-                <span class="num">${datos[i].proyectos}</span>
+                <span class="num">${datos[i].proyectos.length}</span>
                 <span class="word">Proyectos</span>
               </div>
             </div>
@@ -69,4 +52,10 @@ function creacionTarjetas(datos){
       </div>`;
   }
 
+}
+
+function abrirCarpeta(id, nombre) {
+  localStorage.setItem("Id_Carpeta", id);
+  localStorage.setItem("Nombre_Carpeta", nombre);
+  window.location = 'seccion-proyectos.html'
 }

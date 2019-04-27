@@ -1,31 +1,28 @@
-$(document).ready(function() {
-	obtenerJSONs();
+$(document).ready(function () {
+  datosCarpeta();
+
+  $.ajax({
+    url: "/proyectos/"+localStorage.getItem("Id_Carpeta"),
+    method: "GET",
+    dataType: "json",
+    success: function(res) {
+      creacionTarjetas(res);
+    },
+    error: function(error) {
+      console.error(error);
+    }
+  });
 });
 
-
-var informacion=[];
-
-function obtenerJSONs(){
-
-  informacion.push(
-    {nombre:'Mi Proyecto 1',
-     descripcion:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, itaque! Doloremque, officiis?',
-     colaboradores: 3},
-    {nombre:'Mi Proyecto 2',
-     descripcion:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, itaque! Doloremque, officiis?',
-     colaboradores: 5},
-    {nombre:'Mi Proyecto 3',
-     descripcion:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, itaque! Doloremque, officiis?',
-     colaboradores: 10}
-  );
-
-  creacionTarjetas();
+function datosCarpeta() {
+  $("#nombre-portada").text(localStorage.getItem("Nombre_Carpeta"));
 }
 
-function creacionTarjetas(){
+function creacionTarjetas(datos){
   document.getElementById('sector-inferior').innerHTML = '';
 
-  for(var i=0; i<informacion.length; i++){
+  for(var i=0; i<datos.length; i++){
+    datos[i].colaboradores = 0;
     document.getElementById('sector-inferior').innerHTML += 
     ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="tarjeta">
@@ -41,18 +38,18 @@ function creacionTarjetas(){
             </div>
 
             <div class="nombre">
-              <span class="nombre-tarjeta">${informacion[i].nombre}</span>
+              <span class="nombre-tarjeta">${datos[i].nombre}</span>
             </div>
           </div>
           <div class="descripcion-tarjeta">
             <div class="seccion-izquierda">
               <h3>Descripción</h3>
-              <p>${informacion[i].descripcion}</p>
-              <a href="seccion-archivos.html">Abrir</a>
+              <p>${datos[i].descripcion}</p>
+              <button onclick="abrirProyecto('${datos[i]._id}', '${datos[i].nombre}');">Abrir</button>
             </div>
             <div class="seccion-derecha">
               <div class="item">
-                <span class="num">${informacion[i].colaboradores}</span>
+                <span class="num">${datos[i].colaboradores}</span>
                 <span class="word">Colabs</span>
               </div>
             </div>
@@ -61,4 +58,10 @@ function creacionTarjetas(){
       </div>`;
   }
 
+}
+
+function abrirProyecto(id, nombre) {
+  localStorage.setItem("Id_Proyecto", id);
+  localStorage.setItem("Nombre_Proyecto", nombre);
+  window.location = 'seccion-archivos.html';
 }

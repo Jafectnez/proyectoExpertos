@@ -1,27 +1,22 @@
-$(document).ready(function() {
-	obtenerJSONs();
+$(document).ready(function () {
+  $.ajax({
+    url: "/carpetas/5cc244b2eeb38871d1a3338f",
+    method: "GET",
+    dataType: "json",
+    success: function(res) {
+      creacionTarjetas(res);
+    },
+    error: function(error) {
+      console.error(error);
+    }
+  });
 });
 
-
-var informacion=[];
-
-function obtenerJSONs(){
-
-  informacion.push(
-    {nombre:'Mi Carpeta 1',
-     descripcion:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, itaque! Doloremque, officiis?',
-     carpetas: 3},
-     {nombre:'Mi Carpeta 2',
-     descripcion:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, itaque! Doloremque, officiis?',
-     carpetas: 1});
-
-  creacionTarjetas();
-}
-
-function creacionTarjetas(){
+function creacionTarjetas(datos){
   document.getElementById('sector-inferior').innerHTML = '';
 
-  for(var i=0; i<informacion.length; i++){
+  for(var i=0; i<datos.length; i++){
+    
     document.getElementById('sector-inferior').innerHTML += 
     ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="tarjeta">
@@ -37,19 +32,19 @@ function creacionTarjetas(){
             </div>
 
             <div class="nombre">
-              <span class="nombre-tarjeta">${informacion[i].nombre}</span>
+              <span class="nombre-tarjeta">${datos[i].nombre}</span>
             </div>
           </div>
           <div class="descripcion-tarjeta">
             <div class="seccion-izquierda">
               <h3>Descripción</h3>
-              <p>${informacion[i].descripcion}</p>
-              <a href="seccion-proyectos.html">Abrir</a>
+              <p>${datos[i].descripcion}</p>
+              <a onclick="abrirCarpeta(${datos[i]._id}, ${datos[i].nombre});">Abrir</a>
             </div>
             <div class="seccion-derecha">
               <div class="item">
-                <span class="num">${informacion[i].carpetas}</span>
-                <span class="word">Carpetas</span>
+                <span class="num">${datos[i].proyectos.length}</span>
+                <span class="word">Proyectos</span>
               </div>
             </div>
           </div>
@@ -57,4 +52,21 @@ function creacionTarjetas(){
       </div>`;
   }
 
+}
+
+function abrirCarpeta(id, nombre) {
+  $.ajax({
+    url:"/cookies-carpeta",
+    method: "POST",
+    data: "Id_Carpeta="+id+"&Nombre_Carpeta="+nombre,
+    dataType: "json",
+    success:function(res) {
+      if(res == 1){
+        window.location = 'seccion-proyectos.html';
+      }
+    },
+    error:function(error) {
+      console.error(error);
+    }
+  });
 }
