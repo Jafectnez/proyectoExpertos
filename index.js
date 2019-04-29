@@ -127,6 +127,6 @@ function verificarAutenticacion(req, res, next) {
 }
 //Fin Verificaciones de Acceso
 
-app.listen(3333, function(){
+app.listen(process.env.PORT || 3333, function(){
     console.log("Servidor levantado");
 });
