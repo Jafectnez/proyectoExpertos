@@ -127,6 +127,6 @@ function verificarAutenticacion(req, res, next) {
 }
 //Fin Verificaciones de Acceso
 
-app.listen(3333, function(){
-    console.log("Servidor levantado en el puerto 3333");
+app.listen(80, function(){
+    console.log("Servidor levantado");
 });
