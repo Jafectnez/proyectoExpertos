@@ -1,6 +1,12 @@
 $(document).ready(function () {
   datosCarpeta();
+});
 
+function datosCarpeta() {
+  $("#nombre-portada").text(localStorage.getItem("Nombre_Carpeta"));
+}
+
+function cargarTarjetas(){
   $.ajax({
     url: "/proyectos/"+localStorage.getItem("Id_Carpeta"),
     method: "GET",
@@ -12,10 +18,7 @@ $(document).ready(function () {
       console.error(error);
     }
   });
-});
-
-function datosCarpeta() {
-  $("#nombre-portada").text(localStorage.getItem("Nombre_Carpeta"));
+  
 }
 
 function creacionTarjetas(datos){
@@ -65,3 +68,57 @@ function abrirProyecto(id, nombre) {
   localStorage.setItem("Nombre_Proyecto", nombre);
   window.location = 'seccion-archivos.html';
 }
+
+$("#btn-crear-proyecto").on("click",function () {
+  $.ajax({
+    type: "POST",
+    url: "/proyectos/crear",
+    data: {
+      nombreProyecto: $("#txt-nombre-proyecto").val(),
+      descripcionProyecto: $("#txtA-descripcion-proyecto").val()
+    },
+    dataType: "json",
+    success: function (respuesta) {
+      if(respuesta.status == 1){
+        cargarTarjetas();
+        $.ajax({
+          type: "GET",
+          url: "/archivos/archivos-proyecto",
+          dataType: "json",
+          success: function (response) {
+            
+          }
+        });
+        $("#status").css("color", "green");
+        $("#status").text(respuesta.mensaje);
+      }
+      else{
+        $("#status").css("color", "red");
+        $("#status").text(respuesta.mensaje);
+      }
+    }
+  });
+});
+
+$("#btn-crear-archivo").on("click",function () {
+  $.ajax({
+    type: "POST",
+    url: "/archivos/crear",
+    data: {
+      nombreArchivo: $("#txt-nombre-archivo").val(),
+      extensionArchivo: $("#slc-extension-archivo").val()
+    },
+    dataType: "json",
+    success: function (respuesta) {
+      if(respuesta.status == 1){
+        cargarTarjetas();
+        $("#status").css("color", "green");
+        $("#status").text(respuesta.mensaje);
+      }
+      else{
+        $("#status").css("color", "red");
+        $("#status").text(respuesta.mensaje);
+      }
+    }
+  });
+});

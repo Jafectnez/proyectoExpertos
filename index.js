@@ -12,17 +12,17 @@ var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cookieParser());
+app.use(session({secret:"%^cliente$%", resave: true, saveUninitialized:true}));
 app.use("/carpetas", carpetasRouter);
 app.use("/proyectos", proyectosRouter);
 app.use("/archivos", archivosRouter);
-app.use(cookieParser());
-app.use(session({secret:"%^cliente$%", resave: true, saveUninitialized:true}));
 app.use(express.static("public"))
 var logeado = express.static("logeado");
 
 app.use(
     function(req,res,next){
-        if (req.session.usuario){
+        if (req.session.codigoUsuario){
             logeado(req, res, next);
         }
         else{
@@ -37,7 +37,11 @@ app.post("/login", function(req, res){
         if (data.length==1){
             req.session.codigoUsuario = data[0]._id;
             req.session.usuario =  data[0].usuario;
-            req.session.foto_perfil = data[0].foto_perfil;
+            req.session.fotoPerfil = data[0].foto_perfil;
+            req.session.planActivo = data[0].plan_activo;
+
+            res.cookie("codigoUsuario", req.session.codigoUsuario);
+
             res.send({status:1,mensaje:"Usuario autenticado con éxito", usuario:data[0]});
         }else{
             res.send({status:0,mensaje:"Datos inválidos, verifique e intente nuevamente"});
@@ -76,7 +80,6 @@ app.post('/registrar', function (req, res) {
     usuarioNuevo.save()
     .then(obj=>{
         respuesta={status:1,mensaje: `Se registró exitosamente, se le redireccionará al inicio de sesion en unos segundos`, objeto: obj};
-        console.log(obj);
         res.send(respuesta);
     })
     .catch(error=>{

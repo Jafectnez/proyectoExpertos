@@ -1,6 +1,9 @@
 $(document).ready(function () {
   datosProyecto();
 
+});
+
+function cargarTarjetas() {
   $.ajax({
     url: "/archivos/"+localStorage.getItem("Id_Proyecto"),
     method: "GET",
@@ -12,7 +15,8 @@ $(document).ready(function () {
       console.error(error);
     }
   });
-});
+  
+}
 
 function datosProyecto() {
     $("#nombre-portada").text(localStorage.getItem("Nombre_Proyecto"));

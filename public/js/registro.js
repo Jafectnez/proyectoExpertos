@@ -79,8 +79,8 @@ function registro() {
           type: "POST",
           url: "/carpetas/crear",
           data: {
-            nombre: 'Mi Carpeta 1',
-            descripcion: 'Carpeta creada automáticamente',
+            nombreCarpeta: 'Mi Carpeta 1',
+            descripcionCarpeta: 'Carpeta creada automáticamente',
             id: res.objeto._id
           },
           dataType: "json",

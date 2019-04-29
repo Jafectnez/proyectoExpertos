@@ -5,7 +5,8 @@ var esquema = new mongoose.Schema(
         nombre : String,
         fecha_creacion : String,
         descripcion : String,
-        contenedor: mongoose.Schema.Types.ObjectId
+        contenedor: mongoose.Schema.Types.ObjectId,
+        usuario_creador: mongoose.Schema.Types.ObjectId
     }
 );
 

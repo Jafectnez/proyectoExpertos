@@ -5,7 +5,6 @@ var mongoose = require("mongoose");
 
 //Obtiene las carpetas de un usuario
 router.get("/",function(req,res){
-    console.log(req.session.codigoUsuario);
     carpeta.aggregate([
         {
             $lookup:{
@@ -29,13 +28,48 @@ router.get("/",function(req,res){
     });
 });
 
-//Crea una carpeta
+//Crear una carpeta
 router.post("/crear", function(req, res){
+    carpeta.find({usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario)}).then(data=>{
+        if(req.session.planActivo == mongoose.Types.ObjectId("5cc24235f3850afaa3ae6dfd")){
+            if(data.length < 2){
+                crear(req, res);
+            }else{
+                respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan gratuito, si aumenta su plan puede seguir creando."}
+                res.send(respuesta);
+            }
+        }
+        if(req.session.planActivo == mongoose.Types.ObjectId("5cc2426df3850afaa3ae6dff")){
+            if(data.length < 4){
+                crear(req, res);
+            }else{
+                respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan regular, si aumenta su plan puede seguir creando."}
+                res.send(respuesta);
+            }
+        }
+        if(req.session.planActivo == mongoose.Types.ObjectId("5cc2426df3850afaa3ae6e00")){
+            if(data.length < 10){
+                crear(req, res);
+            }else{
+                respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan premium."}
+                res.send(respuesta);
+            }
+        }
+    });
+
+});
+
+function crear(req, res){
     fecha_actual = new Date();
+    if(req.body.id)
+        var idCreador = req.body.id;
+    else
+        var idCreador = req.session.codigoUsuario;
+    
     var carpetaNueva = new carpeta({
-        nombre: req.body.nombre,
-        descripcion: req.body.descripcion,
-        usuario_creador: mongoose.Types.ObjectId(req.body.id),
+        nombre: req.body.nombreCarpeta,
+        descripcion: req.body.descripcionCarpeta,
+        usuario_creador: mongoose.Types.ObjectId(idCreador),
         fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`
     });
 
@@ -45,10 +79,9 @@ router.post("/crear", function(req, res){
         res.send(respuesta);
     })
     .catch(error=>{
-        respuesta={status: 0, mensaje: `Ocurrio un error`, objeto: error};
+        respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
         res.send(respuesta);
     });
-
-});
+}
 
 module.exports = router;

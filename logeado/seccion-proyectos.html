@@ -33,8 +33,79 @@
                   </div>
                   
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
-                    <button id="btn-agregar-archivo" class="btn-agregar"><i class="fas fa-file-medical"></i></button>
-                    <button id="btn-agregar-proyecto" class="btn-agregar"><i class="fas fa-briefcase-medical"></i></button>
+                    <button id="btn-agregar-archivo" class="btn-agregar" data-toggle="modal" data-target="#modalAgregarProyecto"><i class="fas fa-file-medical"></i></button>
+                    <button id="btn-agregar-proyecto" class="btn-agregar" data-toggle="modal" data-target="#modalAgregarArchivo"><i class="fas fa-briefcase-medical"></i></button>
+                  </div>
+                  
+                  <!-- Modal Agregar Proyecto -->
+                  <div class="modal fade" id="modalAgregarProyecto" tabindex="-1" role="dialog" aria-labelledby="modalAgregarProyectoLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalAgregarProyectoLabel" style="text-align: center;font-weight: bold;">AGREGAR PROYECTO</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;">
+                          <!-- Formulario -->
+                          <div class="form-group col-sm-12 col-md-12">
+                            <h4 class="palido">Nombre</h4>
+                            <input class="form-control" type="text" id="txt-nombre-proyecto" placeholder="">
+                            </select>
+                          </div>
+    
+                          <div class="form-group col-sm-12 col-md-12">
+                            <h4 class="palido">Descripcion</h4> 
+                            <textarea class="form-control"  id="txtA-descripcion-proyecto" cols="30" rows="10"></textarea>
+                          </div>
+
+                          <div id="status-proyecto"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-crear-proyecto">Crear Proyecto</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Agregar Archivo -->
+                  <div class="modal fade" id="modalAgregarArchivo" tabindex="-1" role="dialog" aria-labelledby="modalAgregarArchivoLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalAgregarArchivoLabel" style="text-align: center;font-weight: bold;">AGREGAR ARCHIVO</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;">
+                          <!-- Formulario -->
+                          <div class="form-group col-sm-12 col-md-12">
+                            <h4 class="palido">Nombre</h4>
+                            <input class="form-control" type="text" id="txt-nombre-archivo" placeholder="">
+                            </select>
+                          </div>
+    
+                          <div class="form-group col-sm-12 col-md-12">
+                            <h4 class="palido">Extensión</h4> 
+                            <select class="form-control"  id="slc-extension-archivo">
+                              <option selected>--Seleccione una extension--</option>
+                              <option value="html">HTML</option>
+                              <option value="js">JS</option>
+                              <option value="css">CSS</option>
+                            </select>
+                          </div>
+
+                          <div id="status-archivo"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-crear-archivo">Crear Archivo</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>		

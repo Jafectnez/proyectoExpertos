@@ -38,6 +38,11 @@ body{
     padding: 0;
 }
 
+#status{
+    text-align: center;
+    padding: 10px;
+}
+
 .btn-agregar{
     padding: 5px 15px;
     font-size: 30px;

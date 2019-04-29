@@ -47,6 +47,11 @@
     padding: 20px;
 }
 
+.variacion-texto h5{
+    padding-top: 0;
+    padding-bottom: 0; 
+}
+
 .variacion-1{
     width: 100%;
     background: #28284e;
