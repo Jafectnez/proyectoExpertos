@@ -74,7 +74,7 @@ app.post('/registrar', function (req, res) {
         usuario : req.body.nickUsuario,
         contrasenia : req.body.contraseniaUsuario,
         residencia : req.body.residenciaUsuario,
-        plan_activo: mongoose.Types.ObjectId("5cc24235f3850afaa3ae6dfd")
+        plan_activo: mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")
     });
 
     usuarioNuevo.save()

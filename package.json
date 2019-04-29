@@ -1,12 +1,13 @@
 {
-  "name": "proyectoexpertos",
+  "name": "gepo-hn",
   "version": "1.0.0",
-  "description": "",
+  "description": "Proyecto para la Clase de Sistemas Expertos",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Allan Martinez",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.4",
@@ -14,6 +15,7 @@
     "express-session": "^1.16.1",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.4",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.11"
   }
 }
