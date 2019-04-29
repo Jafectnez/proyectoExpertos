@@ -42,7 +42,7 @@ $(".btn-agregar").on("click", function () {
 $("#btn-cerrar-sesion").on("click", function () {
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:3333/logout",
+		url: "/logout",
 		dataType: "json",
 		success: function (res) {
 			window.location('login.html');
