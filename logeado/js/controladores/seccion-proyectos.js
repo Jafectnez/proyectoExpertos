@@ -1,5 +1,6 @@
 $(document).ready(function () {
   datosCarpeta();
+  cargarTarjetas();
 });
 
 function datosCarpeta() {

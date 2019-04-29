@@ -1,6 +1,6 @@
 $(document).ready(function () {
   datosProyecto();
-
+  cargarTarjetas();
 });
 
 function cargarTarjetas() {
