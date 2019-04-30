@@ -39,17 +39,16 @@ $(".btn-agregar").on("click", function () {
 	}, 300);
 });
 
-$("#btn-cerrar-sesion").on("click", function () {
+function cerrarSesion() {
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:3333/logout",
+		url: "/logout",
 		dataType: "json",
 		success: function (res) {
-			window.location('login.html');
+			window.location = 'login.html';
 		},
 		error: function (error) { 
-			console.error(error);
-			
+			window.location = 'login.html';
 		}
 	});
-});
+};

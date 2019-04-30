@@ -36,7 +36,7 @@ app.post("/login", function(req, res){
     .then(data=>{
         if (data.length==1){
             req.session.codigoUsuario = data[0]._id;
-            req.session.usuario =  data[0].usuario;
+            req.session.usuario = data[0].usuario;
             req.session.fotoPerfil = data[0].foto_perfil;
             req.session.planActivo = data[0].plan_activo;
 
