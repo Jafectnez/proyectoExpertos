@@ -110,3 +110,13 @@ body{
         transform: scale(1);
     }
 }
+
+@media only screen and (max-width: 800px){
+    .box{
+        margin-top: 20%;
+    }
+
+    .box{
+        width: 400px;
+    }
+}
