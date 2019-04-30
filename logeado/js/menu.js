@@ -38,17 +38,3 @@ $(".btn-agregar").on("click", function () {
 		boton.removeClass("rebotar");
 	}, 300);
 });
-
-function cerrarSesion() {
-	$.ajax({
-		type: "GET",
-		url: "/logout",
-		dataType: "json",
-		success: function (res) {
-			window.location = 'login.html';
-		},
-		error: function (error) { 
-			window.location = 'login.html';
-		}
-	});
-};

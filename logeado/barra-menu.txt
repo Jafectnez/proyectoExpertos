@@ -65,7 +65,7 @@
             </a>
           </li>
           <li class="row">
-            <a onclick="cerrarSesion();">
+            <a href="/logout">
               <i class="fas fa-door-open"></i>
               <h4>Cerrar Sesión</h4> 
             </a>

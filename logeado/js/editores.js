@@ -1,34 +1,65 @@
+var valueHTML = ``;
+var valueJS = ``;
+var valueCSS = ``;
+
+$(document).ready(function () {
+  $.ajax({
+    type: "GET",
+    url: `/proyectos/${localStorage.getItem("Id_Proyecto")}/archivos`,
+    dataType: "json",
+    success: function (respuesta) {
+      for(var i=0; i<respuesta[0].archivos.length; i++){
+        var archivo = respuesta[0].archivos[i];
+
+        if(archivo.extension == "html")
+          valueHTML = `${archivo.contenido}`;
+        else if(archivo.extension == "js")
+          valueJS = `${archivo.contenido}`;
+        else
+          valueCSS = `${archivo.contenido}`;
+      }
+    }
+  });
+});
+
 $(".btn-navbar").on("click", function () {
   $(".menu-navbar").toggleClass("show");
 });
 
-var editorHTML = CodeMirror.fromTextArea(document.getElementById("editor-html"), {
+var editorHTML = CodeMirror(document.getElementById("editor-html"), {
   lineNumbers: true,
   mode : "xml",
   htmlMode: true,
-  theme: "dracula",
+  theme: "ambiance",
   tabSize: 2,
   smartIndent: true,
   matchBrackets: true,
+  value: valueHTML,
   keyMap: "sublime",
   extraKey: {"Ctrl-Space":"autocomplete"}
 });
 
-var editorCSS = CodeMirror.fromTextArea(document.getElementById("editor-css"), {
+$("#editor-html").children(".CodeMirror").prepend("<h3>HTML</h3>");
+
+var editorCSS = CodeMirror(document.getElementById("editor-css"), {
   lineNumbers: true,
   mode:"css",
-  theme: "dracula",
+  theme: "ambiance",
   tabSize: 2,
+  value: valueCSS,
   smartIndent: true,
   matchBrackets: true,
   keyMap: "sublime",
   extraKey: {"Ctrl-Space":"autocomplete"}
 });
 
-var editorJS = CodeMirror.fromTextArea(document.getElementById("editor-js"), {
+$("#editor-css").children(".CodeMirror").prepend("<h3>CSS</h3>");
+
+var editorJS = CodeMirror(document.getElementById("editor-js"), {
   lineNumbers: true,
   mode:"javascript",
-  theme: "dracula",
+  value: valueJS,
+  theme: "ambiance",
   tabSize: 2,
   smartIndent: true,
   keyMap: "sublime",
@@ -37,6 +68,8 @@ var editorJS = CodeMirror.fromTextArea(document.getElementById("editor-js"), {
   keyMap: "sublime",
   extraKey: {"Ctrl-Space":"autocomplete"}
 });
+
+$("#editor-js").children(".CodeMirror").prepend("<h3>JS</h3>");
 
 var input = document.getElementById("select-tema");
 
@@ -53,7 +86,7 @@ var choice = (location.hash && location.hash.slice(1)) ||
              (document.location.search &&
               decodeURIComponent(document.location.search.slice(1)));
 
-              if (choice) {
+if (choice) {
   input.value = choice;
   editorHTML.setOption("theme", choice);
   editorJS.setOption("theme", choice);
@@ -77,13 +110,4 @@ function cargarPlantillaHTML(){
   });
 
   $("#resultado").attr("src", "ejemplo.html");
-}
-
-function cargarPlantillaJS(){
-  console.log("No hay plantilla base creada");
-}
-
-
-function cargarPlantillaCSS(){
-  console.log("No hay plantilla base creada");
 }

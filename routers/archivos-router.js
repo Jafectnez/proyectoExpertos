@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var archivo = require("../modelos/archivo");
+var carpeta = require("../modelos/carpeta");
 var mongoose = require("mongoose");
 
 //Obtiene todas los archivos
@@ -28,7 +29,7 @@ router.get("/:id",function(req,res){
 });
 
 //Crear un archivo
-router.post("/crear", function(req, res){
+router.post("/:idCarpeta/crear", function(req, res){
     archivo.find({usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario)}).then(data=>{
         if(req.session.planActivo == mongoose.Types.ObjectId("5cc24235f3850afaa3ae6dfd")){
             if(data.length < 4){
@@ -90,8 +91,11 @@ router.get("/archivos-proyecto", function (req, res) {
 
 function crear(req, res){
     fecha_actual = new Date();
+
+    var idArchivo = mongoose.Types.ObjectId();
     
     var archivoNuevo = new archivo({
+        _id: idArchivo,
         nombre: req.body.nombreArchivo,
         extension: req.body.extensionArchivo,
         usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
@@ -100,6 +104,16 @@ function crear(req, res){
 
     archivoNuevo.save()
     .then(obj=>{
+        carpeta.update([{
+                _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+            },
+            {
+                $push:{
+                    archivos_internos: mongoose.Types.ObjectId(idArchivo)
+                }
+            }
+        ]);
+
         respuesta={status: 1, mensaje: `Creación exitosa`, objeto: obj};
         res.send(respuesta);
     })

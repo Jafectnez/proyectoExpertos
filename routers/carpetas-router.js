@@ -5,19 +5,63 @@ var mongoose = require("mongoose");
 
 //Obtiene las carpetas de un usuario
 router.get("/",function(req,res){
-    carpeta.aggregate([
+    carpeta.find(
         {
+            usuario_creador:mongoose.Types.ObjectId(req.session.codigoUsuario)
+        }
+    )
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Obtiene los proyectos de una carpeta
+router.get("/proyectos",function(req,res){
+    carpeta.aggregate([{
             $lookup:{
-                from:"proyectos",
-                localField:"_id",
-                foreignField:"contenedor",
-                as:"proyectos"
+                from: "proyectos",
+                localField: "proyectos_internos",
+                foreignField: "_id",
+                as: "proyectos"
             }
         },
         {
             $match:{
                 usuario_creador:mongoose.Types.ObjectId(req.session.codigoUsuario)
             }
+        },
+        {
+            $project:{"nombre":1, "proyectos":1}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Obtiene los archivos de una carpeta
+router.get("/archivos",function(req,res){
+    carpeta.aggregate([{
+            $lookup:{
+                from: "archivos",
+                localField: "archivos_internos",
+                foreignField: "_id",
+                as: "archivos"
+            }
+        },
+        {
+            $match:{
+                usuario_creador:mongoose.Types.ObjectId(req.session.codigoUsuario)
+            }
+        },
+        {
+            $project:{"nombre":1, "archivos":1}
         }
     ])
     .then(data=>{
@@ -31,7 +75,7 @@ router.get("/",function(req,res){
 //Crear una carpeta
 router.post("/crear", function(req, res){
     carpeta.find({usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario)}).then(data=>{
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc24235f3850afaa3ae6dfd")){
+        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")){
             if(data.length < 2){
                 crear(req, res);
             }else{
@@ -39,7 +83,7 @@ router.post("/crear", function(req, res){
                 res.send(respuesta);
             }
         }
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc2426df3850afaa3ae6dff")){
+        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b39fb6fc00ed59db736")){
             if(data.length < 4){
                 crear(req, res);
             }else{
@@ -47,7 +91,7 @@ router.post("/crear", function(req, res){
                 res.send(respuesta);
             }
         }
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc2426df3850afaa3ae6e00")){
+        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b5bfb6fc00ed59db754")){
             if(data.length < 10){
                 crear(req, res);
             }else{

@@ -193,6 +193,7 @@ body{
     .text h1{
         margin-top: 10px;
         background: #f5f5f5;
+        left: 10%;
     }
 
     .contenedor-body{
@@ -206,16 +207,12 @@ body{
 
     .sector-contenido .spn-ext{
         color: white;
-        padding-left: 47%;
+        padding-left: 40%;
     }
 
     .sector-contenido .seccion-code{
         padding: 0;
         color: white;
-    }
-
-    .sector-contenido .btn-plantilla-html{
-        margin-left: 10%;
     }
 
     .sector-contenido .seccion-code > div > h3{
@@ -228,8 +225,8 @@ body{
         padding-bottom: 5%;
     }
 
-    .sector-contenido .seccion-resultado span{
-        padding-left: 47%;
+    .sector-contenido .seccion-resultado h3{
+        padding-left: 40%;
     }
 
     .sector-contenido .resultado{

@@ -11,9 +11,6 @@ function cargarTarjetas() {
       document.getElementById('sector-inferior').innerHTML = '';
 
       for(var i=0; i<datos.length; i++){
-        if(datos[i].proyectos == undefined){
-          datos[i].proyectos = 0;
-        }
         
         document.getElementById('sector-inferior').innerHTML += 
         ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
@@ -41,7 +38,7 @@ function cargarTarjetas() {
                 </div>
                 <div class="seccion-derecha">
                   <div class="item">
-                    <span class="num">${datos[i].proyectos.length}</span>
+                    <span class="num">${datos[i].proyectos_internos.length}</span>
                     <span class="word">Proyectos</span>
                   </div>
                 </div>

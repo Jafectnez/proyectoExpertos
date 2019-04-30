@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 function cargarTarjetas() {
   $.ajax({
-    url: "/archivos/"+localStorage.getItem("Id_Proyecto"),
+    url: `/proyectos/${localStorage.getItem("Id_Proyecto")}/archivos`,
     method: "GET",
     dataType: "json",
     success: function(res) {
@@ -25,7 +25,8 @@ function datosProyecto() {
 function creacionTarjetas(datos){
   document.getElementById('sector-inferior').innerHTML = '';
 
-  for(var i=0; i<datos.length; i++){
+  for(var i=0; i<datos[0].archivos.length; i++){
+    var archivo = datos[0].archivos[i];
     document.getElementById('sector-inferior').innerHTML += 
     ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="tarjeta">
@@ -41,17 +42,17 @@ function creacionTarjetas(datos){
             </div>
 
             <div class="nombre">
-              <span class="nombre-tarjeta">${datos[i].nombre}.${datos[i].extension}</span>
+              <span class="nombre-tarjeta">${archivo.nombre}.${archivo.extension}</span>
             </div>
           </div>
           <div class="descripcion-tarjeta">
             <div class="seccion-izquierda">
               <h3>Última Modificación</h3>
-              <p>${datos[i].modificaciones[datos[i].modificaciones.length - 1].mensaje}</p>
+              <p>${archivo.modificaciones[archivo.modificaciones.length - 1].mensaje}</p>
             </div>
             <div class="seccion-derecha">
               <div class="item">
-                <span class="num">${datos[i].modificaciones[datos[i].modificaciones.length - 1].fecha}</span>
+                <span class="num">${archivo.modificaciones[archivo.modificaciones.length - 1].fecha}</span>
               </div>
             </div>
           </div>

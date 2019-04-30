@@ -85,9 +85,13 @@ function registro() {
           },
           dataType: "json",
           success: function (response) {
+            alert(response.mensaje);
             setTimeout(function() {  
               location.href = "../login.html";
             }, 3000);
+          },
+          error: function (error) {  
+            console.error(error);            
           }
         });
       }else{

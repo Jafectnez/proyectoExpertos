@@ -4,8 +4,7 @@ var esquema = new mongoose.Schema(
     {
         nombre : String,
         extension : String,
-        fecha_creacion : mongoose.Schema.Types.Date,
-        contenedor: mongoose.Schema.Types.ObjectId,
+        fecha_creacion : String,
         descripcion : String,
         modificaciones: Array
     }

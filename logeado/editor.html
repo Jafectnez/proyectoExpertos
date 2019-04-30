@@ -109,7 +109,7 @@
                           <option>3024-day</option>
                           <option>3024-night</option>
                           <option>abcdef</option>
-                          <option>ambiance</option>
+                          <option selected>ambiance</option>
                           <option>base16-dark</option>
                           <option>base16-light</option>
                           <option>bespin</option>
@@ -117,7 +117,7 @@
                           <option>cobalt</option>
                           <option>colorforth</option>
                           <option>darcula</option>
-                          <option selected>dracula</option>
+                          <option>dracula</option>
                           <option>duotone-dark</option>
                           <option>duotone-light</option>
                           <option>eclipse</option>
@@ -172,35 +172,30 @@
               <!--Sector Inferior-->
               <div class="row row-seccion">
                 <div id="sector-inferior" class="seccion-inferior col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-code">
-                      <h3 class="spn-ext">
-                        <button onclick="cargarPlantillaHTML();" class="btn btn-primary btn-plantilla-html"><i class="fas fa-file-upload"></i>HTML</button>
-                      </h3>
-                      <textarea id="editor-html" name="editor-html" title="HTML"></textarea>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
-                      <textarea id="editor-js"></textarea>
-                      <h3 class="spn-ext">
-                          <button onclick="cargarPlantillaJS();" class="btn btn-primary btn-plantilla-html"><i class="fas fa-file-upload"></i>JS</button>
-                      </h3>  
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
-                      <textarea id="editor-css"></textarea>
-                      <h3 class="spn-ext">
-                          <button onclick="cargarPlantillaCSS();" class="btn btn-primary btn-plantilla-html"><i class="fas fa-file-upload"></i>CSS</button>
-                      </h3> 
-                    </div>
                   
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-resultado">
-                        <div class="row row-resultado">
-                          <h3 class="spn-ext">Resultado</h3>
-                        </div>
-                        <div class="row row-resultado">
-                          <iframe id="resultado" class="resultado"></iframe>
-                        </div>
-                    </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-resultado">
+                      <div class="row row-resultado">
+                        <h3 class="spn-ext">Resultado</h3>
+                      </div>
+                      <div class="row row-resultado">
+                        <iframe id="resultado" class="resultado"></iframe>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-code">
+                    <h3 class="spn-ext">
+                      <button onclick="cargarPlantillaHTML();" class="btn btn-primary btn-plantilla-html"><i class="fas fa-file-upload"></i>HTML</button>
+                    </h3>
+                    <div id="editor-html"></div>         
+                  </div>
+
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
+                    <div id="editor-js"></div>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xl-6 seccion-code">
+                    <div id="editor-css"></div>
+                  </div>
                 </div>
               </div>
               <!--Fin Sector Inferior-->
