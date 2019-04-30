@@ -77,12 +77,15 @@ body{
 
 .sector-contenido .seccion-resultado{
     padding: 0;
-    padding-top: 5%;
     padding-bottom: 5%;
 }
 
-.sector-contenido .seccion-resultado span{
-    padding-left: 47%;
+.sector-contenido .seccion-resultado iframe{
+    padding: 0;
+}
+
+.sector-contenido .seccion-resultado h3{
+    padding-left: 48%;
 }
 
 .sector-contenido .resultado{
@@ -104,6 +107,28 @@ body{
 
 #menu-pequeño{
     display: none;
+}
+
+.botones-editor button{
+    padding: 5px 20px;
+    font-size: 20px;
+    float: right;
+    background: blueviolet;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    margin: 0 5px;
+    margin-right: 2%
+}
+
+.alerta{
+    float: left;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-left: 2%;
+    font-size: 20px;
+    display: none;
+    transition: 0.8s;
 }
 
 @media only screen and (max-width: 800px){
@@ -221,7 +246,6 @@ body{
 
     .sector-contenido .seccion-resultado{
         padding: 0;
-        padding-top: 5%;
         padding-bottom: 5%;
     }
 

@@ -24,9 +24,11 @@ function datosProyecto() {
 
 function creacionTarjetas(datos){
   document.getElementById('sector-inferior').innerHTML = '';
-
   for(var i=0; i<datos[0].archivos.length; i++){
     var archivo = datos[0].archivos[i];
+
+    localStorage.setItem(archivo.extension, `${archivo._id}`);
+
     document.getElementById('sector-inferior').innerHTML += 
     ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="tarjeta">
@@ -59,5 +61,4 @@ function creacionTarjetas(datos){
         </div>
       </div>`;
   }
-
 }

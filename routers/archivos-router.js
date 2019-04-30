@@ -123,4 +123,74 @@ function crear(req, res){
     });
 }
 
+//Guarda los cambios hechos en un archivo
+router.post("/guardar-cambios", function (req, res) {
+    var data = {};
+    archivo.findOne(
+        {
+            _id: req.body.id.html
+        }
+    )
+    .then(archivoHTML=>{
+        archivoHTML.contenido = req.body.contenido.html;
+        data.html = archivoHTML;
+
+        archivoHTML.save()
+        .then(()=>{
+            archivo.findOne(
+                {
+                    _id: mongoose.Types.ObjectId(req.body.id.js)
+                }
+            )
+            .then(archivoJS=>{
+                archivoJS.contenido = req.body.contenido.js;
+                data.js = archivoJS;
+
+                archivoJS.save()
+                .then(()=>{
+                    archivo.findOne(
+                        {
+                            _id: mongoose.Types.ObjectId(req.body.id.css)
+                        }
+                    )
+                    .then(archivoCSS=>{
+                        archivoCSS.contenido = req.body.contenido.css;
+                        data.css = archivoCSS;
+
+                        archivoCSS.save()
+                        .then(()=>{
+                            respuesta = {status:1, mensaje: "Cambios guardados", datos:data};
+                            res.send(respuesta);
+                        })
+                        .catch(error=>{
+                            respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+                            res.send(respuesta);
+                        });
+                    })
+                    .catch(error=>{
+                        respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+                        res.send(respuesta);
+                    });
+                })
+                .catch(error=>{
+                    respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+                    res.send(respuesta);
+                });
+            })
+            .catch(error=>{
+                respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+                res.send(respuesta);
+            });
+        })
+        .catch(error=>{
+            respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+            res.send(respuesta);
+        });
+    })
+    .catch(error=>{
+        respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+        res.send(respuesta);
+    });
+});
+
 module.exports = router;

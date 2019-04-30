@@ -172,6 +172,11 @@
               <!--Sector Inferior-->
               <div class="row row-seccion">
                 <div id="sector-inferior" class="seccion-inferior col-lg-12 col-md-12 col-sm-12 col-xl-12">
+
+                  <div id="alerta" class="alerta"></div>
+                  <div class="botones-editor">
+                    <button onclick="guardarCambios();"><span><i class="fas fa-upload"></i>Guardar</span></button>
+                  </div>
                   
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-resultado">
                       <div class="row row-resultado">
@@ -183,9 +188,6 @@
                   </div>
 
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 seccion-code">
-                    <h3 class="spn-ext">
-                      <button onclick="cargarPlantillaHTML();" class="btn btn-primary btn-plantilla-html"><i class="fas fa-file-upload"></i>HTML</button>
-                    </h3>
                     <div id="editor-html"></div>         
                   </div>
 

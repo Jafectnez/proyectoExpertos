@@ -5,7 +5,7 @@ var esquema = new mongoose.Schema(
         nombre : String,
         extension : String,
         fecha_creacion : String,
-        descripcion : String,
+        contenido : String,
         modificaciones: Array
     }
 );
