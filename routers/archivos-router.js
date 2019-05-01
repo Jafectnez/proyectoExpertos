@@ -59,63 +59,40 @@ router.post("/:idCarpeta/crear", function(req, res){
 
 });
 
-//Crea los archivos de un nuevo proyecto
-router.get("/archivos-proyecto", function (req, res) {  
-    fecha_actual = new Date();
-
-    var archivoHTML = new archivo({
-        nombre: `index`,
-        extension: `html`,
-        usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
-        fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`
-    });
-
-    var archivoJS = new archivo({
-        nombre: `main`,
-        extension: `js`,
-        usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
-        fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`
-    });
-
-    var archivoCSS = new archivo({
-        nombre: `estilos`,
-        extension: `css`,
-        usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
-        fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`
-    });
-
-    archivoHTML.save();
-    archivoJS.save();
-    archivoCSS.save();
-});
-
 function crear(req, res){
     fecha_actual = new Date();
-
     var idArchivo = mongoose.Types.ObjectId();
     
-    var archivoNuevo = new archivo({
-        _id: idArchivo,
-        nombre: req.body.nombreArchivo,
-        extension: req.body.extensionArchivo,
-        usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
-        fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`
-    });
-
-    archivoNuevo.save()
-    .then(obj=>{
-        carpeta.update([{
-                _id: mongoose.Types.ObjectId(req.params.idCarpeta)
-            },
-            {
-                $push:{
-                    archivos_internos: mongoose.Types.ObjectId(idArchivo)
-                }
-            }
-        ]);
-
-        respuesta={status: 1, mensaje: `Creación exitosa`, objeto: obj};
-        res.send(respuesta);
+    carpeta.findOneAndUpdate({
+        _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+    },
+    {
+        $push:{
+            archivos_internos: mongoose.Types.ObjectId(idArchivo)
+        }
+    })
+    .then(carpetaPadre=>{      
+        var archivoNuevo = new archivo({
+            _id: idArchivo,
+            nombre: req.body.nombreArchivo,
+            extension: req.body.extensionArchivo,
+            contenido: ``,
+            fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`,
+            modificaciones: [{
+                mensaje: `Creación del archivo`,
+                fecha: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`
+            }]
+        });
+    
+        archivoNuevo.save()
+        .then(obj=>{
+            respuesta={status: 1, mensaje: `Creación exitosa`, objeto: obj};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
+            res.send(respuesta);
+        });
     })
     .catch(error=>{
         respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};

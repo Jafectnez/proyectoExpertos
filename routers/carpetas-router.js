@@ -7,7 +7,8 @@ var mongoose = require("mongoose");
 router.get("/",function(req,res){
     carpeta.find(
         {
-            usuario_creador:mongoose.Types.ObjectId(req.session.codigoUsuario)
+            subcarpeta: false,
+            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario)
         }
     )
     .then(data=>{
@@ -18,8 +19,35 @@ router.get("/",function(req,res){
     });
 });
 
+//Obtiene las subcarpetas de una carpeta
+router.get("/:idCarpeta/carpetas",function(req,res){
+    carpeta.aggregate([{
+            $lookup:{
+                from: "carpetas",
+                localField: "carpetas_internas",
+                foreignField: "_id",
+                as: "carpetas"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+            }
+        },
+        {
+            $project:{"nombre":1, "carpetas":1}
+        }
+    ])
+    .then(data=>{
+        res.send(data);
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
 //Obtiene los proyectos de una carpeta
-router.get("/proyectos",function(req,res){
+router.get("/:idCarpeta/proyectos",function(req,res){
     carpeta.aggregate([{
             $lookup:{
                 from: "proyectos",
@@ -30,7 +58,7 @@ router.get("/proyectos",function(req,res){
         },
         {
             $match:{
-                usuario_creador:mongoose.Types.ObjectId(req.session.codigoUsuario)
+                _id: mongoose.Types.ObjectId(req.params.idCarpeta)
             }
         },
         {
@@ -46,7 +74,7 @@ router.get("/proyectos",function(req,res){
 });
 
 //Obtiene los archivos de una carpeta
-router.get("/archivos",function(req,res){
+router.get("/:idCarpeta/archivos",function(req,res){
     carpeta.aggregate([{
             $lookup:{
                 from: "archivos",
@@ -57,7 +85,7 @@ router.get("/archivos",function(req,res){
         },
         {
             $match:{
-                usuario_creador:mongoose.Types.ObjectId(req.session.codigoUsuario)
+                _id: mongoose.Types.ObjectId(req.params.idCarpeta)
             }
         },
         {
@@ -103,6 +131,37 @@ router.post("/crear", function(req, res){
 
 });
 
+//Crear una subcarpeta
+router.post("/:idCarpeta/crear", function(req, res){
+    carpeta.find({usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario)}).then(data=>{
+        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")){
+            if(data.length < 1){
+                crearSubcarpeta(req, res);
+            }else{
+                respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan gratuito, si aumenta su plan puede seguir creando."}
+                res.send(respuesta);
+            }
+        }
+        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b39fb6fc00ed59db736")){
+            if(data.length < 2){
+                crearSubcarpeta(req, res);
+            }else{
+                respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan regular, si aumenta su plan puede seguir creando."}
+                res.send(respuesta);
+            }
+        }
+        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b5bfb6fc00ed59db754")){
+            if(data.length < 5){
+                crearSubcarpeta(req, res);
+            }else{
+                respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan premium."}
+                res.send(respuesta);
+            }
+        }
+    });
+
+});
+
 function crear(req, res){
     fecha_actual = new Date();
     if(req.body.id)
@@ -113,8 +172,12 @@ function crear(req, res){
     var carpetaNueva = new carpeta({
         nombre: req.body.nombreCarpeta,
         descripcion: req.body.descripcionCarpeta,
+        subcarpeta: false,
         usuario_creador: mongoose.Types.ObjectId(idCreador),
-        fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`
+        fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`,
+        carpetas_internas: [],
+        proyectos_internos: [],
+        archivos_internos: []
     });
 
     carpetaNueva.save()
@@ -123,7 +186,50 @@ function crear(req, res){
         res.send(respuesta);
     })
     .catch(error=>{
-        respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
+        respuesta={status: 0, mensaje: `Ocurrió un error interno`, objeto: error};
+        res.send(respuesta);
+    });
+}
+
+function crearSubcarpeta(req, res){
+    fecha_actual = new Date();
+
+    var idCarpetaNueva = mongoose.Types.ObjectId();
+    var idCarpetaPadre = mongoose.Types.ObjectId(req.params.idCarpeta);
+
+    carpeta.findOneAndUpdate({
+        _id: idCarpetaPadre
+    },
+    {
+        $push:{
+            carpetas_internas: idCarpetaNueva
+        }
+    })
+    .then(carpetaPadre=>{
+        var carpetaNueva = new carpeta({
+            _id: idCarpetaNueva,
+            nombre: req.body.nombreCarpeta,
+            descripcion: req.body.descripcionCarpeta,
+            subcarpeta: true,
+            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
+            fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`,
+            carpetas_internas: [],
+            proyectos_internos: [],
+            archivos_internos: [],
+        });
+    
+        carpetaNueva.save()
+        .then(obj=>{
+            respuesta={status: 1, mensaje: `Creación exitosa`, objeto: obj};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta={status: 0, mensaje: `Ocurrió un error interno`, objeto: error};
+            res.send(respuesta);
+        });
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrió un error interno`, objeto: error};
         res.send(respuesta);
     });
 }

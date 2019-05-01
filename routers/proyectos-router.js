@@ -32,7 +32,6 @@ router.get("/:idProyecto/archivos",function(req,res){
     });
 });
 
-
 //Crear un proyecto
 router.post("/:idCarpeta/crear", function(req, res){
     proyecto.find({usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario)}).then(data=>{
@@ -67,73 +66,83 @@ router.post("/:idCarpeta/crear", function(req, res){
 function crear(req, res){
     fecha_actual = new Date();
     fechaCreacion = `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`;
-
-    var idHTML = mongoose.Types.ObjectId();
-    var idJS = mongoose.Types.ObjectId();
-    var idCSS = mongoose.Types.ObjectId();
-
-    var archivoHTML = new archivo({
-        _id: idHTML,
-        nombre: `index`,
-        extension: `html`,
-        usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
-        fecha_creacion: fechaCreacion,
-        contenido: "",
-        modificaciones: [{mensaje:"Creación del archivo", fecha: fechaCreacion}]
-    });
-
-    var archivoJS = new archivo({
-        _id: idJS,
-        nombre: `main`,
-        extension: `js`,
-        usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
-        fecha_creacion: fechaCreacion,
-        contenido: "",
-        modificaciones: [{mensaje:"Creación del archivo", fecha: fechaCreacion}]
-    });
-
-    var archivoCSS = new archivo({
-        _id: idCSS,
-        nombre: `estilos`,
-        extension: `css`,
-        usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
-        fecha_creacion: fechaCreacion,
-        contenido: "",
-        modificaciones: [{mensaje:"Creación del archivo", fecha: fechaCreacion}]
-    });
-
-    archivoHTML.save();
-    archivoJS.save();
-    archivoCSS.save();
-
     var idProyecto = mongoose.Types.ObjectId();
 
-    var proyectoNuevo = new proyecto({
-        _id: idProyecto,
-        nombre: req.body.nombreProyecto,
-        descripcion: req.body.descripcionProyecto,
-        archivos: [{idHTML}, {idJS}, {idCSS}],
-        fecha_creacion: fechaCreacion
-    });
-
-    proyectoNuevo.save()
-    .then(obj=>{
-        carpeta.update([{
-                _id: mongoose.Types.ObjectId(req.params.idCarpeta)
-            },
-            {
-                $push:{
-                    proyectos_internos: mongoose.Types.ObjectId(idProyecto)
-                }
-            }
-        ]);
-        
-        respuesta={status: 1, mensaje: `Creación exitosa`, objeto: obj};
-        res.send(respuesta);
+    carpeta.findOneAndUpdate({
+        _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+    },
+    {
+        $push:{
+            proyectos_internos: mongoose.Types.ObjectId(idProyecto)
+        }
     })
-    .catch(error=>{
-        respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
-        res.send(respuesta);
+    .then(carpetaPadre=>{
+        var idHTML = mongoose.Types.ObjectId();
+        var idJS = mongoose.Types.ObjectId();
+        var idCSS = mongoose.Types.ObjectId();
+    
+        var archivoHTML = new archivo({
+            _id: idHTML,
+            nombre: `index`,
+            extension: `html`,
+            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
+            fecha_creacion: fechaCreacion,
+            contenido: `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <title>Page Title</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            </head>
+            <body>
+                <h1>Hola Mundo!</h1>
+            </body>
+            </html>`,
+            modificaciones: [{mensaje:"Creación del archivo", fecha: fechaCreacion}]
+        });
+    
+        var archivoJS = new archivo({
+            _id: idJS,
+            nombre: `main`,
+            extension: `js`,
+            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
+            fecha_creacion: fechaCreacion,
+            contenido: "",
+            modificaciones: [{mensaje:"Creación del archivo", fecha: fechaCreacion}]
+        });
+    
+        var archivoCSS = new archivo({
+            _id: idCSS,
+            nombre: `estilos`,
+            extension: `css`,
+            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
+            fecha_creacion: fechaCreacion,
+            contenido: "",
+            modificaciones: [{mensaje:"Creación del archivo", fecha: fechaCreacion}]
+        });
+    
+        archivoHTML.save();
+        archivoJS.save();
+        archivoCSS.save();
+    
+        var proyectoNuevo = new proyecto({
+            _id: idProyecto,
+            nombre: req.body.nombreProyecto,
+            descripcion: req.body.descripcionProyecto,
+            archivos: [idHTML, idJS, idCSS],
+            colaboradores: [],
+            fecha_creacion: fechaCreacion
+        });
+    
+        proyectoNuevo.save()
+        .then(obj=>{
+            respuesta={status: 1, mensaje: `Creación exitosa`, objeto: obj};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
+            res.send(respuesta);
+        });
     });
 }
 

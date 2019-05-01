@@ -41,6 +41,14 @@ function cargarTarjetas() {
                     <span class="num">${datos[i].proyectos_internos.length}</span>
                     <span class="word">Proyectos</span>
                   </div>
+                  <div class="item">
+                    <span class="num">${datos[i].carpetas_internas.length}</span>
+                    <span class="word">Carpetas</span>
+                  </div>
+                  <div class="item">
+                    <span class="num">${datos[i].archivos_internos.length}</span>
+                    <span class="word">Archivos</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -51,7 +59,6 @@ function cargarTarjetas() {
       console.error(error);
     }
   });
-  
 }
 
 function abrirCarpeta(id, nombre) {
