@@ -14,129 +14,137 @@
 
     <!--Contenedor Body-->
     <div class="container-fluid">
-      <div class="row">
-        <div id="barraNav" class="col-lg-12 col-md-12 col-sm-12 col-xl-12 lista"> 
-          <div class="row justify-content-center interior-barraNav">
-            
-            <!--Aqui Esta Contenida La Barra De Menu-->
-            <div id="barra-menu" class="col-lg-3 col-md-3 col-sm-3 col-xl-3 barra-menu">             
-            </div> 
-            <!--Aqui Finaliza La La Barra De Menu-->
-
-            <!--Contenido-->
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 sector-contenido">
-              <!--Sector Superior-->
-              <div class="row justify-content-center row-portada well">
-                <div class="portada col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                  <div class="text">
-                    <div class="row">
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
-                        <h1 id="nombre-carpeta">Mi Perfil</h1>
-                      </div>
-                    </div>
-                  </div>		
-                </div>
-              </div>
-              <!--Fin Sector Superior-->
-              
-              <!--Sector Inferior-->
-              <div class="row row-seccion">
-                <div id="sector-inferior" class="seccion-perfil">
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <h3>Foto de Perfil</h3>
-                    <img src="img/usuario.jpg" style="width:150px;height:150px;" class="d-inline-block align-top" alt=""><br><br>
-                    <button class="btn btn-primary">Subir Imagen</button>
-                  </div>
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <h3>Usuario</h3>
-                    <input type="text" class="form-control" id="txt-usuario" placeholder="Usuario">
-                  </div>
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <h3>Correo Electrónico</h3>
-                    <input type="email" class="form-control" id="txt-correo" placeholder="Ej: ejemplo@ejemplo.com">
-                  </div>
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <h3>Nivel de Usuario</h3>
-                    <span id="spn-tipo-usuario">ULTIMATE</span>
-                    <button id="btn-cambiar-plan" class="btn btn-primary" data-toggle="modal" data-target="#modalPlanCuenta">Cambiar plan</button>
-                  </div>
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <h3>Nombre</h3>
-                    <input type="text" class="form-control" id="txt-nombre" placeholder="Ej: Juanito">
-                  </div>
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <h3>Biografía</h3>
-                    <textarea class="form-control" id="txtA-biografia" placeholder="Cuentanos sobre tí!">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, fugiat.</textarea>
-                  </div>
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <h3>Apellido</h3>
-                    <input type="text" class="form-control" id="txt-apellido" placeholder="Ej: Alcachofa">
-                  </div>
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <h3>Género</h3>
-                    <span id="spn-genero">Masculino</span>
-                  </div>
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <h3>Residencia</h3>
-                    <span id="spn-residencia">Honduras</span>
+      <!--Aqui Esta Contenida La Barra De Menu-->
+      <div class="row barra">
+        <div id="barra-menu" class="col-lg-3 col-md-3 col-sm-3 col-xl-3 barra-menu">             
+        </div> 
+      </div>
+      <!--Aqui Finaliza La La Barra De Menu-->
+      <!--Contenido-->
+      <div class="row contenido">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 sector-contenido">
+          <!--Sector Superior-->
+          <div class="row justify-content-center row-portada well">
+            <div class="portada col-lg-12 col-md-12 col-sm-12 col-xl-12">
+              <div class="text">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
+                    <h1 id="nombre-carpeta">Mi Perfil</h1>
                   </div>
                 </div>
-
-                <!-- Modal Cambiar Plan -->
-                <div class="modal fade" id="modalPlanCuenta" tabindex="-1" role="dialog" aria-labelledby="modalPlanCuentaLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h3 class="modal-title" id="modalPlanCuentaLabel" style="text-align: center;font-weight: bold;">CAMBIAR PLAN DE LA CUENTA</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="row modal-body" style="padding-bottom: 0;">
-                        <!-- Formulario -->
-                        <div class="form-group col-12 col-sm-6 col-md-6">
-                          <h4 class="palido">Plan</h4>
-                          <select class="form-control" id="select-tipos-usuarios">
-                          </select>
-                        </div>
-  
-                        <div class="form-group col-12 col-sm-6 col-md-6">
-                          <h4 class="palido">Tarjeta de débito/crédito:</h4>
-                          <input class="form-control" type="text" id="txt-num-tarjeta" placeholder="XXXX-XXXX-XXXX-XXXX">
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btn-pagar">Realizar Pago</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="seccion-perfil-pago col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                </div>
-              </div>
-              <!--Fin Sector Inferior-->
+              </div>		
             </div>
-            <!--Fin Contenido-->
+          </div>
+          <!--Fin Sector Superior-->
+          
+          <!--Sector Inferior-->
+          <div class="row row-seccion">
+            <div id="sector-inferior" class="seccion-perfil">
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <h3>Foto de Perfil</h3>
+                <img id="foto-perfil" src="img/Logo-GEPO.svg" class="d-inline-block align-top" alt=""><br><br>
+              </div>
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <h3>Usuario</h3>
+                <input type="text" class="form-control" id="txt-usuario" placeholder="Usuario">
+              </div>
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <h3>Contraseña</h3>
+                <input type="password" class="form-control" id="txt-contrasenia" placeholder="Contraseña">
+              </div>
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <h3>Correo Electrónico</h3>
+                <input type="email" class="form-control" id="txt-correo" placeholder="Ej: ejemplo@ejemplo.com">
+              </div>
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <h3>Nivel de Usuario</h3>
+                <span id="spn-tipo-usuario">ULTIMATE</span>
+                <button id="btn-cambiar-plan" class="btn btn-primary" data-toggle="modal" data-target="#modalPlanCuenta">Cambiar plan</button>
+              </div>
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <h3>Nombre</h3>
+                <input type="text" class="form-control" id="txt-nombre" placeholder="Ej: Juanito">
+              </div>
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <h3>Género</h3>
+                <select class="form-control" id="slc-genero">
+                    <option>--Seleccione un genero--</option>
+                    <option id="genero-masculino" value="Masculino">Masculino</option>
+                    <option id="genero-femenino" value="Femenino">Femenino</option>
+                    <option id="genero-apache" value="Helicóptero Apache de Combate">Helicóptero Apache de Combate</option>
+                </select>
+              </div>
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <h3>Apellido</h3>
+                <input type="text" class="form-control" id="txt-apellido" placeholder="Ej: Alcachofa">
+              </div>
+
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <h3>Residencia</h3>
+                <input class="form-control" id="txt-residencia"></input>
+              </div>
+            </div>
+
+            <!-- Modal Cambiar Plan -->
+            <div class="modal fade" id="modalPlanCuenta" tabindex="-1" role="dialog" aria-labelledby="modalPlanCuentaLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title" id="modalPlanCuentaLabel" style="text-align: center;font-weight: bold;">CAMBIAR PLAN DE LA CUENTA</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="row modal-body" style="padding-bottom: 0;">
+                    <!-- Formulario -->
+                    <div class="form-group col-12 col-sm-6 col-md-6">
+                      <h4 class="palido">Plan</h4>
+                      <select class="form-control" id="slc-plan">
+                        <option>--Seleccione un plan--</option>
+                        <option id="plan-gratuito" value="5cc77af9fb6fc00ed59db713">Gratuito</option>
+                        <option id="plan-regular" value="5cc77b39fb6fc00ed59db736">Regular (10$ Mensual)</option>
+                        <option id="plan-premium" value="5cc77b5bfb6fc00ed59db754">Premium (100$ Anual)</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-12 col-sm-6 col-md-6">
+                      <h4 class="palido">Tarjeta de débito/crédito:</h4>
+                      <input class="form-control" type="text" id="txt-num-tarjeta" placeholder="XXXX-XXXX-XXXX-XXXX">
+                    </div>
+
+                    <div id="status-pago"></div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btn-pagar">Realizar Pago</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!--Seccion Footer-->
-          <div id="footer-cont" class="row row-footer footer-menu">
+          <div class="box-resultado">
+              <button class="btn btn-primary" id="actualizar-perfil">Actualizar Perfil</button>
+              <span id="status"></span>
           </div>
-          <!--Fin Seccion Footer-->
-          
+          <!--Fin Sector Inferior-->
         </div>
       </div>
+      <!--Fin Contenido-->
+
+      <!--Seccion Footer-->
+      <div id="footer-cont" class="row row-footer footer-menu">
+      </div>
+      <!--Fin Seccion Footer-->
+          
     </div>
     <!--Fin Del Contenedor Body-->  
   </body>

@@ -196,6 +196,10 @@ ul.footer-menu{
 
 .btn-navbar:hover > span{
   background: #333;
+}  
+
+.show{
+  display: none !important;
 }
 
 @media only screen and (max-width: 1500px){
@@ -304,6 +308,7 @@ ul.footer-menu{
 
   .show{
     max-height: 500px;
+    display: block !important;
   }
 }
 

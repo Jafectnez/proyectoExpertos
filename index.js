@@ -31,6 +31,31 @@ app.use(
     }
 );
 
+/*Acciones del usuario*/
+app.post('/registrar', function (req, res) {  
+    var usuarioNuevo = new usuario({
+        nombre : req.body.nombreUsuario,
+        apellido : req.body.apellidoUsuario,
+        genero : req.body.generoUsuario,
+        correo : req.body.correoUsuario,
+        usuario : req.body.nickUsuario,
+        contrasenia : req.body.contraseniaUsuario,
+        foto_perfil: "img/Logo-GEPO.svg",
+        residencia : req.body.residenciaUsuario,
+        plan_activo: mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")
+    });
+
+    usuarioNuevo.save()
+    .then(obj=>{
+        respuesta={status:1,mensaje: `Se registró exitosamente, se le redireccionará al inicio de sesion en unos segundos`, objeto: obj};
+        res.send(respuesta);
+    })
+    .catch(error=>{
+        respuesta={status:0,mensaje: `Ocurrio un error, intente nuevamente.`, objeto: error};
+        res.send(respuesta);
+    });
+});
+
 app.post("/login", function(req, res){
     usuario.find({usuario:req.body.usuario, contrasenia:req.body.contrasenia})
     .then(data=>{
@@ -58,6 +83,7 @@ app.get('/logout',function(req,res){
     res.redirect("/login.html");
 });
 
+//Regresa el ID del usuario
 app.get('/datos-usuario', function (req, res) {  
     respuesta = {
         usuario: req.session.usuario
@@ -65,30 +91,71 @@ app.get('/datos-usuario', function (req, res) {
     res.send(respuesta);
 });
 
-app.post('/registrar', function (req, res) {  
-    var usuarioNuevo = new usuario({
-        nombre : req.body.nombreUsuario,
-        apellido : req.body.apellidoUsuario,
-        genero : req.body.generoUsuario,
-        correo : req.body.correoUsuario,
-        usuario : req.body.nickUsuario,
-        contrasenia : req.body.contraseniaUsuario,
-        residencia : req.body.residenciaUsuario,
-        plan_activo: mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")
-    });
-
-    usuarioNuevo.save()
-    .then(obj=>{
-        respuesta={status:1,mensaje: `Se registró exitosamente, se le redireccionará al inicio de sesion en unos segundos`, objeto: obj};
+app.get("/perfil-usuario", function (req, res) {
+    usuario.find({
+        _id: mongoose.Types.ObjectId(req.session.codigoUsuario)
+    })
+    .then(data=>{
+        respuesta={status:1, mensaje: `Datos del usuario`, datos: data};
         res.send(respuesta);
     })
     .catch(error=>{
-        respuesta={status:0,mensaje: `Ocurrio un error, intente nuevamente.`, objeto: error};
+        respuesta={status:0, mensaje: `Ocurrió un error interno, intente nuevamente.`, objeto: error};
         res.send(respuesta);
     });
 });
 
-//Verificaciones de acceso
+app.post("/actualizar-perfil", function (req, res) {  
+    usuario.findOne({
+        _id: mongoose.Types.ObjectId(req.session.codigoUsuario)
+    })
+    .then(user=>{
+        user.usuario = req.body.usuario;
+        user.contrasenia = req.body.contrasenia;
+        user.correo = req.body.correo;
+        user.nombre = req.body.nombre;
+        user.apellido = req.body.apellido;
+        user.residencia = req.body.residencia;
+        user.genero = req.body.genero;
+        user.save()
+        .then(()=>{
+            respuesta = {status:1, mensaje: "Cambios guardados", datos:user};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+            res.send(respuesta);
+        });
+    })
+    .catch(error=>{
+        respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+        res.send(respuesta);
+    });
+});
+
+app.get("/cambiar-plan/:idPlan", function (req, res) {  
+    usuario.findOne({
+        _id: mongoose.Types.ObjectId(req.session.codigoUsuario)
+    })
+    .then(user=>{
+        user.plan_activo = mongoose.Types.ObjectId(req.params.idPlan)
+        user.save()
+        .then(()=>{
+            respuesta = {status:1, mensaje: "Plan actualizado", datos:user};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+            res.send(respuesta);
+        });
+    })
+    .catch(error=>{
+        respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+        res.send(respuesta);
+    });
+});
+
+/*Verificaciones de acceso*/
 app.get('/seccion-principal.html', verificarAutenticacion, function (res, req, next) {  
     res.redirect('/seccion-principal.html');
 });
@@ -125,7 +192,7 @@ function verificarAutenticacion(req, res, next) {
         res.redirect('/acceso-denegado.html');
     }
 }
-//Fin Verificaciones de Acceso
+/*Fin Verificaciones de Acceso*/
 
 app.listen(process.env.PORT || 3333, function(){
     console.log("Servidor levantado");
