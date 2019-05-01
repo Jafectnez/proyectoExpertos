@@ -2,7 +2,7 @@
   <!-- SIDEBAR USERPIC -->
   <div class="row justify-content-center foto-perfil">
     <div class="profile-userpic">
-      <img id="foto-usuario" src="img/usuario.jpg" class="img-responsive" alt="">
+      <img id="foto-usuario" src="" class="img-responsive" alt="">
     </div>
   </div>
   <!-- END SIDEBAR USERPIC -->

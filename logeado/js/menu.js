@@ -23,10 +23,10 @@ function cargarDatosUsuario(){
 		dataType: "json",
 		success: function (res) {
 			$("#usuario").text(res.usuario);
+			$("#foto-usuario").attr("src", res.foto_perfil);
 		},
 		error:function (error) {  
 			console.error(error);
-			
 		}
 	});
 }

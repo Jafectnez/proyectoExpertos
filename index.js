@@ -62,7 +62,7 @@ app.post("/login", function(req, res){
         if (data.length==1){
             req.session.codigoUsuario = data[0]._id;
             req.session.usuario = data[0].usuario;
-            req.session.fotoPerfil = data[0].foto_perfil;
+            req.session.foto_perfil = data[0].foto_perfil;
             req.session.planActivo = data[0].plan_activo;
 
             res.cookie("codigoUsuario", req.session.codigoUsuario);
@@ -83,10 +83,11 @@ app.get('/logout',function(req,res){
     res.redirect("/login.html");
 });
 
-//Regresa el ID del usuario
+//Regresa datos del usuario para el menu
 app.get('/datos-usuario', function (req, res) {  
     respuesta = {
-        usuario: req.session.usuario
+        usuario: req.session.usuario,
+        foto_perfil: req.session.foto_perfil
     }
     res.send(respuesta);
 });
