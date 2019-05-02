@@ -10,6 +10,7 @@ var esquema = new mongoose.Schema(
         carpetas_internas: Array,
         proyectos_internos: Array,
         archivos_internos: Array,
+        compartido: Array,
         eliminado: Boolean
     }
 );

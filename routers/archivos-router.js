@@ -59,48 +59,6 @@ router.post("/:idCarpeta/crear", function(req, res){
 
 });
 
-function crear(req, res){
-    fecha_actual = new Date();
-    var idArchivo = mongoose.Types.ObjectId();
-    
-    carpeta.findOneAndUpdate({
-        _id: mongoose.Types.ObjectId(req.params.idCarpeta)
-    },
-    {
-        $push:{
-            archivos_internos: mongoose.Types.ObjectId(idArchivo)
-        }
-    })
-    .then(carpetaPadre=>{      
-        var archivoNuevo = new archivo({
-            _id: idArchivo,
-            nombre: req.body.nombreArchivo,
-            extension: req.body.extensionArchivo,
-            contenido: req.body.contenidoArchivo,
-            eliminado: false,
-            fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`,
-            modificaciones: [{
-                mensaje: `Creación del archivo`,
-                fecha: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`
-            }]
-        });
-    
-        archivoNuevo.save()
-        .then(obj=>{
-            respuesta={status: 1, mensaje: `Creación exitosa`, objeto: obj};
-            res.send(respuesta);
-        })
-        .catch(error=>{
-            respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
-            res.send(respuesta);
-        });
-    })
-    .catch(error=>{
-        respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
-        res.send(respuesta);
-    });
-}
-
 //Guarda los cambios hechos en un archivo
 router.post("/guardar-cambios", function (req, res) {
     var data = {};
@@ -170,5 +128,70 @@ router.post("/guardar-cambios", function (req, res) {
         res.send(respuesta);
     });
 });
+
+//Elimina un archivo
+router.get("/:idArchivo/eliminar", function (req, res) {  
+    archivo.findByIdAndUpdate(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idArchivo)
+        },
+        {
+            $set:{
+                eliminado: true
+            }
+        }
+    )
+    .then(archivoEliminado=>{
+        respuesta={status: 1, mensaje: `Eliminación exitosa`, objeto: archivoEliminado};
+        res.send(respuesta);
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
+        res.send(respuesta);
+    });
+});
+
+function crear(req, res){
+    fecha_actual = new Date();
+    var idArchivo = mongoose.Types.ObjectId();
+    
+    carpeta.findOneAndUpdate({
+        _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+    },
+    {
+        $push:{
+            archivos_internos: mongoose.Types.ObjectId(idArchivo)
+        }
+    })
+    .then(carpetaPadre=>{      
+        var archivoNuevo = new archivo({
+            _id: idArchivo,
+            nombre: req.body.nombreArchivo,
+            extension: req.body.extensionArchivo,
+            contenido: req.body.contenidoArchivo,
+            eliminado: false,
+            compartido: [],
+            fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`,
+            modificaciones: [{
+                mensaje: `Creación del archivo`,
+                fecha: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`
+            }]
+        });
+    
+        archivoNuevo.save()
+        .then(obj=>{
+            respuesta={status: 1, mensaje: `Creación exitosa`, objeto: obj};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
+            res.send(respuesta);
+        });
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
+        res.send(respuesta);
+    });
+}
 
 module.exports = router;

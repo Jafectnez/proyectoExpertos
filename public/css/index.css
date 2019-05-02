@@ -4,6 +4,15 @@
     font-family: "montserrat", sans-serif;
 }
 
+.e404-img{
+    background: url(../img/perdido.jpg) no-repeat;
+    background-size: cover;
+}
+
+.e404{
+    background: rgba(39, 39, 77, 0.5);
+}
+
 .sector-contenido .display-4{
     margin-top: 0;
     margin-bottom: 13%;

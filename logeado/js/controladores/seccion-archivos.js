@@ -4,14 +4,17 @@ $(document).ready(function () {
 });
 
 function cargarTarjetas() {
+  $(".div-loading").css("display", "block");
   $.ajax({
     url: `/proyectos/${localStorage.getItem("Id_Proyecto")}/archivos`,
     method: "GET",
     dataType: "json",
     success: function(res) {
+      $(".div-loading").css("display", "none");
       creacionTarjetas(res);
     },
     error: function(error) {
+      $(".div-loading").css("display", "none");
       console.error(error);
     }
   });

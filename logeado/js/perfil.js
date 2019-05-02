@@ -1,11 +1,13 @@
 var planActivo = "";
 
 jQuery(document).ready(function() {
+  $(".div-loading").css("display", "block");
   $.ajax({
     type: "GET",
     url: "/perfil-usuario",
     dataType: "json",
     success: function (respuesta) {
+      $(".div-loading").css("display", "none");
       if(respuesta.status == 1){
         var user = respuesta.datos[0];
         $("#txt-usuario").val(user.usuario);
@@ -41,11 +43,15 @@ jQuery(document).ready(function() {
       }else{
         console.error(respuesta.mensaje);
       }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
     }
   });
 });
 
 $("#actualizar-perfil").on("click", function(){
+  $(".div-loading").css("display", "block");
   var campos = [
     {campo: "txt-usuario", regex: /(([A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*$/},
     {campo: "txt-contrasenia", regex: /.+/},
@@ -76,6 +82,7 @@ $("#actualizar-perfil").on("click", function(){
       },
       dataType: "json",
       success: function (respuesta) {
+        $(".div-loading").css("display", "none");
         if(respuesta.status == 1){
           $("#status").text(respuesta.mensaje);
           setTimeout(function () {
@@ -89,14 +96,24 @@ $("#actualizar-perfil").on("click", function(){
             $("#status").css("color", "");
           },3000);
         }
+      },
+      error:function (respuesta) {  
+        $(".div-loading").css("display", "none");
       }
     });
   }else{
-    console.error("Dato invalido, verifique e intente nuevamente");
+    $(".div-loading").css("display", "none");
+    $("#status").text("Dato invalido, verifique e intente nuevamente");
+    $("#status").css("color", "red");
+    setTimeout(function () {
+      $("#status").text("");
+      $("#status").css("color", "");
+    },3000);
   }
 });
 
 $("#btn-pagar").on("click", function () {  
+  $(".div-loading").css("display", "block");
   if(validarCampo("txt-num-tarjeta", /[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}/)){
     if(!$("#slc-plan").val()==planActivo){
       $.ajax({
@@ -104,6 +121,7 @@ $("#btn-pagar").on("click", function () {
         url: `/cambiar-plan/${$("#slc-plan").val()}`,
         dataType: "json",
         success: function (respuesta) {
+          $(".div-loading").css("display", "none");
           if(respuesta.status == 1){
             $("#status-pago").text(respuesta.mensaje);
             setTimeout(function () {
@@ -117,15 +135,20 @@ $("#btn-pagar").on("click", function () {
               $("#status-pago").css("color", "");
             },3000);
           }
+        },
+        error: function (respuesta) {  
+          $(".div-loading").css("display", "none");
         }
       });
     }else{
+      $(".div-loading").css("display", "none");
       $("#status-pago").text("Plan seleccionado esta activo actualmente");
       setTimeout(function () {
         $("#status-pago").text("");
       },3000);
     }
   }else{
+    $(".div-loading").css("display", "none");
     $("#status-pago").text("Datos inválidos, intente nuevamente.");
     $("#status-pago").css("color", "red");
     setTimeout(function () {

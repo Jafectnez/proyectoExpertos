@@ -85,12 +85,14 @@ function cargarPlantillaHTML(){
 }
 
 $(document).ready(function () {
+  $(".div-loading").css("display", "block");
   $("#nombre-portada").text(localStorage.getItem("Nombre_Proyecto"));
   $.ajax({
     type: "GET",
     url: `/proyectos/${localStorage.getItem("Id_Proyecto")}/archivos`,
     dataType: "json",
     success: function (respuesta) {
+      $(".div-loading").css("display", "none");
       for(var i=0; i<respuesta[0].archivos.length; i++){
         var archivo = respuesta[0].archivos[i];
 
@@ -118,6 +120,7 @@ editorJS.on("change", function () {
 });
 
 function guardarCambios(){
+  $(".div-loading").css("display", "block");
   $.ajax({
     type: "POST",
     url: "/archivos/guardar-cambios",
@@ -135,6 +138,7 @@ function guardarCambios(){
     },
     dataType: "json",
     success: function (respuesta) {
+      $(".div-loading").css("display", "none");
       if(respuesta.status == 1){
         $("#alerta").text(respuesta.mensaje);
         $("#alerta").css("display", "block");
@@ -152,6 +156,9 @@ function guardarCambios(){
           $("#alerta").css("color", "");
         },3000);
       }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
     }
   });
 }

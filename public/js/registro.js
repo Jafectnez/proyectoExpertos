@@ -1,4 +1,5 @@
 function registro() {
+  $(".div-loading").css("display", "block");
   var campos = [
     {parametro:'nombreUsuario',
      campo:'txt-nombre',
@@ -52,6 +53,7 @@ function registro() {
 
   for(var i=0;i<campos.length;i++){
     if (!campos[i].valido){
+      $(".div-loading").css("display", "none");
       $("#estado").text("Asegurese de llenar todos los datos necesarios");
       $("#estado").css("color", "red");
 
@@ -61,6 +63,7 @@ function registro() {
         for(var j=0;j<campos.length;j++)
           document.getElementById(campos[j].campo).classList.remove('is-invalid');
       },3000);
+
       return;
     }
     parametros[campos[i].parametro]=$("#"+campos[i].campo).val();
@@ -72,6 +75,7 @@ function registro() {
     data: parametros,
     dataType: "json",
     success: function (res) {
+      $(".div-loading").css("display", "none");
       if(res.status == 1){
         $("#estado").text(res.mensaje);
         $("#estado").css("color", "green");
@@ -100,6 +104,7 @@ function registro() {
       }
     },
     error: function (error) {
+      $(".div-loading").css("display", "none");
       console.error(error);
     }
   });

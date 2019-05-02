@@ -1,9 +1,11 @@
 $(document).ready(function () {
+  $(".div-loading").css("display", "block");
   $.ajax({
-    url: "/carpetas/5cc244b2eeb38871d1a3338f",
+    url: "/carpetas-compartidas",
     method: "GET",
     dataType: "json",
     success: function(res) {
+      $(".div-loading").css("display", "none");
       creacionTarjetas(res);
     },
     error: function(error) {
@@ -55,18 +57,7 @@ function creacionTarjetas(datos){
 }
 
 function abrirCarpeta(id, nombre) {
-  $.ajax({
-    url:"/cookies-carpeta",
-    method: "POST",
-    data: "Id_Carpeta="+id+"&Nombre_Carpeta="+nombre,
-    dataType: "json",
-    success:function(res) {
-      if(res == 1){
-        window.location = 'seccion-proyectos.html';
-      }
-    },
-    error:function(error) {
-      console.error(error);
-    }
-  });
+  localStorage.setItem("Id_Carpeta", id);
+  localStorage.setItem("Nombre_Carpeta", nombre);
+  window.location = 'seccion-proyectos.html'
 }

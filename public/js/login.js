@@ -1,4 +1,5 @@
 function login() {
+  $(".div-loading").css("display", "block");
   var campos = [
     {campo:'txt-usuario',
      valido:false,
@@ -16,6 +17,7 @@ function login() {
 
   for(var i=0;i<campos.length;i++){
     if (!campos[i].valido){
+      $(".div-loading").css("display", "none");
       $("#estado").text("Asegurese de llenar todos los datos necesarios");
       $("#estado").css("color", "red");
 
@@ -25,6 +27,7 @@ function login() {
         document.getElementById("txt-usuario").classList.remove('is-invalid');
         document.getElementById("txt-password").classList.remove('is-invalid');
       },3000);
+
       return;
     }
   }
@@ -35,6 +38,7 @@ function login() {
     data: `usuario=${$("#txt-usuario").val()}&contrasenia=${$("#txt-password").val()}`,
     dataType: "json",
     success: function (res) {
+      $(".div-loading").css("display", "none");
       if(res.status == 1){
         location.href = "../seccion-principal.html";
       }else{
@@ -52,6 +56,7 @@ function login() {
       }
     },
     error: function (error) {
+      $(".div-loading").css("display", "none");
       console.error(error);
     }
   });

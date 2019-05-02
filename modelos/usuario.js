@@ -10,6 +10,7 @@ var esquema = new mongoose.Schema(
         correo : String,
         usuario : String,
         contrasenia : String,
+        amigos: Array,
         plan_activo : mongoose.Schema.Types.ObjectId
     }
 );

@@ -7,6 +7,7 @@ var esquema = new mongoose.Schema(
         fecha_creacion : String,
         contenido : String,
         modificaciones: Array,
+        compartido: Array,
         eliminado: Boolean
     }
 );

@@ -11,6 +11,7 @@ function datosCarpeta() {
 }
 
 function cargarTarjetas(){
+  $(".div-loading").css("display", "block");
   document.getElementById('sector-inferior').innerHTML = ``;
   
   $.ajax({
@@ -32,19 +33,23 @@ function cargarTarjetas(){
             method: "GET",
             dataType: "json",
             success: function(res) {
+              $(".div-loading").css("display", "none");
               creacionTarjetasArchivos(res);
             },
             error: function(error) {
+              $(".div-loading").css("display", "none");
               console.error(error);
             }
           });
         },
         error: function(error) {
+          $(".div-loading").css("display", "none");
           console.error(error);
         }
       });
     },
     error: function(error) {
+      $(".div-loading").css("display", "none");
       console.error(error);
     }
   });
@@ -64,12 +69,12 @@ function creacionTarjetasCarpetas(datos) {
             <div class="cover"></div>
             <div class="menu">
               <ul>
-                <label for="compartir-carpeta">
-                  <button id="compartir-carpeta" onclick="compartirCarpeta('${subcarpeta._id}');"></button>
+                <label>
+                  <button onclick="compartirCarpeta('${subcarpeta._id}');"></button>
                   <li class="fas fa-share-alt"></li>
                 </label>
-                <label for="eliminar-carpeta">
-                  <button id="eliminar-carpeta" onclick="eliminarCarpeta('${subcarpeta._id}');"></button>
+                <label>
+                  <button onclick="eliminarCarpeta('${subcarpeta._id}');"></button>
                   <li class="fas fa-trash"></li>
                 </label>
               </ul>
@@ -122,12 +127,12 @@ function creacionTarjetasProyectos(datos){
             <div class="cover"></div>
             <div class="menu">
               <ul>
-                <label for="compartir-proyecto">
-                  <button id="compartir-proyecto" onclick="compartirProyecto('${proyecto._id}');"></button>
+                <label>
+                  <button onclick="compartirProyecto('${proyecto._id}');"></button>
                   <li class="fas fa-share-alt"></li>
                 </label>
-                <label for="eliminar-proyecto">
-                  <button id="eliminar-proyecto" onclick="eliminarProyecto('${proyecto._id}');"></button>
+                <label>
+                  <button onclick="eliminarProyecto('${proyecto._id}');"></button>
                   <li class="fas fa-trash"></li>
                 </label>
               </ul>
@@ -173,16 +178,16 @@ function creacionTarjetasArchivos(datos){
             <div class="cover"></div>
             <div class="menu">
               <ul>
-                <label for="ver-archivo">
-                  <button id="ver-archivo" onclick="verArchivo('${archivo._id}');"></button>
+                <label>
+                  <button onclick="verArchivo('${archivo._id}');"></button>
                   <li class="fas fa-eye"></li>
                 </label>
-                <label for="compartir-archivo">
-                  <button id="compartir-archivo" onclick="compartirArchivo('${archivo._id}');"></button>
+                <label>
+                  <button onclick="compartirArchivo('${archivo._id}');"></button>
                   <li class="fas fa-share-alt"></li>
                 </label>
-                <label for="eliminar-archivo">
-                  <button id="eliminar-archivo" onclick="eliminarArchivo('${archivo._id}');"></button>
+                <label>
+                  <button onclick="eliminarArchivo('${archivo._id}');"></button>
                   <li class="fas fa-trash"></li>
                 </label>
               </ul>
@@ -211,7 +216,9 @@ function creacionTarjetasArchivos(datos){
 }
 
 $("#btn-crear-carpeta").on("click",function () {
+  $(".div-loading").css("display", "block");
   if(localStorage.getItem("Id_Carpeta") == "" || !localStorage.getItem("Id_Carpeta")){
+    $(".div-loading").css("display", "none");
     $("#status-carpeta").css("color", "red");
     $("#status-carpeta").text("No hay carpeta seleccionada");
     setTimeout(function () {  
@@ -241,6 +248,7 @@ $("#btn-crear-carpeta").on("click",function () {
       },
       dataType: "json",
       success: function (respuesta) {
+        $(".div-loading").css("display", "none");
         if(respuesta.status == 1){
           cargarTarjetas();
           $("#status-carpeta").css("color", "green");
@@ -260,6 +268,7 @@ $("#btn-crear-carpeta").on("click",function () {
         }
       },
       error:function (error) {  
+        $(".div-loading").css("display", "none");
         $("#status-carpeta").css("color", "red");
         $("#status-carpeta").text(error);
         setTimeout(function () {  
@@ -269,6 +278,7 @@ $("#btn-crear-carpeta").on("click",function () {
       }
     });
   }else{  
+    $(".div-loading").css("display", "none");
     $("#status-carpeta").css("color", "red");
     $("#status-carpeta").text("Asegurese de llenar todos los campos requeridos");
     setTimeout(function () {  
@@ -279,7 +289,9 @@ $("#btn-crear-carpeta").on("click",function () {
 });
 
 $("#btn-crear-proyecto").on("click",function () {
+  $(".div-loading").css("display", "block");
   if(localStorage.getItem("Id_Carpeta") == "" || !localStorage.getItem("Id_Carpeta")){
+    $(".div-loading").css("display", "none");
     $("#status-proyecto").css("color", "red");
     $("#status-proyecto").text("No hay carpeta seleccionada");
     setTimeout(function () {  
@@ -309,6 +321,7 @@ $("#btn-crear-proyecto").on("click",function () {
       },
       dataType: "json",
       success: function (respuesta) {
+        $(".div-loading").css("display", "none");
         if(respuesta.status == 1){
           cargarTarjetas();
           $("#status-proyecto").css("color", "green");
@@ -326,9 +339,13 @@ $("#btn-crear-proyecto").on("click",function () {
             $("#status-proyecto").text("");
           },3000);
         }
+      },
+      error: function (respuesta) {  
+        $(".div-loading").css("display", "none");
       }
     });
-  }else{  
+  }else{ 
+    $(".div-loading").css("display", "none"); 
     $("#status-proyecto").css("color", "red");
     $("#status-proyecto").text("Asegurese de llenar todos los campos requeridos");
     setTimeout(function () {  
@@ -339,7 +356,9 @@ $("#btn-crear-proyecto").on("click",function () {
 });
 
 $("#btn-crear-archivo").on("click",function () {
+  $(".div-loading").css("display", "block");
   if(localStorage.getItem("Id_Carpeta") == "" || !localStorage.getItem("Id_Carpeta")){
+    $(".div-loading").css("display", "none");
     $("#status-archivo").css("color", "red");
     $("#status-archivo").text("No hay carpeta seleccionada");
     setTimeout(function () {  
@@ -389,6 +408,7 @@ $("#btn-crear-archivo").on("click",function () {
       },
       dataType: "json",
       success: function (respuesta) {
+        $(".div-loading").css("display", "none");
         if(respuesta.status == 1){
           cargarTarjetas();
           $("#status-archivo").css("color", "green");
@@ -406,9 +426,13 @@ $("#btn-crear-archivo").on("click",function () {
             $("#status-archivo").text("");
           },3000);
         }
+      },
+      error: function (repuesta) {  
+        $(".div-loading").css("display", "none");
       }
     });
   }else{  
+    $(".div-loading").css("display", "none");
     $("#status-archivo").css("color", "red");
     $("#status-archivo").text("Asegurese de llenar todos los campos requeridos");
     setTimeout(function () {  
@@ -439,7 +463,20 @@ function compartirArchivo(idArchivo) {
 }
 
 function eliminarArchivo(idArchivo) {
-  console.log("Eliminar archivo " + idArchivo);
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "GET",
+    url: `/archivos/${idArchivo}/eliminar`,
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      if(respuesta.status == 1){
+        console.log(respuesta.mensaje);
+        cargarTarjetas();
+      }else
+        console.error(respuesta.mensaje)
+    }
+  });
 }
 
 function compartirProyecto(idProyecto) {
@@ -447,7 +484,23 @@ function compartirProyecto(idProyecto) {
 }
 
 function eliminarProyecto(idProyecto) {
-  console.log("Eliminar proyecto " + idProyecto);
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "GET",
+    url: `/proyectos/${idProyecto}/eliminar`,
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      if(respuesta.status == 1){
+        console.log(respuesta.mensaje);
+        cargarTarjetas();
+      }else
+        console.error(respuesta.mensaje)
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
+    }
+  });
 }
 
 function compartirCarpeta(idCarpeta) {
@@ -455,16 +508,21 @@ function compartirCarpeta(idCarpeta) {
 }
 
 function eliminarCarpeta(idCarpeta) {
+  $(".div-loading").css("display", "block");
   $.ajax({
     type: "GET",
     url: `/carpetas/${idCarpeta}/eliminar`,
     dataType: "json",
     success: function (respuesta) {
+      $(".div-loading").css("display", "none");
       if(respuesta.status == 1){
         console.log(respuesta.mensaje);
         cargarTarjetas();
       }else
         console.error(respuesta.mensaje)
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
     }
   });
 }

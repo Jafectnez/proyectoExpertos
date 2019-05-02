@@ -63,6 +63,28 @@ router.post("/:idCarpeta/crear", function(req, res){
 
 });
 
+//Elimina un proyecto
+router.get("/:idProyecto/eliminar", function (req, res) {  
+    proyecto.findByIdAndUpdate(
+        {
+            _id: mongoose.Types.ObjectId(req.params.idProyecto)
+        },
+        {
+            $set:{
+                eliminado: true
+            }
+        }
+    )
+    .then(proyectoEliminado=>{
+        respuesta={status: 1, mensaje: `Eliminación exitosa`, objeto: proyectoEliminado};
+        res.send(respuesta);
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
+        res.send(respuesta);
+    });
+});
+
 function crear(req, res){
     fecha_actual = new Date();
     fechaCreacion = `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`;
@@ -86,6 +108,7 @@ function crear(req, res){
             nombre: `index`,
             extension: `html`,
             eliminado: false,
+            compartido: [],
             usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
             fecha_creacion: fechaCreacion,
             contenido: `<!DOCTYPE html>
@@ -107,6 +130,7 @@ function crear(req, res){
             nombre: `main`,
             extension: `js`,
             eliminado: false,
+            compartido: [],
             usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
             fecha_creacion: fechaCreacion,
             contenido: "",
@@ -118,6 +142,7 @@ function crear(req, res){
             nombre: `estilos`,
             extension: `css`,
             eliminado: false,
+            compartido: [],
             usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
             fecha_creacion: fechaCreacion,
             contenido: "",
