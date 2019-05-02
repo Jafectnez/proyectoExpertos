@@ -1,5 +1,8 @@
+localStorage.setItem("Id_Carpeta", "");
+localStorage.setItem("Nombre_Carpeta", "Carpeta no Seleccionada");
+
 $(document).ready(function () {
-  cargarTarjetas()
+  cargarTarjetas();
 });
 
 function cargarTarjetas() {
@@ -20,8 +23,14 @@ function cargarTarjetas() {
                 <div class="cover"></div>
                 <div class="menu">
                   <ul>
-                    <li class="fas fa-share-alt"></li>
-                    <li class="fas fa-trash"></li>
+                    <label for="compartir-carpeta">
+                      <button id="compartir-carpeta" onclick="compartirCarpeta(${datos[i]._id});"></button>
+                      <li class="fas fa-share-alt"></li>
+                    </label>
+                    <label for="eliminar-carpeta">
+                      <button id="eliminar-carpeta" onclick="eliminarCarpeta(${datos[i]._id});"></button>
+                      <li class="fas fa-trash"></li>
+                    </label>
                   </ul>
                   <i class="fas fa-ellipsis-v"></i>
                 </div>
@@ -34,7 +43,6 @@ function cargarTarjetas() {
                 <div class="seccion-izquierda">
                   <h3>Descripción</h3>
                   <p>${datos[i].descripcion}</p>
-                  <button onclick="abrirCarpeta('${datos[i]._id}', '${datos[i].nombre}');">Abrir</button>
                 </div>
                 <div class="seccion-derecha">
                   <div class="item">
@@ -49,6 +57,9 @@ function cargarTarjetas() {
                     <span class="num">${datos[i].archivos_internos.length}</span>
                     <span class="word">Archivos</span>
                   </div>
+                </div>
+                <div>
+                  <button class="btn-tarjeta" onclick="abrirCarpeta('${datos[i]._id}', '${datos[i].nombre}');">Abrir</button>
                 </div>
               </div>
             </div>
@@ -68,32 +79,94 @@ function abrirCarpeta(id, nombre) {
 }
 
 $("#btn-crear-carpeta").on("click",function () {
-  $.ajax({
-    type: "POST",
-    url: "/carpetas/crear",
-    data: {
-      nombreCarpeta: $("#txt-nombre-carpeta").val(),
-      descripcionCarpeta: $("#txtA-descripcion-carpeta").val()
-    },
-    dataType: "json",
-    success: function (respuesta) {
-      if(respuesta.status == 1){
-        cargarTarjetas();
-        $("#status").css("color", "green");
-        $("#status").text(respuesta.mensaje);
-        setTimeout(function () {  
-          $("#status").css("color", "black");
-          $("#status").text("");
-        },3000);
+  var campos = [{campo: 'txt-nombre-carpeta'},
+                {campo: 'txtA-descripcion-carpeta'}];
+
+  var validos = true;
+
+  for(let i in campos)
+    if(!validarCampo(campos[i].campo))
+      validos = false;
+
+  if(validos){
+    $.ajax({
+      type: "POST",
+      url: "/carpetas/crear",
+      data: {
+        nombreCarpeta: $("#txt-nombre-carpeta").val(),
+        descripcionCarpeta: $("#txtA-descripcion-carpeta").val()
+      },
+      dataType: "json",
+      success: function (respuesta) {
+        if(respuesta.status == 1){
+          cargarTarjetas();
+          $("#status").css("color", "green");
+          $("#status").text(respuesta.mensaje);
+          setTimeout(function () {  
+            $("#status").css("color", "black");
+            $("#status").text("");
+          },3000);
+        }
+        else{
+          $("#status").css("color", "red");
+          $("#status").text(respuesta.mensaje);
+          setTimeout(function () {  
+            $("#status").css("color", "black");
+            $("#status").text("");
+          },3000);
+        }
       }
-      else{
-        $("#status").css("color", "red");
-        $("#status").text(respuesta.mensaje);
-        setTimeout(function () {  
-          $("#status").css("color", "black");
-          $("#status").text("");
-        },3000);
-      }
-    }
-  });
+    });
+  }else{  
+    $("#status").css("color", "red");
+    $("#status").text("Asegurese de llenar todos los campos requeridos");
+    setTimeout(function () {  
+      $("#status").css("color", "");
+      $("#status").text("");
+    },3000);
+  }
 });
+
+function compartirCarpeta(idCarpeta) {
+  console.log("Compartir carpeta " + idCarpeta);
+}
+
+function eliminarCarpeta(idCarpeta) {
+  console.log("Eliminar carpeta " + idCarpeta);
+}
+    
+function validarCampo(campo, regex = /.+/){
+  if ($("#"+campo).value ==''){   
+    $("#"+campo).css("color", "red");
+    $("#"+campo).css("border", "red 1px solid");
+
+    setTimeout(function () {  
+      $("#"+campo).css("color", "");
+      $("#"+campo).css("border", "");
+    },3000);
+
+    return false;
+
+  }else if(!regex.exec($("#"+campo).val())){
+    $("#"+campo).css("color", "red");
+    $("#"+campo).css("border", "red 1px solid");
+
+    setTimeout(function () {  
+      $("#"+campo).css("color", "");
+      $("#"+campo).css("border", "");
+    },3000);
+
+    return false;
+
+  }else{
+    $("#"+campo).css("color", "green");
+    $("#"+campo).css("border", "green 1px solid");
+
+    setTimeout(function () {  
+      $("#"+campo).css("color", "");
+      $("#"+campo).css("border", "");
+    },3000);
+
+    return true;
+  }
+}

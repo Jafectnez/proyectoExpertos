@@ -40,7 +40,7 @@ app.post('/registrar', function (req, res) {
         correo : req.body.correoUsuario,
         usuario : req.body.nickUsuario,
         contrasenia : req.body.contraseniaUsuario,
-        foto_perfil: "img/Logo-GEPO.svg",
+        foto_perfil: "img/Logo-GEPO-page.svg",
         residencia : req.body.residenciaUsuario,
         plan_activo: mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")
     });

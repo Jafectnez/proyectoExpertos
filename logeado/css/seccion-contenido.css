@@ -38,7 +38,7 @@ body{
     padding: 0;
 }
 
-#status{
+#status, #status-carpeta, #status-proyecto, #status-archivo{
     text-align: center;
     padding: 10px;
 }

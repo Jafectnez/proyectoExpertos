@@ -76,7 +76,7 @@ function crear(req, res){
             _id: idArchivo,
             nombre: req.body.nombreArchivo,
             extension: req.body.extensionArchivo,
-            contenido: ``,
+            contenido: req.body.contenidoArchivo,
             fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`,
             modificaciones: [{
                 mensaje: `Creación del archivo`,

@@ -28,7 +28,7 @@ function registro() {
     {parametro:'contraseniaUsuario',
      campo:'txt-password',
      valido:false,
-     regex: /.*/
+     regex: /.+/
     },
     {parametro:'residenciaUsuario',
      campo:'txtA-residencia',

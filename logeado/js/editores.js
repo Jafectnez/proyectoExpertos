@@ -85,6 +85,7 @@ function cargarPlantillaHTML(){
 }
 
 $(document).ready(function () {
+  $("#nombre-portada").text(localStorage.getItem("Nombre_Proyecto"));
   $.ajax({
     type: "GET",
     url: `/proyectos/${localStorage.getItem("Id_Proyecto")}/archivos`,

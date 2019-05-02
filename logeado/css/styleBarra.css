@@ -19,7 +19,7 @@ body {
 
 /* Profile sidebar */
 .profile-sidebar {
-  padding: 20px 0 10px 0;
+  padding: 10px 0 10px 0;
   background: blueviolet;
   padding-bottom: 100%;
   left: 0;
@@ -31,9 +31,6 @@ body {
   margin: 0 auto;
   width: 50%;
   height: 50%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
 }
 
 .profile-usertitle {
@@ -227,7 +224,14 @@ ul.footer-menu{
   .profile-usermenu ul li:hover {
     animation: boing 0.8s;
   }
+}
 
+
+@media only screen and (min-width: 1201px){
+  .profile-sidebar{
+    position: fixed;
+    width: 16%;
+  }
 }
 
 @media only screen and (max-width: 1200px){

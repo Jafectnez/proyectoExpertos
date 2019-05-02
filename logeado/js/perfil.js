@@ -47,12 +47,12 @@ jQuery(document).ready(function() {
 
 $("#actualizar-perfil").on("click", function(){
   var campos = [
-    {campo: "txt-usuario", valido: false, regex: /(([A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*$/},
-    {campo: "txt-contrasenia", valido: false, regex: /.+/},
-    {campo: "txt-correo", valido: false, regex: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/},
-    {campo: "txt-nombre", valido: false, regex: /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*$/},
-    {campo: "txt-apellido", valido: false, regex: /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*$/},
-    {campo: "txt-residencia", valido: false, regex: /([A-Za-z0-9]+.)+/}
+    {campo: "txt-usuario", regex: /(([A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*$/},
+    {campo: "txt-contrasenia", regex: /.+/},
+    {campo: "txt-correo", regex: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/},
+    {campo: "txt-nombre", regex: /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*$/},
+    {campo: "txt-apellido", regex: /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*$/},
+    {campo: "txt-residencia", regex: /([A-Za-z0-9]+.)+/}
   ];
 
   var validos = true
