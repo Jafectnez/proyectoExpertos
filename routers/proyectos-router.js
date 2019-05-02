@@ -85,6 +85,7 @@ function crear(req, res){
             _id: idHTML,
             nombre: `index`,
             extension: `html`,
+            eliminado: false,
             usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
             fecha_creacion: fechaCreacion,
             contenido: `<!DOCTYPE html>
@@ -105,6 +106,7 @@ function crear(req, res){
             _id: idJS,
             nombre: `main`,
             extension: `js`,
+            eliminado: false,
             usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
             fecha_creacion: fechaCreacion,
             contenido: "",
@@ -115,6 +117,7 @@ function crear(req, res){
             _id: idCSS,
             nombre: `estilos`,
             extension: `css`,
+            eliminado: false,
             usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
             fecha_creacion: fechaCreacion,
             contenido: "",
@@ -131,6 +134,7 @@ function crear(req, res){
             descripcion: req.body.descripcionProyecto,
             archivos: [idHTML, idJS, idCSS],
             colaboradores: [],
+            eliminado: false,
             fecha_creacion: fechaCreacion
         });
     

@@ -9,7 +9,8 @@ var esquema = new mongoose.Schema(
         subcarpeta: Boolean,
         carpetas_internas: Array,
         proyectos_internos: Array,
-        archivos_internos: Array
+        archivos_internos: Array,
+        eliminado: Boolean
     }
 );
 

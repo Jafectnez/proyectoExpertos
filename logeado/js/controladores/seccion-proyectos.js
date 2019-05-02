@@ -53,6 +53,8 @@ function cargarTarjetas(){
 function creacionTarjetasCarpetas(datos) {
   for(var i=0; i<datos[0].carpetas.length; i++){
     var subcarpeta = datos[0].carpetas[i];
+    if(subcarpeta.eliminado)
+      continue;
     
     document.getElementById('sector-inferior').innerHTML += 
     ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
@@ -109,6 +111,9 @@ function creacionTarjetasCarpetas(datos) {
 function creacionTarjetasProyectos(datos){
   for(var i=0; i<datos[0].proyectos.length; i++){
     var proyecto = datos[0].proyectos[i];
+    if(proyecto.eliminado)
+      continue;
+
     document.getElementById('sector-inferior').innerHTML += 
     ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="tarjeta">
@@ -157,6 +162,9 @@ function creacionTarjetasProyectos(datos){
 function creacionTarjetasArchivos(datos){
   for(var i=0; i<datos[0].archivos.length; i++){
     var archivo = datos[0].archivos[i];
+    if(archivo.eliminado)
+      continue;
+
     document.getElementById('sector-inferior').innerHTML += 
     ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
         <div class="tarjeta">
@@ -447,7 +455,18 @@ function compartirCarpeta(idCarpeta) {
 }
 
 function eliminarCarpeta(idCarpeta) {
-  console.log("Eliminar carpeta " + idCarpeta);
+  $.ajax({
+    type: "GET",
+    url: `/carpetas/${idCarpeta}/eliminar`,
+    dataType: "json",
+    success: function (respuesta) {
+      if(respuesta.status == 1){
+        console.log(respuesta.mensaje);
+        cargarTarjetas();
+      }else
+        console.error(respuesta.mensaje)
+    }
+  });
 }
     
 function validarCampo(campo, regex = /.+/){

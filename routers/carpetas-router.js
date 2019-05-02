@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 var carpeta = require("../modelos/carpeta");
+var proyecto = require("../modelos/proyecto");
+var archivo = require("../modelos/archivo");
 var mongoose = require("mongoose");
 
 //Obtiene las carpetas de un usuario
@@ -31,7 +33,8 @@ router.get("/:idCarpeta/carpetas",function(req,res){
         },
         {
             $match:{
-                _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+                _id: mongoose.Types.ObjectId(req.params.idCarpeta),
+                eliminado: false
             }
         },
         {
@@ -58,7 +61,8 @@ router.get("/:idCarpeta/proyectos",function(req,res){
         },
         {
             $match:{
-                _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+                _id: mongoose.Types.ObjectId(req.params.idCarpeta),
+                eliminado: false
             }
         },
         {
@@ -85,7 +89,8 @@ router.get("/:idCarpeta/archivos",function(req,res){
         },
         {
             $match:{
-                _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+                _id: mongoose.Types.ObjectId(req.params.idCarpeta),
+                eliminado: false
             }
         },
         {
@@ -162,6 +167,33 @@ router.post("/:idCarpeta/crear", function(req, res){
 
 });
 
+//Eliminar una carpeta o subcarpeta
+router.get("/:idCarpeta/eliminar", function (req, res) {  
+    carpeta.findOneAndUpdate({
+        _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+    },{
+        $set:{
+            eliminado: true
+        }
+    })
+    .then(data=>{
+        data.save()
+        .then(carpetaEliminada=>{
+            eliminarContenido(req.params.idCarpeta);
+            respuesta={status: 1, mensaje: `Eliminación exitosa.`, objeto: carpetaEliminada};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta={status: 0, mensaje: `Ocurrió un error interno al eliminar la carpeta`, objeto: error};
+            res.send(respuesta);
+        });
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrió un error interno al encontrar la carpeta`, objeto: error};
+        res.send(respuesta);
+    });
+});
+
 function crear(req, res){
     fecha_actual = new Date();
     if(req.body.id)
@@ -173,6 +205,7 @@ function crear(req, res){
         nombre: req.body.nombreCarpeta,
         descripcion: req.body.descripcionCarpeta,
         subcarpeta: false,
+        eliminado: false,
         usuario_creador: mongoose.Types.ObjectId(idCreador),
         fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`,
         carpetas_internas: [],
@@ -211,6 +244,7 @@ function crearSubcarpeta(req, res){
             nombre: req.body.nombreCarpeta,
             descripcion: req.body.descripcionCarpeta,
             subcarpeta: true,
+            eliminado: false,
             usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
             fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`,
             carpetas_internas: [],
@@ -232,6 +266,139 @@ function crearSubcarpeta(req, res){
         respuesta={status: 0, mensaje: `Ocurrió un error interno`, objeto: error};
         res.send(respuesta);
     });
+}
+
+function eliminarContenido(idCarpeta) {
+    carpeta.aggregate([
+        {
+            $lookup:{
+                from: "carpetas",
+                localField: "carpetas_internas",
+                foreignField: "_id",
+                as: "carpetas"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(idCarpeta)
+            }
+        },
+        {
+            $project:{"nombre":1, "carpetas":1}
+        }
+    ])
+    .then(carpetaSeleccionada=>{
+        for(let i in carpetaSeleccionada[0].carpetas){
+            carpeta.findOneAndUpdate(
+                {
+                    _id: mongoose.Types.ObjectId(carpetaSeleccionada[0].carpetas[i]._id)
+                },
+                {
+                    $set:{
+                        eliminado: true
+                    }
+                }
+            )
+            .then(data=>{
+                data.save()
+            })
+            .catch(error=>{
+                respuesta={status: 0, mensaje: `Ocurrió un error interno al eliminar la subcarpeta ${carpetaSeleccionada[0].carpetas[i]._id}`, objeto: error};
+                res.send(respuesta);
+            });
+        }
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrió un error interno al encontrar la carpeta`, objeto: error};
+        res.send(respuesta);
+    });
+
+    carpeta.aggregate([
+        {
+            $lookup:{
+                from: "archivos",
+                localField: "archivos_internos",
+                foreignField: "_id",
+                as: "archivos"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(idCarpeta)
+            }
+        },
+        {
+            $project:{"nombre":1, "archivos":1}
+        }
+    ])
+    .then(carpetaSeleccionada=>{
+        for(let i in carpetaSeleccionada[0].archivos){
+            archivo.findOneAndUpdate(
+                {
+                    _id: mongoose.Types.ObjectId(carpetaSeleccionada[0].archivos[i]._id)
+                },
+                {
+                    $set:{
+                        eliminado: true
+                    }
+                }
+            )
+            .then(data=>{
+                data.save()
+            })
+            .catch(error=>{
+                respuesta={status: 0, mensaje: `Ocurrió un error interno al eliminar el archivo ${carpetaSeleccionada[0].archivos[i]._id}`, objeto: error};
+                res.send(respuesta);
+            });
+        }
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrió un error interno al encontrar la carpeta`, objeto: error};
+        res.send(respuesta);
+    });;
+    
+    carpeta.aggregate([{
+            $lookup:{
+                from: "proyectos",
+                localField: "proyectos_internos",
+                foreignField: "_id",
+                as: "proyectos"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(idCarpeta)
+            }
+        },
+        {
+            $project:{"nombre":1, "proyectos":1}
+        }
+    ])
+    .then(carpetaSeleccionada=>{
+        for(let i in carpetaSeleccionada[0].proyectos){
+            proyecto.findOneAndUpdate(
+                {
+                    _id: mongoose.Types.ObjectId(carpetaSeleccionada[0].proyectos[i]._id)
+                },
+                {
+                    $set:{
+                        eliminado: true
+                    }
+                }
+            )
+            .then(data=>{
+                data.save()
+            })
+            .catch(error=>{
+                respuesta={status: 0, mensaje: `Ocurrió un error interno al eliminar el proyecto ${carpetaSeleccionada[0].proyectos[i]._id}`, objeto: error};
+                res.send(respuesta);
+            });
+        }
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrió un error interno al encontrar la carpeta`, objeto: error};
+        res.send(respuesta);
+    });;
 }
 
 module.exports = router;

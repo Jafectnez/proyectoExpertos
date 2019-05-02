@@ -6,7 +6,8 @@ var esquema = new mongoose.Schema(
         fecha_creacion : String,
         descripcion : String,
         archivos: Array,
-        colaboradores: Array
+        colaboradores: Array,
+        eliminado: Boolean
     }
 );
 module.exports = mongoose.model('proyectos',esquema);

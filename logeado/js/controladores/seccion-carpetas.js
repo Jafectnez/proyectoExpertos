@@ -14,6 +14,8 @@ function cargarTarjetas() {
       document.getElementById('sector-inferior').innerHTML = '';
 
       for(var i=0; i<datos.length; i++){
+        if(datos[i].eliminado)
+          continue;
         
         document.getElementById('sector-inferior').innerHTML += 
         ` <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
@@ -132,7 +134,18 @@ function compartirCarpeta(idCarpeta) {
 }
 
 function eliminarCarpeta(idCarpeta) {
-  console.log("Eliminar carpeta " + idCarpeta);
+  $.ajax({
+    type: "GET",
+    url: `/carpetas/${idCarpeta}/eliminar`,
+    dataType: "json",
+    success: function (respuesta) {
+      if(respuesta.status == 1){
+        console.log(respuesta.mensaje);
+        cargarTarjetas();
+      }else
+        console.error(respuesta.mensaje)
+    }
+  });
 }
     
 function validarCampo(campo, regex = /.+/){

@@ -6,7 +6,8 @@ var esquema = new mongoose.Schema(
         extension : String,
         fecha_creacion : String,
         contenido : String,
-        modificaciones: Array
+        modificaciones: Array,
+        eliminado: Boolean
     }
 );
 module.exports = mongoose.model('archivos',esquema);
