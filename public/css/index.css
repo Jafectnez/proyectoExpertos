@@ -336,6 +336,7 @@ body{
 .menu-footer .redes-sociales{
     width: 80%;
     float: right;
+    padding-top: 0;
 }
 
 .menu-footer .col{
