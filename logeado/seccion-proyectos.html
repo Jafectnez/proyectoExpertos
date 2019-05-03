@@ -15,7 +15,7 @@
   <body>
     <div class="div-loading">
       <img src="../img/Logo-GEPO-loading.svg">
-      <span>LOADING</span>
+      <span>CARGANDO</span>
     </div>
     <div class="container-fluid">
       <!--Aqui Esta Contenida La Barra De Menu-->
@@ -149,6 +149,145 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- Modal Compartir Carpeta-->
+                  <div class="modal fade" id="modalCompartirCarpeta" tabindex="-1" role="dialog" aria-labelledby="modalCompartirCarpetaLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalCompartirCarpetaLabel" style="text-align: center;font-weight: bold;">COMPARTIR CARPETA</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <h2 id="title-carpeta-compartir"></h2>
+                          <input style="display:none" id="id-compartir" type="text">
+                          <div id="status-compartir"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-compartir">Si</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Eliminar Carpeta-->
+                  <div class="modal fade" id="modalEliminarCarpeta" tabindex="-1" role="dialog" aria-labelledby="modalEliminarCarpetaLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalEliminarCarpetaLabel" style="text-align: center;font-weight: bold;">¿Desea eliminar esta carpeta?</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <h2 id="title-carpeta-eliminar"></h2>
+                          <input style="display:none" id="id-carpeta-eliminar" type="text">
+                          <div id="status"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-eliminar-carpeta">Si</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Compartir Proyecto-->
+                  <div class="modal fade" id="modalCompartirProyecto" tabindex="-1" role="dialog" aria-labelledby="modalCompartirProyectoLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalCompartirProyectoLabel" style="text-align: center;font-weight: bold;">COMPARTIR PROYECTO</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <h2 id="title-proyecto-compartir"></h2>
+                          <input style="display:none" id="id-proyecto-compartir" type="text">
+                          <div id="status-compartir"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-compartir-proyecto">Si</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Eliminar Proyecto-->
+                  <div class="modal fade" id="modalEliminarProyecto" tabindex="-1" role="dialog" aria-labelledby="modalEliminarProyectoLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalEliminarProyectoLabel" style="text-align: center;font-weight: bold;">¿Desea eliminar este proyecto?</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <h2 id="title-proyecto-eliminar"></h2>
+                          <input style="display:none" id="id-proyecto-eliminar" type="text">
+                          <div id="status"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-eliminar-proyecto">Si</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Compartir Archivo-->
+                  <div class="modal fade" id="modalCompartirArchivo" tabindex="-1" role="dialog" aria-labelledby="modalCompartirArchivoLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalCompartirArchivoLabel" style="text-align: center;font-weight: bold;">COMPARTIR ARCHIVO</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <h2 id="title-archivo-compartir"></h2>
+                          <input style="display:none" id="id-archivo-compartir" type="text">
+                          <div id="status-compartir"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-compartir-archivo">Si</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Eliminar Archivo-->
+                  <div class="modal fade" id="modalEliminarArchivo" tabindex="-1" role="dialog" aria-labelledby="modalEliminarArchivoLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalEliminarArchivoLabel" style="text-align: center;font-weight: bold;">¿Desea eliminar este archivo?</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <h2 id="title-archivo-eliminar"></h2>
+                          <input style="display:none" id="id-archivo-eliminar" type="text">
+                          <div id="status"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-eliminar-archivo">Si</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
                 </div>
               </div>		
             </div>

@@ -7,14 +7,96 @@ var mongoose = require("mongoose");
 
 //Obtiene las carpetas de un usuario
 router.get("/",function(req,res){
-    carpeta.find(
+    carpeta.aggregate([{
+            $lookup:{
+                from: "carpetas",
+                localField: "carpetas_internas",
+                foreignField: "_id",
+                as: "carpetas"
+            }
+        },
         {
-            subcarpeta: false,
-            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario)
+            $match:{
+                usuario_creador: mongoose.Types.ObjectId(req.cookies.codigoUsuario),
+                eliminado: false,
+            }
+        },
+        {
+            $project:{"carpetas_internas":0}
         }
-    )
+    ])
     .then(data=>{
-        res.send(data);
+        for(var c=0; c<data.length; c++){
+            for(var i=0; i<data[c].carpetas.length; i++){
+                if(data[c].carpetas[i].eliminado == true){
+                    data[c].carpetas.splice(i, 1);
+                }
+            }
+        }
+
+        carpeta.aggregate([{
+                $lookup:{
+                    from: "proyectos",
+                    localField: "proyectos_internos",
+                    foreignField: "_id",
+                    as: "proyectos"
+                }
+            },
+            {
+                $match:{
+                    usuario_creador: mongoose.Types.ObjectId(req.cookies.codigoUsuario),
+                    eliminado: false
+                }
+            },
+            {
+                $project:{"proyectos_internos":0}
+            }
+        ])
+        .then(data2=>{
+            for(var c=0; c<data2.length; c++){
+                data2[c].carpetas_internas = data[c].carpetas;
+                for(var i=0; i<data2[c].proyectos.length; i++){
+                    if(data2[c].proyectos[i].eliminado == true){
+                        data2[c].proyectos.splice(i, 1);
+                    }
+                }
+            }
+    
+            carpeta.aggregate([{
+                    $lookup:{
+                        from: "archivos",
+                        localField: "archivos_internos",
+                        foreignField: "_id",
+                        as: "archivos"
+                    }
+                },
+                {
+                    $match:{
+                        usuario_creador: mongoose.Types.ObjectId(req.cookies.codigoUsuario),
+                        eliminado: false
+                    }
+                },
+                {
+                    $project:{"archivos_internos":0}
+                }
+            ])
+            .then(data3=>{
+                for(var c=0; c<data3.length; c++){
+                    if(data3[c].subcarpeta == true){
+                        data3.splice(c, 1);
+                    }else{
+                        data3[c].proyectos_internos = data2[c].proyectos;
+                        for(var i=0; i<data3[c].archivos.length; i++){
+                            if(data3[c].archivos[i].eliminado == true){
+                                data3[c].archivos.splice(i, 1);
+                            }
+                        }
+                    }
+                }
+
+                res.send(data3);
+            });
+        });
     })
     .catch(error=>{
         res.send(error);
@@ -42,6 +124,13 @@ router.get("/:idCarpeta/carpetas",function(req,res){
         }
     ])
     .then(data=>{
+
+        for(var i=0; i<data[0].carpetas.length; i++){
+            if(data[0].carpetas[i].eliminado == true){
+                data[0].carpetas.splice(i, 1);
+            }
+        }
+
         res.send(data);
     })
     .catch(error=>{
@@ -70,6 +159,13 @@ router.get("/:idCarpeta/proyectos",function(req,res){
         }
     ])
     .then(data=>{
+
+        for(var i=0; i<data[0].proyectos.length; i++){
+            if(data[0].proyectos[i].eliminado == true){
+                data[0].proyectos.splice(i, 1);
+            }
+        }
+
         res.send(data);
     })
     .catch(error=>{
@@ -94,10 +190,19 @@ router.get("/:idCarpeta/archivos",function(req,res){
             }
         },
         {
-            $project:{"nombre":1, "archivos":1}
+            $project:{"nombre":1, 
+                      "archivos":1
+            }
         }
     ])
     .then(data=>{
+        
+        for(var i=0; i<data[0].archivos.length; i++){
+            if(data[0].archivos[i].eliminado == true){
+                data[0].archivos.splice(i, 1);
+            }
+        }
+        
         res.send(data);
     })
     .catch(error=>{
@@ -138,7 +243,11 @@ router.post("/crear", function(req, res){
 
 //Crear una subcarpeta
 router.post("/:idCarpeta/crear", function(req, res){
-    carpeta.find({usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario)}).then(data=>{
+    carpeta.find(
+        {
+            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
+            subcarpeta: true
+        }).then(data=>{
         if(req.session.planActivo == mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")){
             if(data.length < 1){
                 crearSubcarpeta(req, res);

@@ -70,11 +70,11 @@ function creacionTarjetasCarpetas(datos) {
             <div class="menu">
               <ul>
                 <label>
-                  <button onclick="compartirCarpeta('${subcarpeta._id}');"></button>
+                  <button data-toggle="modal" data-target="#modalCompartirCarpeta"  onclick="compartirCarpeta('${subcarpeta._id}', '${subcarpeta.nombre}');"></button>
                   <li class="fas fa-share-alt"></li>
                 </label>
                 <label>
-                  <button onclick="eliminarCarpeta('${subcarpeta._id}');"></button>
+                  <button data-toggle="modal" data-target="#modalEliminarCarpeta"  onclick="eliminarCarpeta('${subcarpeta._id}', '${subcarpeta.nombre}');"></button>
                   <li class="fas fa-trash"></li>
                 </label>
               </ul>
@@ -92,15 +92,15 @@ function creacionTarjetasCarpetas(datos) {
             </div>
             <div class="seccion-derecha">
               <div class="item">
-                <span class="num">${subcarpeta.proyectos_internos.length}</span>
-                <span class="word">Proyectos</span>
-              </div>
-              <div class="item">
                 <span class="num">${subcarpeta.carpetas_internas.length}</span>
                 <span class="word">Carpetas</span>
               </div>
               <div class="item">
-                <span class="num">${subcarpeta.archivos_internos.length}</span>
+                <span class="num">${subcarpeta.proyectos_internos.length}</span>
+                <span class="word">Proyectos</span>
+              </div>
+              <div class="item">
+                <span class="num">${subcarpeta.archivos.length}</span>
                 <span class="word">Archivos</span>
               </div>
             </div>
@@ -128,11 +128,11 @@ function creacionTarjetasProyectos(datos){
             <div class="menu">
               <ul>
                 <label>
-                  <button onclick="compartirProyecto('${proyecto._id}');"></button>
+                  <button data-toggle="modal" data-target="#modalCompartirProyecto"  onclick="compartirProyecto('${proyecto._id}', '${proyecto.nombre}');"></button>
                   <li class="fas fa-share-alt"></li>
                 </label>
                 <label>
-                  <button onclick="eliminarProyecto('${proyecto._id}');"></button>
+                  <button data-toggle="modal" data-target="#modalEliminarProyecto"  onclick="eliminarProyecto('${proyecto._id}', '${proyecto.nombre}');"></button>
                   <li class="fas fa-trash"></li>
                 </label>
               </ul>
@@ -183,11 +183,11 @@ function creacionTarjetasArchivos(datos){
                   <li class="fas fa-eye"></li>
                 </label>
                 <label>
-                  <button onclick="compartirArchivo('${archivo._id}');"></button>
+                  <button data-toggle="modal" data-target="#modalCompartirArchivo"  onclick="compartirArchivo('${archivo._id}', '${archivo.nombre}.${archivo.extension}');"></button>
                   <li class="fas fa-share-alt"></li>
                 </label>
                 <label>
-                  <button onclick="eliminarArchivo('${archivo._id}');"></button>
+                  <button data-toggle="modal" data-target="#modalEliminarArchivo"  onclick="eliminarArchivo('${archivo._id}', '${archivo.nombre}.${archivo.extension}');"></button>
                   <li class="fas fa-trash"></li>
                 </label>
               </ul>
@@ -462,38 +462,50 @@ function compartirArchivo(idArchivo) {
   console.log("Compartir archivo " + idArchivo);
 }
 
-function eliminarArchivo(idArchivo) {
+function eliminarArchivo(idArchivo, nombreArchivo) {
+  $("#id-archivo-eliminar").val(idArchivo);
+  $("#title-archivo-eliminar").text(nombreArchivo);
+}
+
+$("#btn-eliminar-archivo").on("click", function () {
   $(".div-loading").css("display", "block");
   $.ajax({
     type: "GET",
-    url: `/archivos/${idArchivo}/eliminar`,
+    url: `/archivos/${$("#id-archivo-eliminar").val()}/eliminar`,
     dataType: "json",
     success: function (respuesta) {
       $(".div-loading").css("display", "none");
       if(respuesta.status == 1){
         console.log(respuesta.mensaje);
         cargarTarjetas();
+        
       }else
         console.error(respuesta.mensaje)
     }
   });
-}
+})
 
 function compartirProyecto(idProyecto) {
   console.log("Compartir proyecto " + idProyecto);
 }
 
-function eliminarProyecto(idProyecto) {
+function eliminarProyecto(idProyecto, nombreProyecto) {
+  $("#id-proyecto-eliminar").val(idProyecto);
+  $("#title-proyecto-eliminar").text(nombreProyecto);
+}
+
+$("#btn-eliminar-proyecto").on("click", function () {  
   $(".div-loading").css("display", "block");
   $.ajax({
     type: "GET",
-    url: `/proyectos/${idProyecto}/eliminar`,
+    url: `/proyectos/${$("#id-proyecto-eliminar").val()}/eliminar`,
     dataType: "json",
     success: function (respuesta) {
       $(".div-loading").css("display", "none");
       if(respuesta.status == 1){
         console.log(respuesta.mensaje);
         cargarTarjetas();
+        
       }else
         console.error(respuesta.mensaje)
     },
@@ -501,23 +513,29 @@ function eliminarProyecto(idProyecto) {
       $(".div-loading").css("display", "none");
     }
   });
-}
+});
 
 function compartirCarpeta(idCarpeta) {
   console.log("Compartir carpeta " + idCarpeta);
 }
 
-function eliminarCarpeta(idCarpeta) {
+function eliminarCarpeta(idCarpeta, nombreCarpeta) {
+  $("#id-carpeta-eliminar").val(idCarpeta);
+  $("#title-carpeta-eliminar").text(nombreCarpeta);
+}
+
+$("#btn-eliminar-carpeta").on("click", function () {  
   $(".div-loading").css("display", "block");
   $.ajax({
     type: "GET",
-    url: `/carpetas/${idCarpeta}/eliminar`,
+    url: `/carpetas/${$("#id-carpeta-eliminar").val()}/eliminar`,
     dataType: "json",
     success: function (respuesta) {
-      $(".div-loading").css("display", "none");
       if(respuesta.status == 1){
         console.log(respuesta.mensaje);
+        $(".div-loading").css("display", "none");
         cargarTarjetas();
+        
       }else
         console.error(respuesta.mensaje)
     },
@@ -525,7 +543,7 @@ function eliminarCarpeta(idCarpeta) {
       $(".div-loading").css("display", "none");
     }
   });
-}
+})
     
 function validarCampo(campo, regex = /.+/){
   if ($("#"+campo).value ==''){   

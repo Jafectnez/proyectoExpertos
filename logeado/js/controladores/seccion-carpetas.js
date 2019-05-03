@@ -27,12 +27,12 @@ function cargarTarjetas() {
                 <div class="cover"></div>
                 <div class="menu">
                   <ul>
-                    <label for="compartir-carpeta">
-                      <button id="compartir-carpeta" onclick="compartirCarpeta('${datos[i]._id}');"></button>
+                    <label>
+                      <button id="compartir-carpeta" data-toggle="modal" data-target="#modalCompartir" onclick="compartirCarpeta('${datos[i]._id}');"></button>
                       <li class="fas fa-share-alt"></li>
                     </label>
-                    <label for="eliminar-carpeta">
-                      <button id="eliminar-carpeta" onclick="eliminarCarpeta('${datos[i]._id}');"></button>
+                    <label>
+                      <button id="eliminar-carpeta" data-toggle="modal" data-target="#modalEliminar" onclick="eliminarCarpeta('${datos[i]._id}', '${datos[i].nombre}');"></button>
                       <li class="fas fa-trash"></li>
                     </label>
                   </ul>
@@ -50,15 +50,15 @@ function cargarTarjetas() {
                 </div>
                 <div class="seccion-derecha">
                   <div class="item">
-                    <span class="num">${datos[i].proyectos_internos.length}</span>
-                    <span class="word">Proyectos</span>
-                  </div>
-                  <div class="item">
                     <span class="num">${datos[i].carpetas_internas.length}</span>
                     <span class="word">Carpetas</span>
                   </div>
                   <div class="item">
-                    <span class="num">${datos[i].archivos_internos.length}</span>
+                    <span class="num">${datos[i].proyectos_internos.length}</span>
+                    <span class="word">Proyectos</span>
+                  </div>
+                  <div class="item">
+                    <span class="num">${datos[i].archivos.length}</span>
                     <span class="word">Archivos</span>
                   </div>
                 </div>
@@ -142,17 +142,23 @@ function compartirCarpeta(idCarpeta) {
   console.log("Compartir carpeta " + idCarpeta);
 }
 
-function eliminarCarpeta(idCarpeta) {
+function eliminarCarpeta(idCarpeta, nombreCarpeta) {
+  $("#id-eliminar").val(idCarpeta);
+  $("#title-carpeta-eliminar").text(nombreCarpeta);
+}
+
+$("#btn-eliminar").on("click", function () {  
   $(".div-loading").css("display", "block");
   $.ajax({
     type: "GET",
-    url: `/carpetas/${idCarpeta}/eliminar`,
+    url: `/carpetas/${$("#id-eliminar").val()}/eliminar`,
     dataType: "json",
     success: function (respuesta) {
       if(respuesta.status == 1){
         console.log(respuesta.mensaje);
         $(".div-loading").css("display", "none");
         cargarTarjetas();
+        $("#modalEliminar").toggle("show");
       }else
         console.error(respuesta.mensaje)
     },
@@ -160,7 +166,7 @@ function eliminarCarpeta(idCarpeta) {
       $(".div-loading").css("display", "none");
     }
   });
-}
+})
     
 function validarCampo(campo, regex = /.+/){
   if ($("#"+campo).value ==''){   

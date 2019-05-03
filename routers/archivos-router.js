@@ -30,9 +30,27 @@ router.get("/:id",function(req,res){
 
 //Crear un archivo
 router.post("/:idCarpeta/crear", function(req, res){
-    archivo.find({usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario)}).then(data=>{
+    carpeta.aggregate([{
+            $lookup:{
+                from: "archivos",
+                localField: "archivos_internos",
+                foreignField: "_id",
+                as: "archivos"
+            }
+        },
+        {
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.idCarpeta),
+                eliminado: false
+            }
+        },
+        {
+            $project:{"nombre":1, "archivos":1}
+        }
+    ])
+    .then(data=>{
         if(req.session.planActivo == mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")){
-            if(data.length < 4){
+            if(data[0].archivos.length < 4){
                 crear(req, res);
             }else{
                 respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan gratuito, si aumenta su plan puede seguir creando."}
@@ -40,7 +58,7 @@ router.post("/:idCarpeta/crear", function(req, res){
             }
         }
         if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b39fb6fc00ed59db736")){
-            if(data.length < 8){
+            if(data[0].archivos.length < 8){
                 crear(req, res);
             }else{
                 respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan regular, si aumenta su plan puede seguir creando."}
@@ -48,7 +66,7 @@ router.post("/:idCarpeta/crear", function(req, res){
             }
         }
         if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b5bfb6fc00ed59db754")){
-            if(data.length < 20){
+            if(data[0].archivos.length < 20){
                 crear(req, res);
             }else{
                 respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan premium."}
