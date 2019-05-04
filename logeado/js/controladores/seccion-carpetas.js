@@ -214,7 +214,7 @@ function buscarUsuario() {
         var row = `<tr>
                     <td>${user.usuario}</td>
                     <td>${user.nombre} ${user.apellido}</td>
-                    <td><input type="radio" name="rBtn-idAmigo" value="${user._id}"></td>
+                    <td><input type="radio" name="rBtn-idAmigo" value='${user._id}'></td>
                   </tr>`;
 
         $("#resultado-usuario").append(row);
@@ -235,15 +235,28 @@ $("#btn-eliminar").on("click", function () {
     url: `/carpetas/${$("#id-eliminar").val()}/eliminar`,
     dataType: "json",
     success: function (respuesta) {
+      $(".div-loading").css("display", "none");
       if(respuesta.status == 1){
         console.log(respuesta.mensaje);
-        $(".div-loading").css("display", "none");
+        $("#status").css("color", "red");
+        $("#status").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status").css("color", "");
+          $("#status").text("");
+        },5000);
         cargarTarjetas();
       }else
-        console.error(respuesta.mensaje)
+        console.error(respuesta.mensaje);
+        $("#status").css("color", "red");
+        $("#status").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status").css("color", "");
+          $("#status").text("");
+        },5000);
     },
     error: function (respuesta) {  
       $(".div-loading").css("display", "none");
+      console.log(error)
     }
   });
 })

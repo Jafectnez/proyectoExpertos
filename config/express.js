@@ -132,7 +132,7 @@ module.exports = function () {
 
   app.get("/perfil-usuario", autenticacion, function (req, res) {
       usuario.find({
-          _id: mongoose.Types.ObjectId(req.user.codigoUsuario)
+          _id: mongoose.Types.ObjectId(req.user._id)
       })
       .then(data=>{
           respuesta={status:1, mensaje: `Datos del usuario`, datos: data};
@@ -146,7 +146,7 @@ module.exports = function () {
 
   app.post("/actualizar-perfil", autenticacion, function (req, res) {  
       usuario.findOne({
-          _id: mongoose.Types.ObjectId(req.user.codigoUsuario)
+          _id: mongoose.Types.ObjectId(req.user._id)
       })
       .then(user=>{
           user.usuario = req.body.usuario;
@@ -174,7 +174,7 @@ module.exports = function () {
 
   app.get("/cambiar-plan/:idPlan", autenticacion, function (req, res) {  
       usuario.findOne({
-          _id: mongoose.Types.ObjectId(req.user.codigoUsuario)
+          _id: mongoose.Types.ObjectId(req.user._id)
       })
       .then(user=>{
           user.plan_activo = mongoose.Types.ObjectId(req.params.idPlan)
@@ -208,7 +208,7 @@ module.exports = function () {
           },
           {
               $match:{
-                  _id: mongoose.Types.ObjectId(req.user.codigoUsuario)
+                  _id: mongoose.Types.ObjectId(req.user._id)
               }
           },
           {
@@ -249,7 +249,7 @@ module.exports = function () {
   app.get("/amigos/:idUsuario/agregar", autenticacion, function (req, res) {  
       usuario.findOneAndUpdate(
           {
-              _id: mongoose.Types.ObjectId(req.user.codigoUsuario)
+              _id: mongoose.Types.ObjectId(req.user._id)
           },
           {
               $push:{
@@ -264,7 +264,7 @@ module.exports = function () {
               },
               {
                   $push:{
-                      amigos: mongoose.Types.ObjectId(req.user.codigoUsuario)
+                      amigos: mongoose.Types.ObjectId(req.user._id)
                   } 
               }
           )
@@ -286,7 +286,7 @@ module.exports = function () {
   app.get("/amigos/:idAmigo/eliminar", autenticacion, function (req, res) {
       usuario.find(
           {
-              _id: mongoose.Types.ObjectId(req.user.codigoUsuario)
+              _id: mongoose.Types.ObjectId(req.user._id)
           }
       )
       .then(data=>{
@@ -300,7 +300,7 @@ module.exports = function () {
                   }
               )
               .then(data2=>{
-                  data2[0].amigos.pull(mongoose.Types.ObjectId(req.user.codigoUsuario));
+                  data2[0].amigos.pull(mongoose.Types.ObjectId(req.user._id));
           
                   data2[0].save()
                   .then(amigoEliminado=>{

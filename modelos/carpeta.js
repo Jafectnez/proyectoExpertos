@@ -5,7 +5,7 @@ var esquema = new mongoose.Schema(
         nombre : String,
         fecha_creacion : String,
         descripcion : String,
-        usuario_creador: mongoose.Schema.Types.ObjectId,
+        usuario_creador: mongoose.Schema.Types.Mixed,
         subcarpeta: Boolean,
         carpetas_internas: Array,
         proyectos_internos: Array,

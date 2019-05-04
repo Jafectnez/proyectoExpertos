@@ -90,7 +90,6 @@ function registro() {
           },
           dataType: "json",
           success: function (response) {
-            alert(response.mensaje);
             setTimeout(function() {  
               location.href = "../login.html";
             }, 5000);

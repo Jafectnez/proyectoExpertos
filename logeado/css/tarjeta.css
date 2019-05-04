@@ -148,18 +148,23 @@
 }
 
 .descripcion-tarjeta .seccion-derecha{
-  overflow: hidden;
   float: right;
   text-align: right;
 }
 
 .descripcion-tarjeta .seccion-derecha .item{
   margin: 6px 0;
+  max-width: 122px;
 }
 
 .descripcion-tarjeta .seccion-derecha .item .num{
   display: block;
   font-size: 20px;
+}
+
+.descripcion-tarjeta .seccion-derecha .item .num-creador{
+  display: block;
+  font-size: 17px;
 }
 
 .descripcion-tarjeta .seccion-derecha .item .word{

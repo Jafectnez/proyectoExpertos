@@ -3,6 +3,7 @@ var router = express.Router();
 var carpeta = require("../modelos/carpeta");
 var proyecto = require("../modelos/proyecto");
 var archivo = require("../modelos/archivo");
+var usuario = require("../modelos/usuario");
 var mongoose = require("mongoose");
 
 //Obtiene las carpetas de un usuario
@@ -143,7 +144,6 @@ router.get("/carpetas-compartidas",function(req,res){
                 }
             }
         }
-
         carpeta.aggregate([{
                 $lookup:{
                     from: "proyectos",
@@ -190,7 +190,8 @@ router.get("/carpetas-compartidas",function(req,res){
                     $project:{"archivos_internos":0}
                 }
             ])
-            .then(data3=>{
+            .then(async data3=>{
+                var respuesta = [];
                 for(var c=0; c<data3.length; c++){
                     if(data3[c].subcarpeta == true){
                         data3.splice(c, 1);
@@ -203,10 +204,17 @@ router.get("/carpetas-compartidas",function(req,res){
                                 data3[c].archivos.splice(i, 1);
                             }
                         }
+
+                        respuesta.push({
+                            carpeta: data3[c], 
+                            creador: await usuario.findById(mongoose.Types.ObjectId(data3[c].usuario_creador))
+                                .then(data=>{
+                                    return data.usuario;
+                                })
+                        });
                     }
                 }
-
-                res.send(data3);
+                res.send(respuesta);
             });
         });
     })
@@ -449,6 +457,32 @@ router.post("/:idCarpeta/compartir", function (req, res) {
         })
         .catch(error=>{
             respuesta={status: 0, mensaje: `Ocurrió un error interno al compartir la carpeta`, objeto: error};
+            res.send(respuesta);
+        });
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrió un error interno al encontrar la carpeta`, objeto: error};
+        res.send(respuesta);
+    });
+});
+
+//Dejar de seguir una carpeta compartida
+router.get("/:idCarpeta/compartidas/eliminar", function (req, res) {  
+    carpeta.findOneAndUpdate({
+        _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+    },{
+        $pull:{
+            compartido:req.user._id
+        }
+    })
+    .then(data=>{
+        data.save()
+        .then(carpetaEliminada=>{
+            respuesta={status: 1, mensaje: `Se dejó de seguir la carpeta.`, objeto: carpetaEliminada};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta={status: 0, mensaje: `Ocurrió un error interno al eliminar la carpeta`, objeto: error};
             res.send(respuesta);
         });
     })

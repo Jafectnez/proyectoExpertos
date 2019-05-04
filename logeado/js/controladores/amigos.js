@@ -8,6 +8,7 @@ function cargarTarjetas() {
     method: "GET",
     dataType: "json",
     success: function(datos) {
+      console.log(datos);
       document.getElementById('sector-inferior').innerHTML = '';
 
       for(var i=0; i<datos.datos[0].amigos.length; i++){
