@@ -109,6 +109,10 @@ body{
     display: none;
 }
 
+.botones-editor{
+    text-align: center;
+}
+
 .botones-editor button{
     padding: 5px 20px;
     font-size: 20px;
@@ -122,7 +126,7 @@ body{
 }
 
 .alerta{
-    float: left;
+    float: right;
     color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     margin-left: 2%;

@@ -11,12 +11,18 @@
   "author": "Allan Martinez",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "connect-mongo": "^2.0.3",
     "cookie-parser": "^1.4.4",
+    "cookies": "^0.7.3",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.4",
     "mysql": "^2.16.0",
-    "nodemon": "^1.18.11"
+    "nodemon": "^1.18.11",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "uuid": "^3.3.2"
   }
 }

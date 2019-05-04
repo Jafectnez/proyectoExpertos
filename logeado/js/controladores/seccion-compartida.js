@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $(".div-loading").css("display", "block");
   $.ajax({
-    url: "/carpetas-compartidas",
+    url: "/carpetas/carpetas-compartidas",
     method: "GET",
     dataType: "json",
     success: function(res) {
@@ -9,6 +9,7 @@ $(document).ready(function () {
       creacionTarjetas(res);
     },
     error: function(error) {
+      $(".div-loading").css("display", "none");
       console.error(error);
     }
   });
@@ -44,10 +45,18 @@ function creacionTarjetas(datos){
               <a onclick="abrirCarpeta(${datos[i]._id}, ${datos[i].nombre});">Abrir</a>
             </div>
             <div class="seccion-derecha">
-              <div class="item">
-                <span class="num">${datos[i].proyectos.length}</span>
-                <span class="word">Proyectos</span>
-              </div>
+            <div class="item">
+              <span class="num">${datos[i].carpetas_internas.length}</span>
+              <span class="word">Carpetas</span>
+            </div>
+            <div class="item">
+              <span class="num">${datos[i].proyectos_internos.length}</span>
+              <span class="word">Proyectos</span>
+            </div>
+            <div class="item">
+              <span class="num">${datos[i].archivos_internos.length}</span>
+              <span class="word">Archivos</span>
+            </div>
             </div>
           </div>
         </div>

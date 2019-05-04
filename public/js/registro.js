@@ -62,7 +62,7 @@ function registro() {
         $("#estado").css("color", "");
         for(var j=0;j<campos.length;j++)
           document.getElementById(campos[j].campo).classList.remove('is-invalid');
-      },3000);
+      },5000);
 
       return;
     }
@@ -85,14 +85,15 @@ function registro() {
           data: {
             nombreCarpeta: 'Mi Carpeta 1',
             descripcionCarpeta: 'Carpeta creada automáticamente',
-            id: res.objeto._id
+            id: res.objeto._id,
+            plan_activo: res.objeto.plan_activo
           },
           dataType: "json",
           success: function (response) {
             alert(response.mensaje);
             setTimeout(function() {  
               location.href = "../login.html";
-            }, 3000);
+            }, 5000);
           },
           error: function (error) {  
             console.error(error);            

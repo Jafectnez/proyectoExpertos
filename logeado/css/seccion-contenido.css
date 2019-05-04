@@ -17,6 +17,18 @@
     padding-left: 0;
 }
 
+.btn-primary{
+    background: blueviolet;
+}
+
+.btn-primary:hover{
+    background: #28284e;
+}
+
+.btn-primary:focus{
+    background: #28284e;
+}
+
 .sector-contenido{
     width: 100%;
     margin: 0;

@@ -49,7 +49,7 @@ router.post("/:idCarpeta/crear", function(req, res){
         }
     ])
     .then(data=>{
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")){
+        if(req.user.plan_activo == "5cc77af9fb6fc00ed59db713"){
             if(data[0].archivos.length < 4){
                 crear(req, res);
             }else{
@@ -57,7 +57,7 @@ router.post("/:idCarpeta/crear", function(req, res){
                 res.send(respuesta);
             }
         }
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b39fb6fc00ed59db736")){
+        if(req.user.plan_activo == "5cc77b39fb6fc00ed59db736"){
             if(data[0].archivos.length < 8){
                 crear(req, res);
             }else{
@@ -65,7 +65,7 @@ router.post("/:idCarpeta/crear", function(req, res){
                 res.send(respuesta);
             }
         }
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b5bfb6fc00ed59db754")){
+        if(req.user.plan_activo == "5cc77b5bfb6fc00ed59db754"){
             if(data[0].archivos.length < 20){
                 crear(req, res);
             }else{

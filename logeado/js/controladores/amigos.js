@@ -70,7 +70,7 @@ function buscarUsuario() {
         setTimeout(function () {  
           $("#status-usuario").css("color", "");
           $("#status-usuario").text("");
-        },3000);
+        },5000);
         return;
       }
 

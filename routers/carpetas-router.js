@@ -6,7 +6,7 @@ var archivo = require("../modelos/archivo");
 var mongoose = require("mongoose");
 
 //Obtiene las carpetas de un usuario
-router.get("/",function(req,res){
+router.get("/",function(req, res){
     carpeta.aggregate([{
             $lookup:{
                 from: "carpetas",
@@ -17,8 +17,9 @@ router.get("/",function(req,res){
         },
         {
             $match:{
-                usuario_creador: mongoose.Types.ObjectId(req.cookies.codigoUsuario),
+                usuario_creador: mongoose.Types.ObjectId(req.user._id),
                 eliminado: false,
+                subcarpeta: false
             }
         },
         {
@@ -27,9 +28,13 @@ router.get("/",function(req,res){
     ])
     .then(data=>{
         for(var c=0; c<data.length; c++){
-            for(var i=0; i<data[c].carpetas.length; i++){
-                if(data[c].carpetas[i].eliminado == true){
-                    data[c].carpetas.splice(i, 1);
+            if(data[c].subcarpeta == true){
+                data.splice(c, 1);
+            }else{
+                for(var i=0; i<data[c].carpetas.length; i++){
+                    if(data[c].carpetas[i].eliminado == true){
+                        data[c].carpetas.splice(i, 1);
+                    }
                 }
             }
         }
@@ -44,7 +49,7 @@ router.get("/",function(req,res){
             },
             {
                 $match:{
-                    usuario_creador: mongoose.Types.ObjectId(req.cookies.codigoUsuario),
+                    usuario_creador: mongoose.Types.ObjectId(req.user._id),
                     eliminado: false
                 }
             },
@@ -54,7 +59,6 @@ router.get("/",function(req,res){
         ])
         .then(data2=>{
             for(var c=0; c<data2.length; c++){
-                data2[c].carpetas_internas = data[c].carpetas;
                 for(var i=0; i<data2[c].proyectos.length; i++){
                     if(data2[c].proyectos[i].eliminado == true){
                         data2[c].proyectos.splice(i, 1);
@@ -72,8 +76,9 @@ router.get("/",function(req,res){
                 },
                 {
                     $match:{
-                        usuario_creador: mongoose.Types.ObjectId(req.cookies.codigoUsuario),
-                        eliminado: false
+                        usuario_creador: mongoose.Types.ObjectId(req.user._id),
+                        eliminado: false,
+                        subcarpeta: false
                     }
                 },
                 {
@@ -85,7 +90,114 @@ router.get("/",function(req,res){
                     if(data3[c].subcarpeta == true){
                         data3.splice(c, 1);
                     }else{
+                        data3[c].carpetas_internas = data[c].carpetas;
                         data3[c].proyectos_internos = data2[c].proyectos;
+                        
+                        for(var i=0; i<data3[c].archivos.length; i++){
+                            if(data3[c].archivos[i].eliminado == true){
+                                data3[c].archivos.splice(i, 1);
+                            }
+                        }
+                    }
+                }
+
+                res.send(data3);
+            });
+        });
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
+//Obtiene las carpetas compartidas de un usuario
+router.get("/carpetas-compartidas",function(req,res){
+    carpeta.aggregate([{
+            $lookup:{
+                from: "carpetas",
+                localField: "carpetas_internas",
+                foreignField: "_id",
+                as: "carpetas"
+            }
+        },
+        {
+            $match:{
+                compartido: mongoose.Types.ObjectId(req.user._id),
+                eliminado: false,
+                subcarpeta: false
+            }
+        },
+        {
+            $project:{"carpetas_internas":0}
+        }
+    ])
+    .then(data=>{
+        for(var c=0; c<data.length; c++){
+            if(data[c].subcarpeta == true){
+                data.splice(c, 1);
+            }else{
+                for(var i=0; i<data[c].carpetas.length; i++){
+                    if(data[c].carpetas[i].eliminado == true){
+                        data[c].carpetas.splice(i, 1);
+                    }
+                }
+            }
+        }
+
+        carpeta.aggregate([{
+                $lookup:{
+                    from: "proyectos",
+                    localField: "proyectos_internos",
+                    foreignField: "_id",
+                    as: "proyectos"
+                }
+            },
+            {
+                $match:{
+                    compartido: mongoose.Types.ObjectId(req.user._id),
+                    eliminado: false
+                }
+            },
+            {
+                $project:{"proyectos_internos":0}
+            }
+        ])
+        .then(data2=>{
+            for(var c=0; c<data2.length; c++){
+                for(var i=0; i<data2[c].proyectos.length; i++){
+                    if(data2[c].proyectos[i].eliminado == true){
+                        data2[c].proyectos.splice(i, 1);
+                    }
+                }
+            }
+    
+            carpeta.aggregate([{
+                    $lookup:{
+                        from: "archivos",
+                        localField: "archivos_internos",
+                        foreignField: "_id",
+                        as: "archivos"
+                    }
+                },
+                {
+                    $match:{
+                        compartido: mongoose.Types.ObjectId(req.user._id),
+                        eliminado: false,
+                        subcarpeta: false
+                    }
+                },
+                {
+                    $project:{"archivos_internos":0}
+                }
+            ])
+            .then(data3=>{
+                for(var c=0; c<data3.length; c++){
+                    if(data3[c].subcarpeta == true){
+                        data3.splice(c, 1);
+                    }else{
+                        data3[c].carpetas_internas = data[c].carpetas;
+                        data3[c].proyectos_internos = data2[c].proyectos;
+                        
                         for(var i=0; i<data3[c].archivos.length; i++){
                             if(data3[c].archivos[i].eliminado == true){
                                 data3[c].archivos.splice(i, 1);
@@ -212,8 +324,29 @@ router.get("/:idCarpeta/archivos",function(req,res){
 
 //Crear una carpeta
 router.post("/crear", function(req, res){
-    carpeta.find({usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario)}).then(data=>{
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")){
+    if(req.body.id){
+        var idCreador = req.body.id;
+        var planActivo = req.body.plan_activo;
+    }
+    else{
+        var idCreador = req.user._id;
+        var planActivo = req.user.plan_activo;
+    }
+
+    carpeta.find(
+    {
+        usuario_creador: mongoose.Types.ObjectId(idCreador),
+        subcarpeta: false
+    })
+    .then(data=>{
+
+        for(var i=0; i<data.length; i++){
+            if(data[i].eliminado == true){
+                data.splice(i, 1);
+            }
+        }
+        
+        if(planActivo == "5cc77af9fb6fc00ed59db713"){
             if(data.length < 2){
                 crear(req, res);
             }else{
@@ -221,7 +354,7 @@ router.post("/crear", function(req, res){
                 res.send(respuesta);
             }
         }
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b39fb6fc00ed59db736")){
+        if(planActivo == "5cc77b39fb6fc00ed59db736"){
             if(data.length < 4){
                 crear(req, res);
             }else{
@@ -229,7 +362,7 @@ router.post("/crear", function(req, res){
                 res.send(respuesta);
             }
         }
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b5bfb6fc00ed59db754")){
+        if(planActivo == "5cc77b5bfb6fc00ed59db754"){
             if(data.length < 10){
                 crear(req, res);
             }else{
@@ -238,42 +371,91 @@ router.post("/crear", function(req, res){
             }
         }
     });
-
 });
 
 //Crear una subcarpeta
 router.post("/:idCarpeta/crear", function(req, res){
-    carpeta.find(
+    carpeta.aggregate([{
+            $lookup:{
+                from: "carpetas",
+                localField: "carpetas_internas",
+                foreignField: "_id",
+                as: "carpetas"
+            }
+        },
         {
-            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
-            subcarpeta: true
-        }).then(data=>{
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")){
-            if(data.length < 1){
+            $match:{
+                _id: mongoose.Types.ObjectId(req.params.idCarpeta),
+                eliminado: false
+            }
+        }
+    ])
+    .then(data=>{
+
+        for(var i=0; i<data[0].carpetas.length; i++){
+            if(data[0].carpetas[i].subcarpeta == false){
+                data[0].carpetas.splice(i, 1);
+            }
+        }
+
+        for(var i=0; i<data[0].carpetas.length; i++){
+            if(data[0].carpetas[i].eliminado == true){
+                data[0].carpetas.splice(i, 1);
+            }
+        }
+        
+        if(req.user.plan_activo == "5cc77af9fb6fc00ed59db713"){
+            if(data.length < 2){
                 crearSubcarpeta(req, res);
             }else{
                 respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan gratuito, si aumenta su plan puede seguir creando."}
                 res.send(respuesta);
             }
         }
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b39fb6fc00ed59db736")){
-            if(data.length < 2){
+        if(req.user.plan_activo == "5cc77b39fb6fc00ed59db736"){
+            if(data.length < 4){
                 crearSubcarpeta(req, res);
             }else{
                 respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan regular, si aumenta su plan puede seguir creando."}
                 res.send(respuesta);
             }
         }
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b5bfb6fc00ed59db754")){
-            if(data.length < 5){
+        if(req.user.plan_activo == "5cc77b5bfb6fc00ed59db754"){
+            if(data.length < 10){
                 crearSubcarpeta(req, res);
             }else{
                 respuesta={status:0, mensaje:"Alcanzó el limite de creaciones para el plan premium."}
                 res.send(respuesta);
             }
         }
-    });
+    })
 
+});
+
+//Compartir una carpeta o subcarpeta
+router.post("/:idCarpeta/compartir", function (req, res) {  
+    carpeta.findOneAndUpdate({
+        _id: mongoose.Types.ObjectId(req.params.idCarpeta)
+    },{
+        $push:{
+            compartido: mongoose.Types.ObjectId(req.body.idAmigoCompartir)
+        }
+    })
+    .then(data=>{
+        data.save()
+        .then(carpetaCompartida=>{
+            respuesta={status: 1, mensaje: `Carpeta compartida con éxito.`, objeto: carpetaCompartida};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta={status: 0, mensaje: `Ocurrió un error interno al compartir la carpeta`, objeto: error};
+            res.send(respuesta);
+        });
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrió un error interno al encontrar la carpeta`, objeto: error};
+        res.send(respuesta);
+    });
 });
 
 //Eliminar una carpeta o subcarpeta
@@ -308,7 +490,7 @@ function crear(req, res){
     if(req.body.id)
         var idCreador = req.body.id;
     else
-        var idCreador = req.session.codigoUsuario;
+        var idCreador = req.user._id;
     
     var carpetaNueva = new carpeta({
         nombre: req.body.nombreCarpeta,
@@ -329,7 +511,7 @@ function crear(req, res){
         res.send(respuesta);
     })
     .catch(error=>{
-        respuesta={status: 0, mensaje: `Ocurrió un error interno`, objeto: error};
+        respuesta={status: 0, mensaje: `Ocurrió un error interno.`, objeto: error};
         res.send(respuesta);
     });
 }
@@ -356,7 +538,7 @@ function crearSubcarpeta(req, res){
             subcarpeta: true,
             eliminado: false,
             compartido: [],
-            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
+            usuario_creador: mongoose.Types.ObjectId(req.user._id),
             fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`,
             carpetas_internas: [],
             proyectos_internos: [],

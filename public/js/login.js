@@ -26,7 +26,7 @@ function login() {
         $("#estado").css("color", "");
         document.getElementById("txt-usuario").classList.remove('is-invalid');
         document.getElementById("txt-password").classList.remove('is-invalid');
-      },3000);
+      },5000);
 
       return;
     }
@@ -35,12 +35,16 @@ function login() {
   $.ajax({
     type: "POST",
     url: "/login",
-    data: `usuario=${$("#txt-usuario").val()}&contrasenia=${$("#txt-password").val()}`,
+    data: {
+      usuario: $("#txt-usuario").val(),
+      contrasenia: $("#txt-password").val()
+    },
     dataType: "json",
+    credentials: "same-origin",
     success: function (res) {
       $(".div-loading").css("display", "none");
       if(res.status == 1){
-        location.href = "../seccion-principal.html";
+        location.href = "/seccion-principal.html";
       }else{
         $("#estado").text(res.mensaje);
         $("#estado").css("color", "red");
@@ -52,7 +56,7 @@ function login() {
           $("#estado").css("color", "");
           document.getElementById("txt-usuario").classList.remove('is-invalid');
           document.getElementById("txt-password").classList.remove('is-invalid');
-        },3000);
+        },5000);
       }
     },
     error: function (error) {

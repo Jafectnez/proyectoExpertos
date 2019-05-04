@@ -377,4 +377,12 @@ body{
     .variacion-carousel{
         display: none;
     }
+    .variacion-2{
+        padding-bottom: 8% !important;
+    }
+    
+    .variacion-2 h1{
+        padding: 10px;
+        padding-bottom: 25px;
+    }
 }

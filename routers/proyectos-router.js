@@ -35,7 +35,7 @@ router.get("/:idProyecto/archivos",function(req,res){
 //Crear un proyecto
 router.post("/:idCarpeta/crear", function(req, res){
     carpeta.find({_id: mongoose.Types.ObjectId(req.params.idCarpeta)}).then(data=>{
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77af9fb6fc00ed59db713")){
+        if(req.user.plan_activo == "5cc77af9fb6fc00ed59db713"){
             if(data[0].proyectos_internos.length < 1){
                 crear(req, res);
             }else{
@@ -43,7 +43,7 @@ router.post("/:idCarpeta/crear", function(req, res){
                 res.send(respuesta);
             }
         }
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b39fb6fc00ed59db736")){
+        if(req.user.plan_activo == "5cc77b39fb6fc00ed59db736"){
             if(data[0].proyectos_internos.length < 3){
                 crear(req, res);
             }else{
@@ -51,7 +51,7 @@ router.post("/:idCarpeta/crear", function(req, res){
                 res.send(respuesta);
             }
         }
-        if(req.session.planActivo == mongoose.Types.ObjectId("5cc77b5bfb6fc00ed59db754")){
+        if(req.user.plan_activo == "5cc77b5bfb6fc00ed59db754"){
             if(data[0].proyectos_internos.length < 8){
                 crear(req, res);
             }else{
@@ -109,7 +109,7 @@ function crear(req, res){
             extension: `html`,
             eliminado: false,
             compartido: [],
-            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
+            usuario_creador: mongoose.Types.ObjectId(req.user._id),
             fecha_creacion: fechaCreacion,
             contenido: `<!DOCTYPE html>
             <html>
@@ -131,7 +131,7 @@ function crear(req, res){
             extension: `js`,
             eliminado: false,
             compartido: [],
-            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
+            usuario_creador: mongoose.Types.ObjectId(req.user._id),
             fecha_creacion: fechaCreacion,
             contenido: "",
             modificaciones: [{mensaje:"Creación del archivo", fecha: fechaCreacion}]
@@ -143,7 +143,7 @@ function crear(req, res){
             extension: `css`,
             eliminado: false,
             compartido: [],
-            usuario_creador: mongoose.Types.ObjectId(req.session.codigoUsuario),
+            usuario_creador: mongoose.Types.ObjectId(req.user._id),
             fecha_creacion: fechaCreacion,
             contenido: "",
             modificaciones: [{mensaje:"Creación del archivo", fecha: fechaCreacion}]

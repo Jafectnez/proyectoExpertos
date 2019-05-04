@@ -28,7 +28,7 @@ function cargarTarjetas() {
                 <div class="menu">
                   <ul>
                     <label>
-                      <button id="compartir-carpeta" data-toggle="modal" data-target="#modalCompartir" onclick="compartirCarpeta('${datos[i]._id}');"></button>
+                      <button id="compartir-carpeta" data-toggle="modal" data-target="#modalCompartir" onclick="compartirCarpeta('${datos[i]._id}', '${datos[i].nombre}');"></button>
                       <li class="fas fa-share-alt"></li>
                     </label>
                     <label>
@@ -112,7 +112,7 @@ $("#btn-crear-carpeta").on("click",function () {
           setTimeout(function () {  
             $("#status").css("color", "black");
             $("#status").text("");
-          },3000);
+          },5000);
         }
         else{
           $("#status").css("color", "red");
@@ -120,7 +120,7 @@ $("#btn-crear-carpeta").on("click",function () {
           setTimeout(function () {  
             $("#status").css("color", "black");
             $("#status").text("");
-          },3000);
+          },5000);
         }
       },
       error: function (respuesta) {  
@@ -134,12 +134,93 @@ $("#btn-crear-carpeta").on("click",function () {
     setTimeout(function () {  
       $("#status").css("color", "");
       $("#status").text("");
-    },3000);
+    },5000);
   }
 });
 
-function compartirCarpeta(idCarpeta) {
-  console.log("Compartir carpeta " + idCarpeta);
+function compartirCarpeta(idCarpeta, nombreCarpeta) {
+  $("#id-compartir").val(idCarpeta);
+  $("#title-carpeta-compartir").text(nombreCarpeta);
+}
+
+$("#btn-compartir").on("click", function () {  
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "POST",
+    url: `/carpetas/${$("#id-compartir").val()}/compartir`,
+    data: {
+      idAmigoCompartir: $('input:radio[name=rBtn-idAmigo]:checked').val()
+    },
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+
+      if(respuesta.status = 1){
+        $("#status-compartir").css("color", "green");
+        $("#status-compartir").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-compartir").css("color", "");
+          $("#status-compartir").text("");
+        },5000);
+      }else{
+        $("#status-compartir").css("color", "red");
+        $("#status-compartir").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-compartir").css("color", "");
+          $("#status-compartir").text("");
+        },5000);
+      }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
+      $("#status-compartir").css("color", "red");
+      $("#status-compartir").text("Ocurrió un error, intente de nuevo más tarde.");
+      console.error(respuesta);
+      setTimeout(function () {  
+        $("#status-compartir").css("color", "");
+        $("#status-compartir").text("");
+      },5000);
+    }
+  });
+});
+
+//Funcion buscar Usuario
+$("#txt-nombre-usuario").on("change", function () {
+  buscarUsuario();
+});
+
+function buscarUsuario() {
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "GET",
+    url: `/amigos/buscar/${$("#txt-nombre-usuario").val()}`,
+    dataType: "json",
+    success: function (respuesta) {
+      $("#resultado-usuario").html("");
+      $(".div-loading").css("display", "none");
+
+      if(respuesta.datos.length < 1){
+        $("#status-usuario").css("color", "red");
+        $("#status-usuario").text("No se han encontrado coincidencias");
+        setTimeout(function () {  
+          $("#status-usuario").css("color", "");
+          $("#status-usuario").text("");
+        },5000);
+        return;
+      }
+
+      for(var i=0; i<respuesta.datos.length; i++){
+        var user = respuesta.datos[i];
+        var row = `<tr>
+                    <td>${user.usuario}</td>
+                    <td>${user.nombre} ${user.apellido}</td>
+                    <td><input type="radio" name="rBtn-idAmigo" value="${user._id}"></td>
+                  </tr>`;
+
+        $("#resultado-usuario").append(row);
+      }
+    }
+  });
 }
 
 function eliminarCarpeta(idCarpeta, nombreCarpeta) {
@@ -158,7 +239,6 @@ $("#btn-eliminar").on("click", function () {
         console.log(respuesta.mensaje);
         $(".div-loading").css("display", "none");
         cargarTarjetas();
-        $("#modalEliminar").toggle("show");
       }else
         console.error(respuesta.mensaje)
     },
@@ -176,7 +256,7 @@ function validarCampo(campo, regex = /.+/){
     setTimeout(function () {  
       $("#"+campo).css("color", "");
       $("#"+campo).css("border", "");
-    },3000);
+    },5000);
 
     return false;
 
@@ -187,7 +267,7 @@ function validarCampo(campo, regex = /.+/){
     setTimeout(function () {  
       $("#"+campo).css("color", "");
       $("#"+campo).css("border", "");
-    },3000);
+    },5000);
 
     return false;
 
@@ -198,7 +278,7 @@ function validarCampo(campo, regex = /.+/){
     setTimeout(function () {  
       $("#"+campo).css("color", "");
       $("#"+campo).css("border", "");
-    },3000);
+    },5000);
 
     return true;
   }

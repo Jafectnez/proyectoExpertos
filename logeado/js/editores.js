@@ -1,3 +1,4 @@
+$(".div-loading").css("display", "block");
 $(".btn-navbar").on("click", function () {
   $(".menu-navbar").toggleClass("show");
 });
@@ -85,7 +86,6 @@ function cargarPlantillaHTML(){
 }
 
 $(document).ready(function () {
-  $(".div-loading").css("display", "block");
   $("#nombre-portada").text(localStorage.getItem("Nombre_Proyecto"));
   $.ajax({
     type: "GET",
