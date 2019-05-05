@@ -201,7 +201,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-primary" id="btn-eliminar-carpeta">Si</button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                         </div>
                       </div>
                     </div>
@@ -258,7 +258,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-primary" id="btn-eliminar-proyecto">Si</button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                         </div>
                       </div>
                     </div>
@@ -315,6 +315,58 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-primary" id="btn-eliminar-archivo">Si</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Ver Carpeta-->
+                  <div class="modal fade" id="modalVerCarpeta" tabindex="-1" role="dialog" aria-labelledby="modalVerCarpetaLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalVerCarpetaLabel" style="text-align: center;font-weight: bold;">Datos del Carpeta</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <input id="id-carpeta-editar" style="display:none">
+                          <h3 id="title-carpeta"></h3>
+                          <span id="nombre-creador"></span><br>
+                          <textarea class="form-control" disabled id="txtA-descripcion-carpeta-editar" cols="30" rows="10"></textarea>
+                          <div id="status-carpeta-editar"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary hide" id="btn-actualizar-carpeta">Actualizar&nbsp;<i class="fas fa-check-square"></i></button>
+                          <button type="button" class="btn btn-primary" id="btn-editar-carpeta">Editar&nbsp;<i class="fas fa-edit"></i></button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Ver Proyecto-->
+                  <div class="modal fade" id="modalVerProyecto" tabindex="-1" role="dialog" aria-labelledby="modalVerProyectoLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalVerProyectoLabel" style="text-align: center;font-weight: bold;">Datos del Proyecto</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <input id="id-proyecto-editar" style="display:none">
+                          <span id="nombre-creador"></span><br>
+                          <input class="form-control" disabled id="title-proyecto"></input>
+                          <textarea class="form-control" disabled id="txtA-descripcion-proyecto-editar" cols="30" rows="10"></textarea>
+                          <div id="status-proyecto-editar"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary hide" id="btn-actualizar-proyecto">Actualizar&nbsp;<i class="fas fa-check-square"></i></button>
+                          <button type="button" class="btn btn-primary" id="btn-editar-proyecto">Editar&nbsp;<i class="fas fa-edit"></i></button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                       </div>
@@ -331,11 +383,31 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                        <div class="row modal-body" style="padding: 10px;padding-bottom: 0;text-align: center;">
                           <input id="id-archivo-editar" style="display:none">
-                          <h3 id="title-archivo"></h3>
-                          <span id="nombre-creador"></span><br>
+                          <span id="nombre-creador-archivo"></span><br>
+                          <input class="form-control" disabled id="title-archivo">
+                          <select class="form-control" id="slc-extension-editar" disabled>
+                            <option value="none">--Seleccione una extension--</option>
+                            <option id="slc-extension-editar-html" value="html">HTML</option>
+                            <option id="slc-extension-editar-js" value="js">JS</option>
+                            <option id="slc-extension-editar-css" value="css">CSS</option>
+                          </select>
                           <textarea class="form-control" disabled id="txtA-contenido-archivo-editar" cols="30" rows="10"></textarea>
+                          <table class="table table-bordered table-striped">
+                            <thead>
+                              <tr>
+                                <td colspan="2"><b>Modificaciones</b></td>
+                              </tr>
+                              <tr>
+                                <td>Mensaje</td>
+                                <td>Fecha</td>
+                              </tr>
+                              <tbody id="tbl-modificaciones-archivo">
+
+                              </tbody>
+                            </thead>
+                          </table>
                           <div id="status-archivo-editar"></div>
                         </div>
                         <div class="modal-footer">

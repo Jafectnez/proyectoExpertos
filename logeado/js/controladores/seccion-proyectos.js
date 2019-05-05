@@ -463,9 +463,16 @@ function verArchivo(idArchivo) {
     success: function (respuesta) {
       $(".div-loading").css("display", "none");
       $("#id-archivo-editar").val(respuesta.archivo._id);
-      $("#title-archivo").text(`${respuesta.archivo.nombre}.${respuesta.archivo.extension}`);
+      $("#title-archivo").val(`${respuesta.archivo.nombre}`);
       $("#txtA-contenido-archivo-editar").text(respuesta.archivo.contenido);
-      $("#nombre-creador").text("Creador: "+respuesta.creador);
+      $("#nombre-creador-archivo").text("Creador: "+respuesta.creador);
+      $("#slc-extension-editar-"+respuesta.archivo.extension).attr("selected", true);
+
+      $("#tbl-modificaciones-archivo").html("");
+      for(var i=0; i<respuesta.archivo.modificaciones.length; i++){
+        var row = `<tr><td>${respuesta.archivo.modificaciones[i].mensaje}</td><td>${respuesta.archivo.modificaciones[i].fecha}</td></tr>`;
+        $("#tbl-modificaciones-archivo").append(row);
+      }
     },
     error: function (error) {  
       $(".div-loading").css("display", "none");
@@ -478,6 +485,8 @@ function verArchivo(idArchivo) {
 $("#btn-editar-archivo").on("click", function () {
   $("#btn-actualizar-archivo").removeClass("hide");
   $("#btn-editar-archivo").addClass("hide");
+  $("#title-archivo").removeAttr("disabled");
+  $("#slc-extension-editar").removeAttr("disabled");
   $("#txtA-contenido-archivo-editar").removeAttr("disabled");
 })
 
@@ -488,6 +497,8 @@ $("#btn-actualizar-archivo").on("click", function () {
     url: "/archivos/guardar",
     data: {
       idArchivo: $("#id-archivo-editar").val(),
+      nombreArchivo: $("#title-archivo").val(),
+      extensionArchivo: $("#slc-extension-editar").val(),
       contenidoArchivo: $("#txtA-contenido-archivo-editar").val()
     },
     dataType: "json",
@@ -495,6 +506,8 @@ $("#btn-actualizar-archivo").on("click", function () {
       $(".div-loading").css("display", "none");
       $("#btn-editar-archivo").removeClass("hide");
       $("#btn-actualizar-archivo").addClass("hide");
+      $("#title-archivo").attr("disabled", true);
+      $("#slc-extension-editar").attr("disabled", true);
       $("#txtA-contenido-archivo-editar").attr("disabled", true);
       if(respuesta.status == 1){
         console.log(respuesta.mensaje);
@@ -588,7 +601,77 @@ $("#btn-eliminar-archivo").on("click", function () {
         console.error(respuesta.mensaje)
     }
   });
+});
+
+function verProyecto(idProyecto) {
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "GET",
+    url: `/proyectos/${idProyecto}`,
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      $("#id-proyecto-editar").val(respuesta.proyecto._id);
+      $("#title-proyecto").text(`${respuesta.proyecto.nombre}`);
+      $("#txtA-descripcion-proyecto-editar").text(respuesta.proyecto.descripcion);
+      $("#nombre-creador").text("Creador: "+respuesta.creador);
+    },
+    error: function (error) {  
+      $(".div-loading").css("display", "none");
+      console.error(error.mensaje);
+      console.error(error.datos);
+    }
+  });
+}
+
+$("#btn-editar-proyecto").on("click", function () {
+  $("#btn-actualizar-proyecto").removeClass("hide");
+  $("#btn-editar-proyecto").addClass("hide");
+  $("#title-proyecto").removeAttr("disabled");
+  $("#txtA-descripcion-proyecto-editar").removeAttr("disabled");
 })
+
+$("#btn-actualizar-proyecto").on("click", function () {
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "POST",
+    url: "/proyectos/guardar",
+    data: {
+      idProyecto: $("#id-proyecto-editar").val(),
+      nombreProyecto: $("#title-proyecto").val(),
+      descripcionProyecto: $("#txtA-descripcion-proyecto-editar").val()
+    },
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      $("#btn-editar-proyecto").removeClass("hide");
+      $("#btn-actualizar-proyecto").addClass("hide");
+      $("#title-proyecto").attr("disabled", true);
+      $("#txtA-descripcion-proyecto-editar").attr("disabled", true);
+      if(respuesta.status == 1){
+        console.log(respuesta.mensaje);
+        $("#status-proyecto-editar").css("color", "green");
+        $("#status-proyecto-editar").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-proyecto-editar").css("color", "");
+          $("#status-proyecto-editar").text("");
+        },5000);
+      }else{
+        console.error(respuesta.mensaje);
+        $("#status-proyecto-editar").css("color", "red");
+        $("#status-proyecto-editar").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-proyecto-editar").css("color", "");
+          $("#status-proyecto-editar").text("");
+        },5000);
+      }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
+      console.error(respuesta.mensaje)
+    }
+  });
+});
 
 function compartirProyecto(idProyecto, nombreProyecto) {
   $("#id-proyecto-compartir").val(idProyecto);

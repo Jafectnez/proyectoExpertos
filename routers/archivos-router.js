@@ -84,32 +84,53 @@ router.post("/:idCarpeta/crear", function(req, res){
 
 //Guarda los cambios en un archivo
 router.post("/guardar", function (req, res) {  
+    var fecha_actual = new Date();
     archivo.findOne(
         {
             _id: mongoose.Types.ObjectId(req.body.idArchivo)
         }
     )
     .then(archivoEncontrado=>{
-        archivoEncontrado.contenido = req.body.contenidoArchivo;
+        if(archivoEncontrado.usuario_creador.equals(req.user._id)){
+            archivoEncontrado.nombre = req.body.nombreArchivo;
+            archivoEncontrado.extension = req.body.extensionArchivo;
+            archivoEncontrado.contenido = req.body.contenidoArchivo;
+            var modificacion = {mensaje:`Modificaciones realizadas por: ${req.user._id}`, fecha:`${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`}
+            archivoEncontrado.modificaciones.push(modificacion);
+            console.log(modificacion);
+            archivoEncontrado.save()
+            .then(()=>{
+                respuesta = {status:1, mensaje: "Cambios guardados", datos:archivoEncontrado};
+                res.send(respuesta);
+            })
+            .catch(error=>{
+                respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+                res.send(respuesta);
+            });
+        }else{
+            archivoEncontrado.contenido = req.body.contenidoArchivo;
+            archivoEncontrado.modificaciones.push({mensaje:"Modificaciones realizadas por: "+req.user._id, fecha:`${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`})
 
-        archivoEncontrado.save()
-        .then(()=>{
-            respuesta = {status:1, mensaje: "Cambios guardados", datos:archivoEncontrado};
-            res.send(respuesta);
-        })
-        .catch(error=>{
-            respuesta = {status:0, mensaje: "Ocurrió un error interno"};
-            res.send(respuesta);
-        });
+            archivoEncontrado.save()
+            .then(()=>{
+                respuesta = {status:1, mensaje: "Cambios guardados.", datos:archivoEncontrado};
+                res.send(respuesta);
+            })
+            .catch(error=>{
+                respuesta = {status:0, mensaje: "Ocurrió un error interno al guardar los cambios."};
+                res.send(respuesta);
+            });
+        }
     })
     .catch(error=>{
-        respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+        respuesta = {status:0, mensaje: "Ocurrió un error interno al entrar el archivo."};
         res.send(respuesta);
     });
 });
 
 //Guarda los cambios hechos en un proyecto
 router.post("/guardar-cambios", function (req, res) {
+    var fecha_actual = new Date();
     var data = {};
     archivo.findOne(
         {
@@ -118,6 +139,7 @@ router.post("/guardar-cambios", function (req, res) {
     )
     .then(archivoHTML=>{
         archivoHTML.contenido = req.body.contenido.html;
+        archivoHTML.modificaciones.push({mensaje:"Modificaciones realizadas por: "+req.user._id, fecha:`${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`})
         data.html = archivoHTML;
 
         archivoHTML.save()
@@ -129,6 +151,7 @@ router.post("/guardar-cambios", function (req, res) {
             )
             .then(archivoJS=>{
                 archivoJS.contenido = req.body.contenido.js;
+                archivoJS.modificaciones.push({mensaje:"Modificaciones realizadas por: "+req.user._id, fecha:`${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`})
                 data.js = archivoJS;
 
                 archivoJS.save()
@@ -140,6 +163,7 @@ router.post("/guardar-cambios", function (req, res) {
                     )
                     .then(archivoCSS=>{
                         archivoCSS.contenido = req.body.contenido.css;
+                        archivoCSS.modificaciones.push({mensaje:"Modificaciones realizadas por: "+req.user._id, fecha:`${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`})
                         data.css = archivoCSS;
 
                         archivoCSS.save()

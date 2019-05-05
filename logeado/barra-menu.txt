@@ -99,8 +99,8 @@
       </div>
       <div class="row modal-body" style="padding: 10px;text-align: center">
         <label>
-        <button type="button" class="btn btn-primary" id="btn-cerrar-sesion" style="font-size: 25px;width: 80px;">Si</button>
-        <a class="hide" href="/logout"></a>
+        <button type="button" onclick="location.href = '/logout';" class="btn btn-primary" id="btn-cerrar-sesion" style="font-size: 25px;width: 80px;">Si</button>
+        <a href="/logout"></a>
         </label>
         <button type="button" class="btn btn-danger" data-dismiss="modal" style="font-size: 25px;width: 80px;">No</button>
       </div>
