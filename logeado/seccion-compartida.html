@@ -112,6 +112,33 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- Modal Ver Archivo-->
+                  <div class="modal fade" id="modalVerArchivo" tabindex="-1" role="dialog" aria-labelledby="modalVerArchivoLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalVerArchivoLabel" style="text-align: center;font-weight: bold;">Datos del Archivo</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <input id="id-archivo" style="display:none">
+                          <h3 id="title-archivo"></h3>
+                          <span id="nombre-creador"></span><br>
+                          <textarea class="form-control" disabled id="txtA-contenido-archivo" cols="30" rows="10"></textarea>
+                          <div id="status-archivo-editar"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary hide" id="btn-actualizar-archivo">Actualizar&nbsp;<i class="fas fa-check-square"></i></button>
+                          <button type="button" class="btn btn-primary" id="btn-editar-archivo">Editar&nbsp;<i class="fas fa-edit"></i></button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
                 </div>
               </div>		
             </div>

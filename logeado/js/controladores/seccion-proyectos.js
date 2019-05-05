@@ -70,11 +70,11 @@ function creacionTarjetasCarpetas(datos) {
             <div class="menu">
               <ul>
                 <label>
-                  <button data-toggle="modal" data-target="#modalCompartirCarpeta"  onclick="compartirCarpeta('${subcarpeta._id}', '${subcarpeta.nombre}');"></button>
+                  <button data-toggle="modal" data-target="#modalCompartirCarpeta" onclick="compartirCarpeta('${subcarpeta._id}', '${subcarpeta.nombre}');"></button>
                   <li class="fas fa-share-alt"></li>
                 </label>
                 <label>
-                  <button data-toggle="modal" data-target="#modalEliminarCarpeta"  onclick="eliminarCarpeta('${subcarpeta._id}', '${subcarpeta.nombre}');"></button>
+                  <button data-toggle="modal" data-target="#modalEliminarCarpeta" onclick="eliminarCarpeta('${subcarpeta._id}', '${subcarpeta.nombre}');"></button>
                   <li class="fas fa-trash"></li>
                 </label>
               </ul>
@@ -179,7 +179,7 @@ function creacionTarjetasArchivos(datos){
             <div class="menu">
               <ul>
                 <label>
-                  <button onclick="verArchivo('${archivo._id}');"></button>
+                  <button data-toggle="modal" data-target="#modalVerArchivo" onclick="verArchivo('${archivo._id}');"></button>
                   <li class="fas fa-eye"></li>
                 </label>
                 <label>
@@ -455,8 +455,71 @@ function abrirProyecto(id, nombre) {
 }
 
 function verArchivo(idArchivo) {
-  console.log("Ver archivo " + idArchivo);
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "GET",
+    url: `/archivos/${idArchivo}`,
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      $("#id-archivo-editar").val(respuesta.archivo._id);
+      $("#title-archivo").text(`${respuesta.archivo.nombre}.${respuesta.archivo.extension}`);
+      $("#txtA-contenido-archivo-editar").text(respuesta.archivo.contenido);
+      $("#nombre-creador").text("Creador: "+respuesta.creador);
+    },
+    error: function (error) {  
+      $(".div-loading").css("display", "none");
+      console.error(error.mensaje);
+      console.error(error.datos);
+    }
+  });
 }
+
+$("#btn-editar-archivo").on("click", function () {
+  $("#btn-actualizar-archivo").removeClass("hide");
+  $("#btn-editar-archivo").addClass("hide");
+  $("#txtA-contenido-archivo-editar").removeAttr("disabled");
+})
+
+$("#btn-actualizar-archivo").on("click", function () {
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "POST",
+    url: "/archivos/guardar",
+    data: {
+      idArchivo: $("#id-archivo-editar").val(),
+      contenidoArchivo: $("#txtA-contenido-archivo-editar").val()
+    },
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      $("#btn-editar-archivo").removeClass("hide");
+      $("#btn-actualizar-archivo").addClass("hide");
+      $("#txtA-contenido-archivo-editar").attr("disabled", true);
+      if(respuesta.status == 1){
+        console.log(respuesta.mensaje);
+        $("#status-archivo-editar").css("color", "green");
+        $("#status-archivo-editar").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-archivo-editar").css("color", "");
+          $("#status-archivo-editar").text("");
+        },5000);
+      }else{
+        console.error(respuesta.mensaje);
+        $("#status-archivo-editar").css("color", "red");
+        $("#status-archivo-editar").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-archivo-editar").css("color", "");
+          $("#status-archivo-editar").text("");
+        },5000);
+      }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
+      console.error(respuesta.mensaje)
+    }
+  });
+});
 
 function compartirArchivo(idArchivo, nombreArchivo) {
   $("#id-archivo-compartir").val(idArchivo);

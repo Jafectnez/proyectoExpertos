@@ -40,7 +40,7 @@
       <i class="fas fa-user-edit"></i>
       <h4>Perfil</h4> 
     </a>
-    <a href="/logout">
+    <a data-toggle="modal" data-target="#modalCerrarSesion">
       <i class="fas fa-door-open"></i>
       <h4>Cerrar Sesión</h4> 
     </a>
@@ -75,14 +75,35 @@
             </a>
           </li>
           <li class="row">
-            <a href="/logout">
-              <i class="fas fa-door-open"></i>
-              <h4>Cerrar Sesión</h4> 
-            </a>
+              <a data-toggle="modal" data-target="#modalCerrarSesion">
+                <i class="fas fa-door-open"></i>
+                <h4>Cerrar Sesión</h4> 
+              </a>
           </li>
         </ul>
       </div>
     </div>
   </div>
   <!-- END MENU -->
+</div>
+
+<!-- Modal Confimar Cierre Sesión-->
+<div class="modal fade" id="modalCerrarSesion" tabindex="-1" role="dialog" aria-labelledby="modalCerrarSesionLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalCerrarSesionLabel" style="text-align: center;font-weight: bold;">¿Desea cerrar la sesión?</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="row modal-body" style="padding: 10px;text-align: center">
+        <label>
+        <button type="button" class="btn btn-primary" id="btn-cerrar-sesion" style="font-size: 25px;width: 80px;">Si</button>
+        <a class="hide" href="/logout"></a>
+        </label>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="font-size: 25px;width: 80px;">No</button>
+      </div>
+    </div>
+  </div>
 </div>

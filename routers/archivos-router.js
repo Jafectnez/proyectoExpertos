@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var archivo = require("../modelos/archivo");
 var carpeta = require("../modelos/carpeta");
+var usuario = require("../modelos/usuario");
 var mongoose = require("mongoose");
 
 //Obtiene todas los archivos
@@ -15,16 +16,20 @@ router.get("/",function(req,res){
     });
 });
 
-//Obtiene los archivos de un usuario
-router.get("/:id",function(req,res){
+//Obtiene los datos de un archivo
+router.get("/:idArchivo",function(req,res){
     archivo.find({
-      contenedor: mongoose.Types.ObjectId(req.params.id)
+      _id: mongoose.Types.ObjectId(req.params.idArchivo)
     })
     .then(data=>{
-        res.send(data);
+        usuario.find({_id: data[0].usuario_creador})
+        .then(usuarioEncontrado=>{
+            respuesta = {archivo: data[0], creador: usuarioEncontrado[0].usuario};
+            res.send(respuesta);
+        })
     })
     .catch(error=>{
-        res.send(error);
+        res.send({status: 0, mensaje: "Ocurrio un error", datos: error});
     });
 });
 
@@ -77,7 +82,33 @@ router.post("/:idCarpeta/crear", function(req, res){
 
 });
 
-//Guarda los cambios hechos en un archivo
+//Guarda los cambios en un archivo
+router.post("/guardar", function (req, res) {  
+    archivo.findOne(
+        {
+            _id: mongoose.Types.ObjectId(req.body.idArchivo)
+        }
+    )
+    .then(archivoEncontrado=>{
+        archivoEncontrado.contenido = req.body.contenidoArchivo;
+
+        archivoEncontrado.save()
+        .then(()=>{
+            respuesta = {status:1, mensaje: "Cambios guardados", datos:archivoEncontrado};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+            res.send(respuesta);
+        });
+    })
+    .catch(error=>{
+        respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+        res.send(respuesta);
+    });
+});
+
+//Guarda los cambios hechos en un proyecto
 router.post("/guardar-cambios", function (req, res) {
     var data = {};
     archivo.findOne(
