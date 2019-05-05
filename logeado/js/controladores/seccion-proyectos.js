@@ -70,6 +70,10 @@ function creacionTarjetasCarpetas(datos) {
             <div class="menu">
               <ul>
                 <label>
+                  <button data-toggle="modal" data-target="#modalVerCarpeta" onclick="verCarpeta('${subcarpeta._id}');"></button>
+                  <li class="fas fa-eye"></li>
+                </label>
+                <label>
                   <button data-toggle="modal" data-target="#modalCompartirCarpeta" onclick="compartirCarpeta('${subcarpeta._id}', '${subcarpeta.nombre}');"></button>
                   <li class="fas fa-share-alt"></li>
                 </label>
@@ -127,6 +131,10 @@ function creacionTarjetasProyectos(datos){
             <div class="cover"></div>
             <div class="menu">
               <ul>
+                <label>
+                  <button data-toggle="modal" data-target="#modalVerProyecto" onclick="verProyecto('${proyecto._id}');"></button>
+                  <li class="fas fa-eye"></li>
+                </label>
                 <label>
                   <button data-toggle="modal" data-target="#modalCompartirProyecto"  onclick="compartirProyecto('${proyecto._id}', '${proyecto.nombre}');"></button>
                   <li class="fas fa-share-alt"></li>
@@ -442,18 +450,7 @@ $("#btn-crear-archivo").on("click",function () {
   }
 });
 
-function abrirCarpeta(id, nombre) {
-  localStorage.setItem("Id_Carpeta", id);
-  localStorage.setItem("Nombre_Carpeta", nombre);
-  window.location = 'seccion-proyectos.html'
-}
-
-function abrirProyecto(id, nombre) {
-  localStorage.setItem("Id_Proyecto", id);
-  localStorage.setItem("Nombre_Proyecto", nombre);
-  window.location = 'seccion-archivos.html';
-}
-
+//Funcionalidades Archivo
 function verArchivo(idArchivo) {
   $(".div-loading").css("display", "block");
   $.ajax({
@@ -602,6 +599,14 @@ $("#btn-eliminar-archivo").on("click", function () {
     }
   });
 });
+//Fin funcionalidades Archivo
+
+//Funcionalidades Proyecto
+function abrirProyecto(id, nombre) {
+  localStorage.setItem("Id_Proyecto", id);
+  localStorage.setItem("Nombre_Proyecto", nombre);
+  window.location = 'seccion-archivos.html';
+}
 
 function verProyecto(idProyecto) {
   $(".div-loading").css("display", "block");
@@ -612,7 +617,7 @@ function verProyecto(idProyecto) {
     success: function (respuesta) {
       $(".div-loading").css("display", "none");
       $("#id-proyecto-editar").val(respuesta.proyecto._id);
-      $("#title-proyecto").text(`${respuesta.proyecto.nombre}`);
+      $("#title-proyecto").val(`${respuesta.proyecto.nombre}`);
       $("#txtA-descripcion-proyecto-editar").text(respuesta.proyecto.descripcion);
       $("#nombre-creador").text("Creador: "+respuesta.creador);
     },
@@ -756,44 +761,84 @@ $("#btn-eliminar-proyecto").on("click", function () {
     }
   });
 });
+//Fin funcionalidades Proyecto
 
-function eliminarCarpeta(idCarpeta, nombreCarpeta) {
-  $("#id-carpeta-eliminar").val(idCarpeta);
-  $("#title-carpeta-eliminar").text(nombreCarpeta);
+//Funcionalidades Carpeta
+function abrirCarpeta(id, nombre) {
+  localStorage.setItem("Id_Carpeta", id);
+  localStorage.setItem("Nombre_Carpeta", nombre);
+  window.location = 'seccion-proyectos.html'
 }
 
-$("#btn-eliminar-carpeta").on("click", function () {  
+function verCarpeta(idCarpeta) {
   $(".div-loading").css("display", "block");
   $.ajax({
     type: "GET",
-    url: `/carpetas/${$("#id-carpeta-eliminar").val()}/eliminar`,
+    url: `/carpetas/${idCarpeta}`,
     dataType: "json",
     success: function (respuesta) {
       $(".div-loading").css("display", "none");
+      $("#id-carpeta-editar").val(respuesta.carpeta._id);
+      $("#title-carpeta").text(`${respuesta.carpeta.nombre}`);
+      $("#txtA-descripcion-carpeta-editar").text(respuesta.carpeta.descripcion);
+      $("#nombre-creador").text("Creador: "+respuesta.creador);
+    },
+    error: function (error) {  
+      $(".div-loading").css("display", "none");
+      console.error(error.mensaje);
+      console.error(error.datos);
+    }
+  });
+}
+
+$("#btn-editar-carpeta").on("click", function () {
+  $("#btn-actualizar-carpeta").removeClass("hide");
+  $("#btn-editar-carpeta").addClass("hide");
+  $("#title-carpeta").removeAttr("disabled");
+  $("#txtA-descripcion-carpeta-editar").removeAttr("disabled");
+})
+
+$("#btn-actualizar-carpeta").on("click", function () {
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "POST",
+    url: "/carpetas/guardar",
+    data: {
+      idCarpeta: $("#id-carpeta-editar").val(),
+      nombreCarpeta: $("#title-carpeta").val(),
+      descripcionCarpeta: $("#txtA-descripcion-carpeta-editar").val()
+    },
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      $("#btn-editar-carpeta").removeClass("hide");
+      $("#btn-actualizar-carpeta").addClass("hide");
+      $("#title-carpeta").attr("disabled", true);
+      $("#txtA-descripcion-carpeta-editar").attr("disabled", true);
       if(respuesta.status == 1){
         console.log(respuesta.mensaje);
-        $("#status").css("color", "green");
-        $("#status").text(respuesta.mensaje);
+        $("#status-carpeta-editar").css("color", "green");
+        $("#status-carpeta-editar").text(respuesta.mensaje);
         setTimeout(function () {  
-          $("#status").css("color", "");
-          $("#status").text("");
+          $("#status-carpeta-editar").css("color", "");
+          $("#status-carpeta-editar").text("");
         },5000);
-        cargarTarjetas();
       }else{
         console.error(respuesta.mensaje);
-        $("#status").css("color", "red");
-        $("#status").text(respuesta.mensaje);
+        $("#status-carpeta-editar").css("color", "red");
+        $("#status-carpeta-editar").text(respuesta.mensaje);
         setTimeout(function () {  
-          $("#status").css("color", "");
-          $("#status").text("");
+          $("#status-carpeta-editar").css("color", "");
+          $("#status-carpeta-editar").text("");
         },5000);
       }
     },
     error: function (respuesta) {  
       $(".div-loading").css("display", "none");
+      console.error(respuesta.mensaje)
     }
   });
-})
+});
 
 function compartirCarpeta(idCarpeta, nombreCarpeta) {
   $("#id-compartir-carpeta").val(idCarpeta);
@@ -840,7 +885,45 @@ $("#btn-compartir-carpeta").on("click", function () {
     }
   });
 });
-    
+
+function eliminarCarpeta(idCarpeta, nombreCarpeta) {
+  $("#id-carpeta-eliminar").val(idCarpeta);
+  $("#title-carpeta-eliminar").text(nombreCarpeta);
+}
+
+$("#btn-eliminar-carpeta").on("click", function () {  
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "GET",
+    url: `/carpetas/${$("#id-carpeta-eliminar").val()}/eliminar`,
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      if(respuesta.status == 1){
+        console.log(respuesta.mensaje);
+        $("#status").css("color", "green");
+        $("#status").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status").css("color", "");
+          $("#status").text("");
+        },5000);
+        cargarTarjetas();
+      }else{
+        console.error(respuesta.mensaje);
+        $("#status").css("color", "red");
+        $("#status").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status").css("color", "");
+          $("#status").text("");
+        },5000);
+      }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
+    }
+  });
+});
+//Fin funcionalidades Carpeta  
 
 
 function validarCampo(campo, regex = /.+/){

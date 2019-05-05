@@ -3,7 +3,23 @@ var router = express.Router();
 var proyecto = require("../modelos/proyecto");
 var carpeta = require("../modelos/carpeta");
 var archivo = require("../modelos/archivo");
+var usuario = require("../modelos/usuario");
 var mongoose = require("mongoose");
+
+//Obtiene los datos de un proyecto
+router.get("/:idProyecto",function(req,res){
+    proyecto.find({_id: req.params.idProyecto})
+    .then(data=>{
+        usuario.find({_id: data[0].usuario_creador})
+        .then(usuarioEncontrado=>{
+            respuesta = {proyecto: data[0], creador: usuarioEncontrado[0].usuario};
+            res.send(respuesta);
+        })
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
 
 //Obtiene los archivos del proyecto
 router.get("/:idProyecto/archivos",function(req,res){
@@ -29,6 +45,38 @@ router.get("/:idProyecto/archivos",function(req,res){
     })
     .catch(error=>{
         res.send(error);
+    });
+});
+
+//Guarda los cambios de un proyecto
+router.post("/guardar", function (req, res) {
+    proyecto.findOne(
+        {
+            _id: mongoose.Types.ObjectId(req.body.idProyecto)
+        }
+    )
+    .then(proyectoEncontrado=>{
+        if(proyectoEncontrado.usuario_creador.equals(req.user._id)){
+            proyectoEncontrado.nombre = req.body.nombreProyecto;
+            proyectoEncontrado.descripcion = req.body.descripcionProyecto;
+            
+            proyectoEncontrado.save()
+            .then(()=>{
+                respuesta = {status:1, mensaje: "Cambios guardados", datos: proyectoEncontrado};
+                res.send(respuesta);
+            })
+            .catch(error=>{
+                respuesta = {status:0, mensaje: "Ocurrió un error interno"};
+                res.send(respuesta);
+            });
+        }else{
+            respuesta = {status:0, mensaje: "No puede editar un proyecto que no es suyo."};
+            res.send(respuesta);
+        }
+    })
+    .catch(error=>{
+        respuesta = {status:0, mensaje: "Ocurrió un error interno al entrar el archivo."};
+        res.send(respuesta);
     });
 });
 
@@ -76,6 +124,9 @@ router.post("/:idProyecto/compartir", function (req, res) {
         }
         if(control >= 1){
             respuesta={status: 0, mensaje: `Este proyecto ya está compartido con ese usuario.`};
+            res.send(respuesta);
+        }else if(mongoose.Types.ObjectId(req.body.idAmigoCompartir).equals(data.usuario_creador)){
+            respuesta={status: 0, mensaje: `No puedes compartir el proyecto con el creador del mismo.`, objeto: error};
             res.send(respuesta);
         }else{
             data.colaboradores.push(mongoose.Types.ObjectId(req.body.idAmigoCompartir));

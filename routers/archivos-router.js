@@ -82,7 +82,7 @@ router.post("/:idCarpeta/crear", function(req, res){
 
 });
 
-//Guarda los cambios en un archivo
+//Guarda los cambios de un archivo
 router.post("/guardar", function (req, res) {  
     var fecha_actual = new Date();
     archivo.findOne(
@@ -95,9 +95,9 @@ router.post("/guardar", function (req, res) {
             archivoEncontrado.nombre = req.body.nombreArchivo;
             archivoEncontrado.extension = req.body.extensionArchivo;
             archivoEncontrado.contenido = req.body.contenidoArchivo;
-            var modificacion = {mensaje:`Modificaciones realizadas por: ${req.user._id}`, fecha:`${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`}
+            var modificacion = {mensaje:`Modificaciones realizadas por: ${req.user.usuario}`, fecha:`${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`}
             archivoEncontrado.modificaciones.push(modificacion);
-            console.log(modificacion);
+            
             archivoEncontrado.save()
             .then(()=>{
                 respuesta = {status:1, mensaje: "Cambios guardados", datos:archivoEncontrado};
@@ -107,9 +107,12 @@ router.post("/guardar", function (req, res) {
                 respuesta = {status:0, mensaje: "Ocurrió un error interno"};
                 res.send(respuesta);
             });
+        }else if(mongoose.Types.ObjectId(req.body.idAmigoCompartir).equals(data.usuario_creador)){
+            respuesta={status: 0, mensaje: `No puedes compartir el archivo con el creador del mismo.`, objeto: error};
+            res.send(respuesta);
         }else{
             archivoEncontrado.contenido = req.body.contenidoArchivo;
-            archivoEncontrado.modificaciones.push({mensaje:"Modificaciones realizadas por: "+req.user._id, fecha:`${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`})
+            archivoEncontrado.modificaciones.push({mensaje:`Modificaciones realizadas por: ${req.user.usuario}`, fecha:`${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`})
 
             archivoEncontrado.save()
             .then(()=>{

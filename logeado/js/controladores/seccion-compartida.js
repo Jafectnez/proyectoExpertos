@@ -150,11 +150,7 @@ function creacionTarjetasArchivos(datos){
                   <li class="fas fa-eye"></li>
                 </label>
                 <label>
-                  <button data-toggle="modal" data-target="#modalCompartirArchivo"  onclick="compartirArchivo('${archivo._id}', '${archivo.nombre}.${archivo.extension}');"></button>
-                  <li class="fas fa-share-alt"></li>
-                </label>
-                <label>
-                  <button data-toggle="modal" data-target="#modalEliminarArchivo"  onclick="eliminarArchivo('${archivo._id}', '${archivo.nombre}.${archivo.extension}');"></button>
+                  <button data-toggle="modal" data-target="#modalEliminarArchivo"  onclick="eliminarArchivoCompartido('${archivo._id}', '${archivo.nombre}.${archivo.extension}');"></button>
                   <li class="fas fa-trash"></li>
                 </label>
               </ul>
@@ -489,6 +485,45 @@ $("#btn-actualizar-archivo").on("click", function () {
   });
 });
 
+function eliminarArchivoCompartido(idArchivo, nombreArchivo) {
+  $("#id-archivo-eliminar").val(idArchivo);
+  $("#title-archivo-eliminar").text(nombreArchivo);
+}
+
+$("#btn-eliminar-archivo").on("click", function () {  
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "GET",
+    url: `/archivos/${$("#id-archivo-eliminar").val()}/compartidos/eliminar`,
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      if(respuesta.status == 1){
+        console.log(respuesta.mensaje);
+        $("#status-eliminar-archivo").css("color", "green");
+        $("#status-eliminar-archivo").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-eliminar-archivo").css("color", "");
+          $("#status-eliminar-archivo").text("");
+        },5000);
+        cargarTarjetas();
+      }else{
+        console.error(respuesta.mensaje);
+        $("#status-eliminar-archivo").css("color", "red");
+        $("#status-eliminar-archivo").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-eliminar-archivo").css("color", "");
+          $("#status-eliminar-archivo").text("");
+        },5000);
+      }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
+      console.log(error)
+    }
+  });
+});
+
 function eliminarProyectoCompartido(idProyecto, nombreProyecto) {
   $("#id-proyecto-eliminar").val(idProyecto);
   $("#title-proyecto-eliminar").text(nombreProyecto);
@@ -498,7 +533,7 @@ $("#btn-eliminar-proyecto").on("click", function () {
   $(".div-loading").css("display", "block");
   $.ajax({
     type: "GET",
-    url: `/carpetas/${$("#id-proyecto-eliminar").val()}/compartidos/eliminar`,
+    url: `/proyectos/${$("#id-proyecto-eliminar").val()}/compartidos/eliminar`,
     dataType: "json",
     success: function (respuesta) {
       $(".div-loading").css("display", "none");
@@ -523,7 +558,7 @@ $("#btn-eliminar-proyecto").on("click", function () {
     },
     error: function (respuesta) {  
       $(".div-loading").css("display", "none");
-      console.log(error)
+      console.error(respuesta.mensaje)
     }
   });
 });

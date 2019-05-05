@@ -28,6 +28,10 @@ function cargarTarjetas() {
                 <div class="menu">
                   <ul>
                     <label>
+                      <button data-toggle="modal" data-target="#modalVerCarpeta" onclick="verCarpeta('${datos[i]._id}');"></button>
+                      <li class="fas fa-eye"></li>
+                    </label>
+                    <label>
                       <button id="compartir-carpeta" data-toggle="modal" data-target="#modalCompartir" onclick="compartirCarpeta('${datos[i]._id}', '${datos[i].nombre}');"></button>
                       <li class="fas fa-share-alt"></li>
                     </label>
@@ -82,6 +86,80 @@ function abrirCarpeta(id, nombre) {
   localStorage.setItem("Nombre_Carpeta", nombre);
   window.location = 'seccion-proyectos.html'
 }
+
+function verCarpeta(idCarpeta) {
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "GET",
+    url: `/carpetas/${idCarpeta}`,
+    dataType: "json",
+    success: function (respuesta) {
+      console.log(respuesta);
+      console.log(respuesta.carpeta);
+      $(".div-loading").css("display", "none");
+      $("#id-carpeta-editar").val(respuesta.carpeta._id);
+      $("#title-carpeta").val(`${respuesta.carpeta.nombre}`);
+      $("#txtA-descripcion-carpeta-editar").text(respuesta.carpeta.descripcion);
+      $("#nombre-creador").text("Creador: "+respuesta.creador);
+    },
+    error: function (error) {  
+      $(".div-loading").css("display", "none");
+      console.error(error.mensaje);
+      console.error(error.datos);
+    }
+  });
+}
+
+$("#btn-editar-carpeta").on("click", function () {
+  $("#btn-actualizar-carpeta").removeClass("hide");
+  $("#btn-editar-carpeta").addClass("hide");
+  $("#title-carpeta").removeAttr("disabled");
+  $("#txtA-descripcion-carpeta-editar").removeAttr("disabled");
+})
+
+$("#btn-actualizar-carpeta").on("click", function () {
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "POST",
+    url: "/carpetas/guardar",
+    data: {
+      idCarpeta: $("#id-carpeta-editar").val(),
+      nombreCarpeta: $("#title-carpeta").val(),
+      descripcionCarpeta: $("#txtA-descripcion-carpeta-editar").val()
+    },
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      $("#btn-editar-carpeta").removeClass("hide");
+      $("#btn-actualizar-carpeta").addClass("hide");
+      $("#title-carpeta").attr("disabled", true);
+      $("#txtA-descripcion-carpeta-editar").attr("disabled", true);
+      if(respuesta.status == 1){
+        console.log(respuesta.mensaje);
+        cargarTarjetas();
+        verCarpeta(respuesta.datos._id);
+        $("#status-carpeta-editar").css("color", "green");
+        $("#status-carpeta-editar").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-carpeta-editar").css("color", "");
+          $("#status-carpeta-editar").text("");
+        },5000);
+      }else{
+        console.error(respuesta.mensaje);
+        $("#status-carpeta-editar").css("color", "red");
+        $("#status-carpeta-editar").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-carpeta-editar").css("color", "");
+          $("#status-carpeta-editar").text("");
+        },5000);
+      }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
+      console.error(respuesta.mensaje)
+    }
+  });
+});
 
 $("#btn-crear-carpeta").on("click",function () {
   $(".div-loading").css("display", "block");
