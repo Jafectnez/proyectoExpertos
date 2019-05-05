@@ -8,11 +8,6 @@ Pasos para el levantamiento del proyecto:
 
 3) Ahora ya podremos ir al localhost:3333/ para acceder al Langing Page y comenzar a navegar por la página.
 
-Crear la base de datos de manera local:
-
-En la carpeta `modulos/` encontraremos un archivo llamado baselocal.js en la cual estará la conexión para crear la base local.
-Se autogenerarán 100 usuarios, no se autogenerarán carpetas, proyectos ni archivos por cuestiones de validación muy precisa.
-
 Acceder a la aplicación web:
 
 Llendo al link https://gepo-hn.herokuapp.com/ podremos acceder a la aplicación web montada en Heroku.

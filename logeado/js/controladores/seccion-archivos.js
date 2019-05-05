@@ -38,13 +38,6 @@ function creacionTarjetas(datos){
           <div class="cabecera-tarjeta">
             <img src="img/Logo-GEPO-page.svg" alt="">
             <div class="cover"></div>
-            <div class="menu">
-              <ul>
-                <li class="fas fa-share-alt"></li>
-                <li class="fas fa-trash"></li>
-              </ul>
-              <i class="fas fa-ellipsis-v"></i>
-            </div>
 
             <div class="nombre">
               <span class="nombre-tarjeta">${archivo.nombre}.${archivo.extension}</span>
