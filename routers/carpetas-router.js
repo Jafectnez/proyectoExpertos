@@ -683,6 +683,37 @@ router.get("/:idCarpeta/eliminar", function (req, res) {
     });
 });
 
+function crear(req, res){
+    fecha_actual = new Date();
+    if(req.body.id)
+        var idCreador = req.body.id;
+    else
+        var idCreador = req.user._id;
+    
+    var carpetaNueva = new carpeta({
+        nombre: req.body.nombreCarpeta,
+        descripcion: req.body.descripcionCarpeta,
+        subcarpeta: false,
+        eliminado: false,
+        compartido: [],
+        usuario_creador: mongoose.Types.ObjectId(idCreador),
+        fecha_creacion: `${fecha_actual.getFullYear()}-${fecha_actual.getMonth()}-${fecha_actual.getDate()}`,
+        carpetas_internas: [],
+        proyectos_internos: [],
+        archivos_internos: []
+    });
+
+    carpetaNueva.save()
+    .then(obj=>{
+        respuesta={status: 1, mensaje: `Creación exitosa`, objeto: obj};
+        res.send(respuesta);
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrió un error interno.`, objeto: error};
+        res.send(respuesta);
+    });
+}
+
 function crearSubcarpeta(req, res){
     fecha_actual = new Date();
 

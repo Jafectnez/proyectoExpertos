@@ -24,4 +24,5 @@ module.exports = function () {
   });
 
   require('./estrategias/local')();
+  require('./estrategias/facebook')();
 }

@@ -6,9 +6,31 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/login.css">
     <link rel="stylesheet" type="text/css" href="css/loading.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
+      <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '829750264072274',
+              cookie     : true,
+              xfbml      : true,
+              version    : 'v3.3'
+            });
+              
+            FB.AppEvents.logPageView();   
+              
+          };
+        
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "https://connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
     <div class="div-loading">
       <img src="../img/Logo-GEPO-loading.svg">
       <span>CARGANDO</span>
@@ -20,7 +42,7 @@
       <input id="btn-login" type="button" onclick="login();" value="Iniciar Sesión">
       <div id="estado"></div>
       <hr>
-      <a href='registro.html'>AUN NO TIENES CUENTA?</a>
+      <a href='registro.html' id="registro-btn">AUN NO TIENES CUENTA?</a>
     </div>
   </body>
   <!--Scripts-->

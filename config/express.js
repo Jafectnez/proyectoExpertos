@@ -32,6 +32,14 @@ module.exports = function () {
   app.use("/carpetas", carpetasRouter);
   app.use("/proyectos", proyectosRouter);
   app.use("/archivos", archivosRouter);
+  
+  app.get('/auth/facebook', passport.authenticate('facebook'));
+
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', { failureRedirect: '/login.html' }),
+    function(req, res) {
+        res.redirect('/seccion-principal.html');
+  });
 
   app.use(
       function(req, res, next){
