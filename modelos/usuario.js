@@ -13,10 +13,7 @@ const esquema = new mongoose.Schema(
         contrasenia : {type: String, required: true},
         salt:{type: String},
         amigos: Array,
-        plan_activo : mongoose.Schema.Types.ObjectId,
-        proveedor: {type: String,required: 'El proveedor es necesario'},
-        proveedorId: String,
-        proveedorData: {},
+        plan_activo : mongoose.Schema.Types.ObjectId
     }
 );
 

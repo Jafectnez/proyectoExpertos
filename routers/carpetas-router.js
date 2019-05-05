@@ -112,7 +112,8 @@ router.get("/", function(req, res){
 });
 
 //Obtiene los datos de una carpeta
-router.get("/:idCarpeta", function(req, res){
+router.get("/:idCarpeta/datos", function(req, res){
+    console.log(req.params.idCarpeta);
     carpeta.find({
         _id: mongoose.Types.ObjectId(req.params.idCarpeta),
         eliminado: false

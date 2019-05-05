@@ -782,7 +782,7 @@ function verCarpeta(idCarpeta) {
   $(".div-loading").css("display", "block");
   $.ajax({
     type: "GET",
-    url: `/carpetas/${idCarpeta}`,
+    url: `/carpetas/${idCarpeta}/datos`,
     dataType: "json",
     success: function (respuesta) {
       $(".div-loading").css("display", "none");
