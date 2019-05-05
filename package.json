@@ -17,6 +17,7 @@
     "cookies": "^0.7.3",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
+    "jszip": "^3.2.1",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.4",
     "mysql": "^2.16.0",

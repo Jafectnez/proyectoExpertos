@@ -5,6 +5,8 @@ var carpeta = require("../modelos/carpeta");
 var archivo = require("../modelos/archivo");
 var usuario = require("../modelos/usuario");
 var mongoose = require("mongoose");
+var JSZip = require("jszip");
+var fs = require("fs");
 
 //Obtiene los datos de un proyecto
 router.get("/:idProyecto",function(req,res){
@@ -192,6 +194,50 @@ router.get("/:idProyecto/eliminar", function (req, res) {
     .catch(error=>{
         respuesta={status: 0, mensaje: `Ocurrio un error interno`, objeto: error};
         res.send(respuesta);
+    });
+});
+
+//Descarga un proyecto
+router.get("/:idProyecto/descargar", function (req, res) {  
+    proyecto.aggregate([{
+            $lookup:{
+                from: "archivos",
+                localField: "archivos",
+                foreignField: "_id",
+                as: "archivos"
+            }
+        },
+        {
+            $match:{
+                _id:mongoose.Types.ObjectId(req.params.idProyecto),
+                eliminado: false
+            }
+        },
+        {
+            $project:{"nombre":1, "archivos":1}
+        }
+    ])
+    .then(proyectoEncontrado=>{
+        var zip = new JSZip();
+
+        var miProyecto = zip.folder(`${proyectoEncontrado[0].nombre}`)
+
+        for(var i=0; i<proyectoEncontrado[0].archivos.length; i++){
+          var archivo = proyectoEncontrado[0].archivos[i];
+          miProyecto.file(`${archivo.nombre}.${archivo.extension}`, archivo.contenido, {base64: true});
+        }
+
+        miProyecto.generateNodeStream({type:'nodebuffer', streamFiles:true})
+        .pipe(fs.createWriteStream(`${__dirname}/${proyectoEncontrado[0].nombre}.zip`))
+        .on('finish', function () {
+            // JSZip generates a readable stream with a "end" event,
+            // but is piped here in a writable stream which emits a "finish" event.
+            console.log(`${proyectoEncontrado[0].nombre}.zip creado.`);
+            res.download(`${__dirname}/${proyectoEncontrado[0].nombre}.zip`, `${proyectoEncontrado[0].nombre}.zip`);
+        });
+    })
+    .catch(error=>{
+        res.send(error);
     });
 });
 

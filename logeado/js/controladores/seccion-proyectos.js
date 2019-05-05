@@ -136,6 +136,10 @@ function creacionTarjetasProyectos(datos){
                   <li class="fas fa-eye"></li>
                 </label>
                 <label>
+                  <button onclick="descargarProyecto('${proyecto._id}');"></button>
+                  <li class="fas fa-download"></li>
+                </label>
+                <label>
                   <button data-toggle="modal" data-target="#modalCompartirProyecto"  onclick="compartirProyecto('${proyecto._id}', '${proyecto.nombre}');"></button>
                   <li class="fas fa-share-alt"></li>
                 </label>
@@ -189,6 +193,10 @@ function creacionTarjetasArchivos(datos){
                 <label>
                   <button data-toggle="modal" data-target="#modalVerArchivo" onclick="verArchivo('${archivo._id}');"></button>
                   <li class="fas fa-eye"></li>
+                </label>
+                <label>
+                  <button onclick="obtenerArchivo('${archivo._id}', true);"></button>
+                  <li class="fas fa-download"></li>
                 </label>
                 <label>
                   <button data-toggle="modal" data-target="#modalCompartirArchivo"  onclick="compartirArchivo('${archivo._id}', '${archivo.nombre}.${archivo.extension}');"></button>
@@ -1006,6 +1014,91 @@ function buscarUsuario(dato) {
 
         $("#resultado-usuario-"+dato).append(row);
       }
+    }
+  });
+}
+
+//Funcionalidad de Descargas
+function descargarArchivo(Blob, nombre) {
+  var reader = new FileReader();
+  reader.onload = function (event) {
+    var save = document.createElement('a');
+    save.href = event.target.result;
+    save.target = '_blank';
+    save.download = nombre;
+
+    var clicEvent = new MouseEvent('click', {
+      'view': window,
+      'bubbles': true,
+      'cancelable': true
+    });
+    
+    save.dispatchEvent(clicEvent);
+    
+    (window.URL || window.webkitURL).revokeObjectURL(save.href);
+  };
+  
+  reader.readAsDataURL(Blob);
+};
+
+function obtenerArchivo(idArchivo, unico) {
+  $(".div-loading").css("display", "block");
+  //Obtencion de los datos
+  $.ajax({
+    type: "GET",
+    url: `archivos/${idArchivo}`,
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      if(unico){
+        miArchivo = new Blob([respuesta.archivo.contenido], {
+          type: `text/${respuesta.archivo.extension}`
+        });
+        descargarArchivo(miArchivo, `${respuesta.archivo.nombre}.${respuesta.archivo.extension}`);
+      }else{
+        return respuesta.archivo;
+      }
+    }
+  });
+}
+
+function descargarProyecto(idProyecto) {
+  $(".div-loading").css("display", "block");
+  //Obtencion de los datos
+  $.ajax({
+    type: "GET",
+    url: `proyectos/${idProyecto}/descargar`,
+    contentType: 'application/json', 
+    xhrFields:{
+        responseType: 'blob'
+    },
+    success: function(data, status, xhr){
+      $(".div-loading").css("display", "none");
+
+      var filename = "";
+      var disposition = xhr.getResponseHeader('Content-Disposition');
+      if (disposition && disposition.indexOf('attachment') !== -1) {
+          var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+          var matches = filenameRegex.exec(disposition);
+          if (matches != null && matches[1]) { 
+            filename = matches[1].replace(/['"]/g, '');
+          }
+      }
+
+      var anchor = document.createElement('a');
+      var url = window.URL || window.webkitURL;
+      anchor.href = url.createObjectURL(data);
+      anchor.download = filename;
+      document.body.append(anchor);
+      anchor.click();
+      setTimeout(function(){  
+          document.body.removeChild(anchor);
+          url.revokeObjectURL(anchor.href);
+      }, 1);
+    },
+    error: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      console.error(respuesta);
     }
   });
 }

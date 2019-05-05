@@ -82,6 +82,7 @@
   text-align: center;
   color: white;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .cabecera-tarjeta .menu ul li:hover{

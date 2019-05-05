@@ -26,12 +26,12 @@ module.exports = function () {
 
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(express.static("public"));
+  const logeado = express.static("logeado");
   
   app.use("/carpetas", carpetasRouter);
   app.use("/proyectos", proyectosRouter);
   app.use("/archivos", archivosRouter);
-  app.use(express.static("public"));
-  const logeado = express.static("logeado");
 
   app.use(
       function(req, res, next){
