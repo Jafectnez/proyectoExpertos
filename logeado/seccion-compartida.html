@@ -41,7 +41,7 @@
                     <button id="btn-agregar-carpeta" class="btn-agregar"><i class="fas fa-folder-plus"></i></button>
                   </div>
 
-                  <!-- Modal Eliminar -->
+                  <!-- Modal Eliminar Carpeta-->
                   <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -59,6 +59,54 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-primary" id="btn-eliminar">Si</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Eliminar Proyecto-->
+                  <div class="modal fade" id="modalEliminarProyecto" tabindex="-1" role="dialog" aria-labelledby="modalEliminarProyectoLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalEliminarProyectoLabel" style="text-align: center;font-weight: bold;">¿Desea eliminar este proyecto?</h3>
+                          <h5 class="modal-title" style="color:blueviolet;text-align: center;font-weight: bold;">¡Esta acción no puede deshacerse!</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <h2 id="title-proyecto-eliminar"></h2>
+                          <input style="display:none" id="id-proyecto-eliminar" type="text">
+                          <div id="status-eliminar-proyecto"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-eliminar-proyecto">Si</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Eliminar Archivo-->
+                  <div class="modal fade" id="modalEliminarArchivo" tabindex="-1" role="dialog" aria-labelledby="modalEliminarArchivoLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalEliminarArchivoLabel" style="text-align: center;font-weight: bold;">¿Desea eliminar este archivo?</h3>
+                          <h5 class="modal-title" style="color:blueviolet;text-align: center;font-weight: bold;">¡Esta acción no puede deshacerse!</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
+                          <h2 id="title-archivo-eliminar"></h2>
+                          <input style="display:none" id="id-archivo-eliminar" type="text">
+                          <div id="status-eliminar-archivo"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="btn-eliminar-archivo">Si</button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                       </div>

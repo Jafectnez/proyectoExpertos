@@ -7,7 +7,7 @@ var usuario = require("../modelos/usuario");
 var mongoose = require("mongoose");
 
 //Obtiene las carpetas de un usuario
-router.get("/",function(req, res){
+router.get("/", function(req, res){
     carpeta.aggregate([{
             $lookup:{
                 from: "carpetas",
@@ -112,7 +112,7 @@ router.get("/",function(req, res){
 });
 
 //Obtiene las carpetas compartidas de un usuario
-router.get("/carpetas-compartidas",function(req,res){
+router.get("/carpetas-compartidas", function(req, res){
     carpeta.aggregate([{
             $lookup:{
                 from: "carpetas",
@@ -223,8 +223,68 @@ router.get("/carpetas-compartidas",function(req,res){
     });
 });
 
+//Obtiene los proyectos compartidos de un usuario
+router.get("/proyectos-compartidos", function(req, res){
+    proyecto.find({
+            colaboradores:mongoose.Types.ObjectId(req.user._id),
+            eliminado: false
+        }
+    )
+    .then(async data=>{
+        var respuesta = [];
+        for(var p=0; p<data.length; p++){
+            if(data[p].eliminado == true){
+                data[p].splice(i, 1);
+            }else{
+                respuesta.push({
+                    proyecto: data[p], 
+                    creador: await usuario.findById(mongoose.Types.ObjectId(data[p].usuario_creador))
+                        .then(data=>{
+                            return data.usuario;
+                        })
+                });
+            }   
+        }
+
+        res.send(respuesta);  
+    })
+    .catch(error=>{
+        res.send({status:0, mensaje: "Ocurrio un error interno."});
+    });
+});
+
+//Obtiene los archivos compartidos de un usuario
+router.get("/archivos-compartidos", function(req, res){
+    archivo.find({
+            compartido: mongoose.Types.ObjectId(req.user._id),
+            eliminado: false
+        }
+    )
+    .then(async data=>{
+        var respuesta = [];
+        for(var a=0; a<data.length; a++){
+            if(data[a].eliminado == true){
+                data[a].splice(i, 1);
+            }else{
+                respuesta.push({
+                    archivo: data[a], 
+                    creador: await usuario.findById(mongoose.Types.ObjectId(data[a].usuario_creador))
+                        .then(data=>{
+                            return data.usuario;
+                        })
+                });
+            }   
+        }
+
+        res.send(respuesta);  
+    })
+    .catch(error=>{
+        res.send(error);
+    });
+});
+
 //Obtiene las subcarpetas de una carpeta
-router.get("/:idCarpeta/carpetas",function(req,res){
+router.get("/:idCarpeta/carpetas", function(req, res){
     carpeta.aggregate([{
             $lookup:{
                 from: "carpetas",
@@ -259,7 +319,7 @@ router.get("/:idCarpeta/carpetas",function(req,res){
 });
 
 //Obtiene los proyectos de una carpeta
-router.get("/:idCarpeta/proyectos",function(req,res){
+router.get("/:idCarpeta/proyectos", function(req, res){
     carpeta.aggregate([{
             $lookup:{
                 from: "proyectos",
@@ -294,7 +354,7 @@ router.get("/:idCarpeta/proyectos",function(req,res){
 });
 
 //Obtiene los archivos de una carpeta
-router.get("/:idCarpeta/archivos",function(req,res){
+router.get("/:idCarpeta/archivos", function(req, res){
     carpeta.aggregate([{
             $lookup:{
                 from: "archivos",
@@ -442,23 +502,30 @@ router.post("/:idCarpeta/crear", function(req, res){
 
 //Compartir una carpeta o subcarpeta
 router.post("/:idCarpeta/compartir", function (req, res) {  
-    carpeta.findOneAndUpdate({
+    carpeta.findOne({
         _id: mongoose.Types.ObjectId(req.params.idCarpeta)
-    },{
-        $push:{
-            compartido: mongoose.Types.ObjectId(req.body.idAmigoCompartir)
-        }
     })
     .then(data=>{
-        data.save()
-        .then(carpetaCompartida=>{
-            respuesta={status: 1, mensaje: `Carpeta compartida con éxito.`, objeto: carpetaCompartida};
+        var control = 0;
+        for(var i=0; i<data.compartido.length; i++){
+            if(data.compartido[i] == req.body.idAmigoCompartir)
+                control++;
+        }
+        if(control >= 1){
+            respuesta={status: 0, mensaje: `Esta carpeta ya está compartida con ese usuario.`};
             res.send(respuesta);
-        })
-        .catch(error=>{
-            respuesta={status: 0, mensaje: `Ocurrió un error interno al compartir la carpeta`, objeto: error};
-            res.send(respuesta);
-        });
+        }else{
+            data.compartido.push(mongoose.Types.ObjectId(req.body.idAmigoCompartir));
+            data.save()
+            .then(carpetaCompartido=>{
+                respuesta={status: 1, mensaje: `Carpeta compartida con éxito.`, objeto: carpetaCompartido};
+                res.send(respuesta);
+            })
+            .catch(error=>{
+                respuesta={status: 0, mensaje: `Ocurrió un error interno al compartir la carpeta.`, objeto: error};
+                res.send(respuesta);
+            });
+        }
     })
     .catch(error=>{
         respuesta={status: 0, mensaje: `Ocurrió un error interno al encontrar la carpeta`, objeto: error};

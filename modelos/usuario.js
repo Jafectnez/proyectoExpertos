@@ -43,15 +43,4 @@ esquema.pre('save', function (next) {
     })
 });
 
-esquema.methods.compararContrasenia = function (contrasenia, cb) {
-    bcrypt.compare(contrasenia, this.contrasenia, (err, sonIguales)=>{
-        if(err){
-            console.log(err);
-            return cb(err);
-        }
-        
-        return cb(sonIguales);
-    })
-}
-
 module.exports = mongoose.model('usuarios', esquema);

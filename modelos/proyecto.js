@@ -7,7 +7,8 @@ var esquema = new mongoose.Schema(
         descripcion : String,
         archivos: Array,
         colaboradores: Array,
-        eliminado: Boolean
+        eliminado: Boolean,
+        usuario_creador: mongoose.Types.ObjectId
     }
 );
 module.exports = mongoose.model('proyectos',esquema);

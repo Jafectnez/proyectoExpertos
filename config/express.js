@@ -91,9 +91,9 @@ module.exports = function () {
       });
   });
 
-  app.post("/login", function (req, res) {
+  app.post("/login", function (req, res, next) {
     passport.authenticate('local', {passReqToCallback: true}, function (err, user, mensaje) { 
-        var respuesta = {}; 
+        var respuesta = {};
         if(err){
             respuesta = {status:0, mensaje: 'Ocurrió un error interno', objeto: err};
             res.send(respuesta);
@@ -114,7 +114,7 @@ module.exports = function () {
                 }
             });
         }
-        })(req, res);
+        })(req, res, next);
   });
 
   app.get('/logout', function(req,res){

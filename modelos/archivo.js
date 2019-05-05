@@ -8,7 +8,8 @@ var esquema = new mongoose.Schema(
         contenido : String,
         modificaciones: Array,
         compartido: Array,
-        eliminado: Boolean
+        eliminado: Boolean,
+        usuario_creador: mongoose.Types.ObjectId
     }
 );
 module.exports = mongoose.model('archivos',esquema);

@@ -162,11 +162,21 @@
                         </div>
                         <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
                           <h2 id="title-carpeta-compartir"></h2>
-                          <input style="display:none" id="id-compartir" type="text">
-                          <div id="status-compartir"></div>
+                          <input style="display:none" id="id-compartir-carpeta" type="text">
+
+                          <input class="form-control" id="txt-nombre-usuario-carpeta" placeholder="Buscar un amigo">
+                          <table class="table table-striped table-bordered">
+                            <thead>
+                              <th>Usuario</th>
+                              <th>Nombre</th>
+                              <th>Seleccionar</th>
+                            </thead>
+                            <tbody id="resultado-usuario-carpeta"></tbody>
+                          </table>
+                          <div id="status-compartir-carpeta"></div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-primary" id="btn-compartir">Si</button>
+                          <button type="button" class="btn btn-primary" id="btn-compartir-carpeta">Si</button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                         </div>
                       </div>
@@ -210,7 +220,17 @@
                         <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
                           <h2 id="title-proyecto-compartir"></h2>
                           <input style="display:none" id="id-proyecto-compartir" type="text">
-                          <div id="status-compartir"></div>
+
+                          <input class="form-control" id="txt-nombre-usuario-proyecto" placeholder="Buscar un amigo">
+                          <table class="table table-striped table-bordered">
+                            <thead>
+                              <th>Usuario</th>
+                              <th>Nombre</th>
+                              <th>Seleccionar</th>
+                            </thead>
+                            <tbody id="resultado-usuario-proyecto"></tbody>
+                          </table>
+                          <div id="status-compartir-proyecto"></div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-primary" id="btn-compartir-proyecto">Si</button>
@@ -257,7 +277,17 @@
                         <div class="row modal-body" style="padding-bottom: 0;text-align: center;">
                           <h2 id="title-archivo-compartir"></h2>
                           <input style="display:none" id="id-archivo-compartir" type="text">
-                          <div id="status-compartir"></div>
+
+                          <input class="form-control" id="txt-nombre-usuario-archivo" placeholder="Buscar un amigo">
+                          <table class="table table-striped table-bordered">
+                            <thead>
+                              <th>Usuario</th>
+                              <th>Nombre</th>
+                              <th>Seleccionar</th>
+                            </thead>
+                            <tbody id="resultado-usuario-archivo"></tbody>
+                          </table>
+                          <div id="status-compartir-archivo"></div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-primary" id="btn-compartir-archivo">Si</button>

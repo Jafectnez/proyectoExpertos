@@ -63,6 +63,65 @@ router.post("/:idCarpeta/crear", function(req, res){
 
 });
 
+//Compartir un proyecto
+router.post("/:idProyecto/compartir", function (req, res) {  
+    proyecto.findOne({
+        _id: mongoose.Types.ObjectId(req.params.idProyecto)
+    })
+    .then(data=>{
+        var control = 0;
+        for(var i=0; i<data.colaboradores.length; i++){
+            if(data.colaboradores[i] == req.body.idAmigoCompartir)
+                control++;
+        }
+        if(control >= 1){
+            respuesta={status: 0, mensaje: `Este proyecto ya está compartido con ese usuario.`};
+            res.send(respuesta);
+        }else{
+            data.colaboradores.push(mongoose.Types.ObjectId(req.body.idAmigoCompartir));
+            data.save()
+            .then(proyectoCompartido=>{
+                respuesta={status: 1, mensaje: `Proyecto compartido con éxito.`, objeto: proyectoCompartido};
+                res.send(respuesta);
+            })
+            .catch(error=>{
+                respuesta={status: 0, mensaje: `Ocurrió un error interno al compartir el proyecto.`, objeto: error};
+                res.send(respuesta);
+            });
+        }
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrió un error interno al buscar el proyecto.`, objeto: error};
+        res.send(respuesta);
+    });
+});
+
+//Dejar de seguir un proyecto compartido
+router.get("/:idProyecto/compartidos/eliminar", function (req, res) {  
+    proyecto.findOneAndUpdate({
+        _id: mongoose.Types.ObjectId(req.params.idProyecto)
+    },{
+        $pull:{
+            colaboradores:req.user._id
+        }
+    })
+    .then(data=>{
+        data.save()
+        .then(proyectoEliminado=>{
+            respuesta={status: 1, mensaje: `Se dejó de seguir el proyecto.`, objeto: proyectoEliminado};
+            res.send(respuesta);
+        })
+        .catch(error=>{
+            respuesta={status: 0, mensaje: `Ocurrió un error interno al eliminar el proyecto`, objeto: error};
+            res.send(respuesta);
+        });
+    })
+    .catch(error=>{
+        respuesta={status: 0, mensaje: `Ocurrió un error interno al encontrar el proyecto`, objeto: error};
+        res.send(respuesta);
+    });
+});
+
 //Elimina un proyecto
 router.get("/:idProyecto/eliminar", function (req, res) {  
     proyecto.findByIdAndUpdate(
@@ -160,6 +219,7 @@ function crear(req, res){
             archivos: [idHTML, idJS, idCSS],
             colaboradores: [],
             eliminado: false,
+            usuario_creador: mongoose.Types.ObjectId(req.user._id),
             fecha_creacion: fechaCreacion
         });
     

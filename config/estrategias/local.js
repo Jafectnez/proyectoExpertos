@@ -5,26 +5,29 @@ const bcrypt = require('bcrypt-nodejs');
 
 module.exports = function () {  
   passport.use('local', new LocalStrategy(
-    {usernameField: "usuario", 
-     passwordField:"contrasenia", 
-     passReqToCallback : true},
+   {usernameField: "usuario", 
+    passwordField:"contrasenia", 
+    passReqToCallback : true},
     (req, username, password, done)=>{
-      usuarioModel.findOne({usuario: username}, {contrasenia:0}, function(err, usuarioEncontrado){
+      usuarioModel.findOne({usuario: username}, function(err, usuarioEncontrado){
         if(err){
           return done(err);
         }
-        if(!usuarioEncontrado || usuarioEncontrado === null){
+        if(!usuarioEncontrado){
           return done(null, false, message = 'Usuario desconocido.');
         }
-        
-        usuarioEncontrado.compararContrasenia(password, (sonIguales)=>{
+        bcrypt.compare(password, usuarioEncontrado.contrasenia, (err, sonIguales)=>{
+          if(err){
+            console.log(err);
+            return cb(err);
+          }
           if(!sonIguales){
             return done(null, false, message = 'Contraseña Incorrecta.');
+          }else{
+            return done(null, usuarioEncontrado, message = 'Inicio de sesión exitoso.');
           }
-          
-          return done(null, usuarioEncontrado, message = 'Inicio de sesión exitoso.');
         })
-    });
+      });
     }
   )
 )};

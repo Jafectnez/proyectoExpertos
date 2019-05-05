@@ -458,9 +458,51 @@ function verArchivo(idArchivo) {
   console.log("Ver archivo " + idArchivo);
 }
 
-function compartirArchivo(idArchivo) {
-  console.log("Compartir archivo " + idArchivo);
+function compartirArchivo(idArchivo, nombreArchivo) {
+  $("#id-archivo-compartir").val(idArchivo);
+  $("#title-archivo-compartir").text(nombreArchivo);
 }
+
+$("#btn-compartir-archivo").on("click", function () {  
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "POST",
+    url: `/archivos/${$("#id-archivo-compartir").val()}/compartir`,
+    data: {
+      idAmigoCompartir: $('input:radio[name=rBtn-idAmigo]:checked').val()
+    },
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      console.log(respuesta);
+      if(respuesta.status = 1){
+        $("#status-compartir-archivo").css("color", "green");
+        $("#status-compartir-archivo").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-compartir-archivo").css("color", "");
+          $("#status-compartir-archivo").text("");
+        },5000);
+      }else{
+        $("#status-compartir-archivo").css("color", "red");
+        $("#status-compartir-archivo").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-compartir-archivo").css("color", "");
+          $("#status-compartir-archivo").text("");
+        },5000);
+      }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
+      $("#status-compartir-archivo").css("color", "red");
+      $("#status-compartir-archivo").text("Ocurrió un error, intente de nuevo luego.");
+      console.error(respuesta);
+      setTimeout(function () {  
+        $("#status-compartir-archivo").css("color", "");
+        $("#status-compartir-archivo").text("");
+      },5000);
+    }
+  });
+});
 
 function eliminarArchivo(idArchivo, nombreArchivo) {
   $("#id-archivo-eliminar").val(idArchivo);
@@ -485,9 +527,51 @@ $("#btn-eliminar-archivo").on("click", function () {
   });
 })
 
-function compartirProyecto(idProyecto) {
-  console.log("Compartir proyecto " + idProyecto);
+function compartirProyecto(idProyecto, nombreProyecto) {
+  $("#id-proyecto-compartir").val(idProyecto);
+  $("#title-proyecto-compartir").text(nombreProyecto);
 }
+
+$("#btn-compartir-proyecto").on("click", function () {  
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "POST",
+    url: `/proyectos/${$("#id-proyecto-compartir").val()}/compartir`,
+    data: {
+      idAmigoCompartir: $('input:radio[name=rBtn-idAmigo]:checked').val()
+    },
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+      console.log(respuesta);
+      if(respuesta.status = 1){
+        $("#status-compartir-proyecto").css("color", "green");
+        $("#status-compartir-proyecto").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-compartir-proyecto").css("color", "");
+          $("#status-compartir-proyecto").text("");
+        },5000);
+      }else{
+        $("#status-compartir-proyecto").css("color", "red");
+        $("#status-compartir-proyecto").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-compartir-proyecto").css("color", "");
+          $("#status-compartir-proyecto").text("");
+        },5000);
+      }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
+      $("#status-compartir-proyecto").css("color", "red");
+      $("#status-compartir-proyecto").text("Ocurrió un error, intente de nuevo luego.");
+      console.error(respuesta);
+      setTimeout(function () {  
+        $("#status-compartir-proyecto").css("color", "");
+        $("#status-compartir-proyecto").text("");
+      },5000);
+    }
+  });
+});
 
 function eliminarProyecto(idProyecto, nombreProyecto) {
   $("#id-proyecto-eliminar").val(idProyecto);
@@ -504,20 +588,28 @@ $("#btn-eliminar-proyecto").on("click", function () {
       $(".div-loading").css("display", "none");
       if(respuesta.status == 1){
         console.log(respuesta.mensaje);
+        $("#status").css("color", "green");
+        $("#status").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status").css("color", "");
+          $("#status").text("");
+        },5000);
         cargarTarjetas();
-        
-      }else
-        console.error(respuesta.mensaje)
+      }else{
+        console.error(respuesta.mensaje);
+        $("#status").css("color", "red");
+        $("#status").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status").css("color", "");
+          $("#status").text("");
+        },5000);
+      }
     },
     error: function (respuesta) {  
       $(".div-loading").css("display", "none");
     }
   });
 });
-
-function compartirCarpeta(idCarpeta) {
-  console.log("Compartir carpeta " + idCarpeta);
-}
 
 function eliminarCarpeta(idCarpeta, nombreCarpeta) {
   $("#id-carpeta-eliminar").val(idCarpeta);
@@ -531,20 +623,80 @@ $("#btn-eliminar-carpeta").on("click", function () {
     url: `/carpetas/${$("#id-carpeta-eliminar").val()}/eliminar`,
     dataType: "json",
     success: function (respuesta) {
+      $(".div-loading").css("display", "none");
       if(respuesta.status == 1){
         console.log(respuesta.mensaje);
-        $(".div-loading").css("display", "none");
+        $("#status").css("color", "green");
+        $("#status").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status").css("color", "");
+          $("#status").text("");
+        },5000);
         cargarTarjetas();
-        
-      }else
-        console.error(respuesta.mensaje)
+      }else{
+        console.error(respuesta.mensaje);
+        $("#status").css("color", "red");
+        $("#status").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status").css("color", "");
+          $("#status").text("");
+        },5000);
+      }
     },
     error: function (respuesta) {  
       $(".div-loading").css("display", "none");
     }
   });
 })
+
+function compartirCarpeta(idCarpeta, nombreCarpeta) {
+  $("#id-compartir-carpeta").val(idCarpeta);
+  $("#title-carpeta-compartir-carpeta").text(nombreCarpeta);
+}
+
+$("#btn-compartir-carpeta").on("click", function () {  
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "POST",
+    url: `/carpetas/${$("#id-compartir-carpeta").val()}/compartir`,
+    data: {
+      idAmigoCompartir: $('input:radio[name=rBtn-idAmigo]:checked').val()
+    },
+    dataType: "json",
+    success: function (respuesta) {
+      $(".div-loading").css("display", "none");
+
+      if(respuesta.status = 1){
+        $("#status-compartir-carpeta").css("color", "green");
+        $("#status-compartir-carpeta").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-compartir-carpeta").css("color", "");
+          $("#status-compartir-carpeta").text("");
+        },5000);
+      }else{
+        $("#status-compartir-carpeta").css("color", "red");
+        $("#status-compartir-carpeta").text(respuesta.mensaje);
+        setTimeout(function () {  
+          $("#status-compartir-carpeta").css("color", "");
+          $("#status-compartir-carpeta").text("");
+        },5000);
+      }
+    },
+    error: function (respuesta) {  
+      $(".div-loading").css("display", "none");
+      $("#status-compartir-carpeta").css("color", "red");
+      $("#status-compartir-carpeta").text("Ocurrió un error, intente de nuevo más tarde.");
+      console.error(respuesta);
+      setTimeout(function () {  
+        $("#status-compartir-carpeta").css("color", "");
+        $("#status-compartir-carpeta").text("");
+      },5000);
+    }
+  });
+});
     
+
+
 function validarCampo(campo, regex = /.+/){
   if ($("#"+campo).value ==''){   
     $("#"+campo).css("color", "red");
@@ -579,4 +731,52 @@ function validarCampo(campo, regex = /.+/){
 
     return true;
   }
+}
+
+//Funcion buscar Usuario
+$("#txt-nombre-usuario-carpeta").on("change", function () {
+  buscarUsuario("carpeta");
+});
+
+$("#txt-nombre-usuario-proyecto").on("change", function () {
+  buscarUsuario("proyecto");
+});
+
+$("#txt-nombre-usuario-archivo").on("change", function () {
+  buscarUsuario("archivo");
+});
+
+function buscarUsuario(dato) {
+  $(".div-loading").css("display", "block");
+  $.ajax({
+    type: "GET",
+    url: `/amigos/buscar/${$("#txt-nombre-usuario-"+dato).val()}`,
+    dataType: "json",
+    success: function (respuesta) {
+      console.log(respuesta);
+      $("#resultado-usuario-"+dato).html("");
+      $(".div-loading").css("display", "none");
+
+      if(respuesta.datos.length < 1){
+        $("#status-usuario").css("color", "red");
+        $("#status-usuario").text("No se han encontrado coincidencias");
+        setTimeout(function () {  
+          $("#status-usuario").css("color", "");
+          $("#status-usuario").text("");
+        },5000);
+        return;
+      }
+
+      for(var i=0; i<respuesta.datos.length; i++){
+        var user = respuesta.datos[i];
+        var row = `<tr>
+                    <td>${user.usuario}</td>
+                    <td>${user.nombre} ${user.apellido}</td>
+                    <td><input type="radio" name="rBtn-idAmigo" value='${user._id}'></td>
+                  </tr>`;
+
+        $("#resultado-usuario-"+dato).append(row);
+      }
+    }
+  });
 }
